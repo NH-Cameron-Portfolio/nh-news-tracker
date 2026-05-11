@@ -77,10 +77,46 @@ def _text_for_matching(item: NewsItem) -> tuple[str, str, str]:
     return title, summary, combined
 
 
+def _is_high_credibility(item: NewsItem) -> bool:
+    """
+    True if the article is from a top-tier business source where any mention of a tracked
+    client is almost always material. We use this to bypass strict context-gating —
+    the editorial filter at these outlets does the relevance work for us.
+    """
+    # Check 1: source domain (works for direct feeds, e.g. ft.com)
+    HIGH_CRED_DOMAINS = {
+        "ft.com", "reuters.com", "bbc.co.uk", "bbc.com",
+        "bloomberg.com", "thetimes.com", "thetimes.co.uk",
+        "theguardian.com", "telegraph.co.uk", "economist.com",
+        "wsj.com",
+    }
+    if item.source_domain in HIGH_CRED_DOMAINS:
+        return True
+    # Check 2: Google News title suffix (works for items wrapped via news.google.com)
+    suffix = (item.title or "").lower()
+    HIGH_CRED_SUFFIXES = [
+        "- financial times", "- ft.com", "- the times",
+        "- reuters", "- bbc", "- bbc news", "- bbc business",
+        "- bloomberg", "- the guardian", "- telegraph",
+        "- the telegraph", "- the economist", "- economist",
+        "- wall street journal", "- wsj",
+    ]
+    return any(suffix.endswith(s) for s in HIGH_CRED_SUFFIXES)
+
+
 def detect_clients(items: list[NewsItem], clients: dict) -> list[NewsItem]:
     """
     For each item, populate .matched_clients with canonical names of any client(s) detected.
     Items with no matches are dropped.
+
+    v6 logic:
+      - For most sources: strict matching (exact alias OR contextual alias + required context).
+      - For high-credibility sources (FT, Reuters, BBC, Bloomberg, Times, Telegraph, Guardian, Economist):
+        the context-gating requirement is dropped. Any mention of a client alias counts.
+        Rationale: these outlets don't write filler about regulated utilities; if they're writing
+        about a client by name, it's almost always material news. Saves us from missing major
+        stories like "BT is back" where the headline doesn't include the keywords we'd otherwise require.
+      - Negative context still applies (e.g. "Vodafone Idea India" still won't match Vodafone UK).
     """
     patterns = _compile_client_patterns(clients)
     survivors: list[NewsItem] = []
@@ -88,13 +124,14 @@ def detect_clients(items: list[NewsItem], clients: dict) -> list[NewsItem]:
     for item in items:
         title, summary, combined = _text_for_matching(item)
         combined_lower = combined.lower()
+        high_cred = _is_high_credibility(item)
         matched: list[str] = []
 
         for client_id, p in patterns.items():
-            # Skip if a negative-context phrase is present and no STRONG exact-alias match exists
+            # Negative context check applies in both regimes
             negative_hits = any(neg in combined_lower for neg in p["negative_context"])
 
-            # Try exact aliases first
+            # Try exact aliases first (always strict)
             exact_hit = any(pat.search(combined) for pat in p["exact_patterns"])
 
             if exact_hit and not negative_hits:
@@ -102,9 +139,7 @@ def detect_clients(items: list[NewsItem], clients: dict) -> list[NewsItem]:
                 continue
             if exact_hit and negative_hits:
                 # If the exact alias is also a multi-word distinctive phrase, allow it through
-                # despite negative context. (e.g. an article mentioning both "SSE Thermal" and
-                # "Scottish and Southern Electricity Networks" — the latter is unambiguous.)
-                # Heuristic: full-name exact aliases > 2 words override negative_context.
+                # despite negative context.
                 if any(len(a.split()) > 2 for a in clients[client_id].get("exact_aliases", [])):
                     if any(
                         _build_alias_regex(a).search(combined)
@@ -113,13 +148,15 @@ def detect_clients(items: list[NewsItem], clients: dict) -> list[NewsItem]:
                     ):
                         matched.append(p["canonical"])
                         continue
-                # Otherwise drop this match
                 continue
 
-            # Contextual aliases require both alias match AND context keyword AND no negative context
+            # Contextual aliases
             ctx_hit = any(pat.search(combined) for pat in p["contextual_patterns"])
             if ctx_hit and not negative_hits:
-                if any(ctx in combined_lower for ctx in p["requires_context"]):
+                if high_cred:
+                    # High-credibility source: skip context-word requirement
+                    matched.append(p["canonical"])
+                elif any(ctx in combined_lower for ctx in p["requires_context"]):
                     matched.append(p["canonical"])
 
         if matched:

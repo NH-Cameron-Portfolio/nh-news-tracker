@@ -493,10 +493,14 @@
     "exact_aliases": ["BT Group", "BT plc", "British Telecom", "Openreach"],
     "contextual_aliases": ["BT"],
     "requires_context": [
-      "telecom", "broadband", "Openreach", "Ofcom", "fibre", "FTTP",
+      "telecom", "telecoms", "broadband", "Openreach", "Ofcom", "fibre", "FTTP", "FTTC",
       "BT Sport", "TNT Sport", "EE", "mobile network", "ISP", "fixed line",
       "Adastral", "Allison Kirkby", "Philip Jansen", "FTSE", "London Stock Exchange",
-      "shares", "trading update", "results"
+      "shares", "trading update", "results", "earnings", "revenue", "profit",
+      "turnaround", "transformation", "restructuring", "strategic review",
+      "Openreach", "BT Group", "BT plc",
+      "rollout", "5G", "spectrum", "dividend", "guidance", "outlook",
+      "Sunil Bharti Mittal", "Patrick Drahi", "Altice"
     ],
     "negative_context": [
       "Bitcoin (BT)", "Bluetooth", "BT-7", "BTC ", "British Triathlon",
@@ -505,7 +509,7 @@
     ],
     "lse_ticker": "BT.A",
     "newsroom_rss": null,
-    "notes": "BT alone is heavily overloaded — context-gated. Openreach is the regulated network arm (Ofcom-regulated), included as exact alias since it's distinctive."
+    "notes": "BT alone is heavily overloaded — context-gated. Openreach is the regulated network arm (Ofcom-regulated), included as exact alias since it's distinctive. v6: broadened context terms to catch 'is back', 'turnaround', 'results', 'earnings' — common headline language in business press."
   },
   "informa": {
     "canonical": "Informa",

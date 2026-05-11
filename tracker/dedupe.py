@@ -110,49 +110,84 @@ def deduplicate(items: list[NewsItem], credibility_cfg: dict) -> list[NewsItem]:
     return survivors
 
 
-def cluster_by_story(items: list[NewsItem], credibility_cfg: dict, window_days: int = 5) -> list[NewsItem]:
+def cluster_by_story(items: list[NewsItem], credibility_cfg: dict, window_days: int = 7, fuzz_threshold: int = 65) -> list[NewsItem]:
     """
     Second-pass clustering AFTER client/topic detection.
-    Groups items that share (primary_client, primary_topic, week) and keeps the best one.
-    Call this after scoring.score_and_tier() runs.
+
+    Groups items that are likely the same story:
+      1. Bucket items by (primary_client, week)
+      2. Within each bucket, run fuzzy title clustering on suffix-stripped titles
+      3. Keep the best representative from each cluster
+      4. Annotate the winner with "(+N other outlets)" so the user knows coverage was wide
+
+    v7 changes from v6:
+      - Bucket key no longer includes primary_topic (was causing same-story clustering to fail
+        when articles got tagged with different primary topics, e.g. 'CEO resigns' could be
+        either leadership_and_governance or customer_and_service depending on word order)
+      - Lower fuzz threshold (65) since same-story headlines vary more than dedup stage A
+        ("boss quits after supply failures" vs "CEO to step down after outages" — same story,
+        very different wording)
     """
     def bucket_key(it: NewsItem) -> tuple:
         primary_client = it.matched_clients[0] if it.matched_clients else None
-        primary_topic = it.matched_topics[0] if it.matched_topics else None
         if not it.published_at or primary_client is None:
-            return (None,)  # unbucketable — pass through individually
-        # Bucket by week (date.isoformat / 7-day window)
+            return None  # unbucketable
         day_bucket = (it.published_at.date().toordinal() // window_days)
-        return (primary_client, primary_topic, day_bucket)
+        return (primary_client, day_bucket)
 
-    buckets: dict[tuple, list[NewsItem]] = {}
+    # First bucket by (client, week)
+    raw_buckets: dict[tuple, list[NewsItem]] = {}
+    unbucketable: list[NewsItem] = []
     for it in items:
         key = bucket_key(it)
-        if key == (None,):
-            # Pass-through bucket — each item gets its own key
-            buckets[id(it)] = [it]
+        if key is None:
+            unbucketable.append(it)
         else:
-            buckets.setdefault(key, []).append(it)
+            raw_buckets.setdefault(key, []).append(it)
 
-    survivors: list[NewsItem] = []
-    for cluster in buckets.values():
-        if len(cluster) == 1:
-            survivors.append(cluster[0])
+    survivors: list[NewsItem] = list(unbucketable)
+
+    # Within each (client, week) bucket, run fuzzy title clustering
+    for cluster in raw_buckets.values():
+        if len(cluster) <= 1:
+            survivors.extend(cluster)
             continue
-        # Keep the highest-scored item, then by credibility, then earliest publish date
-        cluster.sort(
-            key=lambda it: (
-                -it.score,
-                -_credibility_score(it, credibility_cfg),
-                it.published_at.timestamp() if it.published_at else float("inf"),
-            )
-        )
-        # Annotate the winner with "+ N other coverage" so user knows it was popular
-        winner = cluster[0]
-        others = len(cluster) - 1
-        if others > 0:
-            winner.why_it_matters = (winner.why_it_matters + f" (+{others} other outlets)").strip()
-        survivors.append(winner)
 
-    log.info("Story clustering: %d -> %d items", len(items), len(survivors))
+        # Sub-cluster by fuzzy title similarity (suffix-stripped)
+        sub_clusters: list[list[NewsItem]] = []
+        for it in cluster:
+            normalized = _normalize_title(it.title)
+            placed = False
+            for sub in sub_clusters:
+                rep_norm = _normalize_title(sub[0].title)
+                if fuzz.token_set_ratio(normalized, rep_norm) >= fuzz_threshold:
+                    sub.append(it)
+                    placed = True
+                    break
+            if not placed:
+                sub_clusters.append([it])
+
+        # Pick a winner from each sub-cluster
+        for sub in sub_clusters:
+            if len(sub) == 1:
+                survivors.append(sub[0])
+                continue
+            sub.sort(
+                key=lambda it: (
+                    -it.score,
+                    -_credibility_score(it, credibility_cfg),
+                    it.published_at.timestamp() if it.published_at else float("inf"),
+                )
+            )
+            winner = sub[0]
+            others = len(sub) - 1
+            if others > 0:
+                annotation = f"+{others} other outlet{'s' if others > 1 else ''} covered this"
+                if winner.why_it_matters:
+                    winner.why_it_matters = f"{winner.why_it_matters} ({annotation})"
+                else:
+                    winner.why_it_matters = annotation
+            survivors.append(winner)
+
+    log.info("Story clustering: %d items -> %d after (client, week, fuzzy-title) clustering", len(items), len(survivors))
     return survivors
