@@ -54,31 +54,33 @@ def _topic_hits(text_lower: str, topics: dict) -> list[str]:
     return hit_buckets
 
 
+_SUFFIX_RE = __import__("re").compile(r"\s+[-|–]\s+[^-|–]{2,60}$")
+
+
 def _summary_is_substantive(item: NewsItem) -> bool:
     """
     Returns True if the summary contains meaningful content beyond the title.
 
     Google News RSS often produces summaries that are just the title repeated or the title +
-    source name, which is not "new" information. We use a token-overlap heuristic: if more than
-    70% of summary tokens already appear in the title, treat it as non-substantive.
+    source name. We strip the trailing " - Source" suffix from the title before comparing,
+    so that the substance check only considers genuine title tokens.
     """
-    title = (item.title or "").lower()
+    title = _SUFFIX_RE.sub("", item.title or "").lower()
     summary = (item.summary or "").lower()
     if not summary:
         return False
-    # If the summary is shorter than the title, it's almost certainly a fragment/header, not content
+    # If summary is shorter than the title, it's almost certainly a fragment, not content
     if len(summary) < len(title):
         return False
-    # Check token overlap
     title_tokens = set(title.split())
     summary_tokens = summary.split()
     if not summary_tokens:
         return False
     novel = [t for t in summary_tokens if t not in title_tokens]
     novelty_ratio = len(novel) / len(summary_tokens)
-    # Also: a substantive summary should add at least 30 novel chars beyond the title
     novel_chars = len(summary) - len(title)
-    return novelty_ratio > 0.3 and novel_chars > 30
+    # v4: relaxed thresholds — many genuine articles repeat the title heavily but add a sentence of body
+    return novelty_ratio > 0.20 and novel_chars > 15
 
 
 def score_item(

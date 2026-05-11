@@ -29,7 +29,22 @@
     "postpone Skipton Road", "Skipton Road works",
     "Makes Presentation To", "Makes Presentation to Council",
     "Open Doors event",
-    "Helicopter glamping", "helicopter glamping pods"
+    "Helicopter glamping", "helicopter glamping pods",
+
+    "Priority presents", "Priority from O2", "an O2 evening",
+    "exclusive ticket", "exclusive tickets", "ticket pre-sale", "presale tickets",
+    "drag queen", "drag show", "DJ set", "live music",
+    "FREE evening", "free evening with",
+    "courtesy of Priority", "fan experience", "meet and greet", "meet & greet",
+    "live event", "VIP experience", "VIP package", "VIP tickets",
+    "gig tickets", "concert tickets",
+    "behind the scenes", "behind-the-scenes",
+    "EE Wembley Cup", "BT Sport presents",
+    "celebrity guest", "competition winner", "lucky winner",
+    "Vodafone Big Top", "Vodafone Generations", "Vodafone Originals",
+    "podcast launch", "podcast episode",
+    "summer festival", "summer of music",
+    "blockbuster line-up", "headlining act"
   ],
   "title_phrases_score_penalty": [
     "sponsors", "sponsorship", "match-day partner", "Premier League",
@@ -52,7 +67,7 @@
     "marketscreener.com", "Fool UK", "The Motley Fool", "Motley Fool",
     "TechStock\u00b2", "TechStock", "AD HOC NEWS", "Ad Hoc News",
     "DirectorsTalk Interviews", "DirectorsTalk", "StocksToTrade",
-    "Id\u00e9al Investisseur", "Ideal Investisseur"
+    "Id\u00e9al Investisseur", "Ideal Investisseur", "Capital.com"
   ],
   "pr_wire_domains": [
     "prnewswire.com", "businesswire.com", "globenewswire.com",
@@ -69,7 +84,12 @@
     "stockpickers",
     "stock\\s+watch",
     "shares\\s+to\\s+watch",
-    "sleep-?well\\s+stock"
+    "sleep-?well\\s+stock",
+    "\\bStock Price Quote\\b"
+  ],
+  "entertainment_noise_patterns": [
+    "\\b(O2|EE|BT Sport|TNT Sport|Vodafone)\\b.{0,80}\\b(presents|evening with|exclusive|tickets|gig|concert|festival|drag|DJ|live music|fan experience|behind the scenes)\\b",
+    "\\b(presents|exclusive|tickets|gig|concert|festival|drag|DJ|live music|fan experience|behind the scenes)\\b.{0,80}\\b(O2|EE|BT Sport|TNT Sport|Vodafone)\\b"
   ],
   "min_summary_chars": 100,
   "max_age_days": 7

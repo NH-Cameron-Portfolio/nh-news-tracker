@@ -176,7 +176,9 @@ def fetch_all_feeds(feed_configs: Iterable[dict], fetch_cfg: dict, deadline_ts: 
     max_retries = fetch_cfg.get("max_retries_per_feed", 2)
 
     all_items: list[NewsItem] = []
-    stats: dict[str, int] = {"feeds_attempted": 0, "feeds_failed": 0, "items_total": 0}
+    stats: dict[str, int] = {"feeds_attempted": 0, "feeds_failed": 0, "feeds_empty": 0, "items_total": 0}
+    empty_feeds: list[str] = []
+    failed_feeds: list[str] = []
 
     for feed in feed_configs:
         if deadline_ts is not None and time.time() > deadline_ts:
@@ -198,17 +200,27 @@ def fetch_all_feeds(feed_configs: Iterable[dict], fetch_cfg: dict, deadline_ts: 
         if not content:
             log.warning("Giving up on %s after %d attempts", name, max_retries + 1)
             stats["feeds_failed"] += 1
+            failed_feeds.append(name)
             time.sleep(delay)
             continue
 
         items = parse_feed(content, name, tags)
         all_items.extend(items)
         stats["items_total"] += len(items)
-        log.info("%s: %d items", name, len(items))
+        if len(items) == 0:
+            stats["feeds_empty"] += 1
+            empty_feeds.append(name)
+            log.warning("%s: 0 items (feed may have moved or be malformed)", name)
+        else:
+            log.info("%s: %d items", name, len(items))
         time.sleep(delay)
 
     log.info(
-        "Fetch summary — feeds: %d attempted, %d failed; items: %d",
-        stats["feeds_attempted"], stats["feeds_failed"], stats["items_total"],
+        "Fetch summary — feeds: %d attempted, %d failed, %d empty; items: %d",
+        stats["feeds_attempted"], stats["feeds_failed"], stats["feeds_empty"], stats["items_total"],
     )
+    if failed_feeds:
+        log.warning("Failed feeds (consider removing or replacing in feeds.json): %s", ", ".join(failed_feeds))
+    if empty_feeds:
+        log.warning("Empty feeds (no items parsed — feed may have moved): %s", ", ".join(empty_feeds))
     return all_items

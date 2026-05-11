@@ -5,24 +5,28 @@
     "comment": "{client} is URL-encoded canonical client name. Quoted for exact-phrase match."
   },
   "static_feeds": [
-    {"name": "BBC Business",       "url": "https://feeds.bbci.co.uk/news/business/rss.xml",       "tags": ["national"]},
-    {"name": "Guardian Business",  "url": "https://www.theguardian.com/uk/business/rss",          "tags": ["national"]},
-    {"name": "Sky News Business",  "url": "https://feeds.skynews.com/feeds/rss/business.xml",     "tags": ["national"]},
-    {"name": "FT Companies",       "url": "https://www.ft.com/companies?format=rss",              "tags": ["national", "paywall"]},
-    {"name": "Reuters UK",         "url": "https://www.reutersagency.com/feed/?best-regions=united-kingdom&post_type=best", "tags": ["national"]},
-    {"name": "Utility Week",       "url": "https://utilityweek.co.uk/feed/",                      "tags": ["trade", "utilities"]},
-    {"name": "Current News",       "url": "https://www.current-news.co.uk/feed",                  "tags": ["trade", "energy"]},
-    {"name": "Energy Live News",   "url": "https://www.energylivenews.com/feed/",                 "tags": ["trade", "energy"]},
-    {"name": "Net Zero Investor",  "url": "https://www.netzeroinvestor.net/news.rss",             "tags": ["trade", "energy"]},
-    {"name": "New Civil Engineer", "url": "https://www.newcivilengineer.com/feed/",               "tags": ["trade", "infrastructure"]},
-    {"name": "Ofgem News",         "url": "https://www.ofgem.gov.uk/news/rss.xml",                "tags": ["primary", "regulator"]},
-    {"name": "Ofwat News",         "url": "https://www.ofwat.gov.uk/feed/",                       "tags": ["primary", "regulator"]},
-    {"name": "Gov.uk DESNZ",       "url": "https://www.gov.uk/government/organisations/department-for-energy-security-and-net-zero.atom", "tags": ["primary", "policy"]},
-    {"name": "Gov.uk Defra",       "url": "https://www.gov.uk/government/organisations/department-for-environment-food-rural-affairs.atom", "tags": ["primary", "policy"]}
+    {"name": "BBC Business",            "url": "https://feeds.bbci.co.uk/news/business/rss.xml",                                                              "tags": ["national"]},
+    {"name": "Guardian Business",       "url": "https://www.theguardian.com/uk/business/rss",                                                                  "tags": ["national"]},
+    {"name": "Sky News Business",       "url": "https://feeds.skynews.com/feeds/rss/business.xml",                                                             "tags": ["national"]},
+    {"name": "FT Companies",            "url": "https://www.ft.com/companies?format=rss",                                                                      "tags": ["national", "paywall"]},
+    {"name": "Energy Live News",        "url": "https://www.energylivenews.com/feed/",                                                                         "tags": ["trade", "energy"]},
+    {"name": "Ofwat News",              "url": "https://www.ofwat.gov.uk/feed/",                                                                               "tags": ["primary", "regulator"]},
+    {"name": "Gov.uk DESNZ",            "url": "https://www.gov.uk/government/organisations/department-for-energy-security-and-net-zero.atom",                  "tags": ["primary", "policy"]},
+    {"name": "Gov.uk Defra",            "url": "https://www.gov.uk/government/organisations/department-for-environment-food-rural-affairs.atom",                "tags": ["primary", "policy"]},
+    {"name": "Gov.uk DSIT (digital)",   "url": "https://www.gov.uk/government/organisations/department-for-science-innovation-and-technology.atom",              "tags": ["primary", "policy"]},
+    {"name": "Google News: Ofgem (regulator backstop)",      "url": "https://news.google.com/rss/search?q=%22Ofgem%22+(decision+OR+investigation+OR+fine+OR+price+control+OR+consultation)&hl=en-GB&gl=GB&ceid=GB:en", "tags": ["aggregator", "regulator"]},
+    {"name": "Google News: Ofcom (telecoms regulator)",      "url": "https://news.google.com/rss/search?q=%22Ofcom%22+(decision+OR+investigation+OR+fine+OR+consultation+OR+ruling)&hl=en-GB&gl=GB&ceid=GB:en",     "tags": ["aggregator", "regulator"]},
+    {"name": "Google News: UK utilities news",               "url": "https://news.google.com/rss/search?q=(UK+water+OR+UK+electricity+OR+UK+gas)+(regulator+OR+price+control+OR+fine+OR+investigation)&hl=en-GB&gl=GB&ceid=GB:en", "tags": ["aggregator"]},
+    {"name": "Google News: UK telecoms",                     "url": "https://news.google.com/rss/search?q=(UK+telecoms+OR+broadband+OR+mobile+network)+(Ofcom+OR+rollout+OR+merger+OR+spectrum)&hl=en-GB&gl=GB&ceid=GB:en", "tags": ["aggregator"]},
+    {"name": "Google News: Utility Week (trade backstop)",   "url": "https://news.google.com/rss/search?q=site%3Autilityweek.co.uk&hl=en-GB&gl=GB&ceid=GB:en", "tags": ["aggregator", "trade"]},
+    {"name": "Google News: Current News (trade backstop)",   "url": "https://news.google.com/rss/search?q=site%3Acurrent-news.co.uk&hl=en-GB&gl=GB&ceid=GB:en", "tags": ["aggregator", "trade"]},
+    {"name": "Google News: New Civil Engineer (backstop)",   "url": "https://news.google.com/rss/search?q=site%3Anewcivilengineer.com&hl=en-GB&gl=GB&ceid=GB:en", "tags": ["aggregator", "trade"]},
+    {"name": "Google News: ENDS Report (backstop)",          "url": "https://news.google.com/rss/search?q=site%3Aendsreport.com&hl=en-GB&gl=GB&ceid=GB:en",   "tags": ["aggregator", "trade"]}
   ],
   "fetch": {
     "timeout_seconds": 15,
     "delay_between_requests_seconds": 1.5,
     "max_retries_per_feed": 2
-  }
+  },
+  "comment": "v5b feed changes: removed broken Reuters Agency (paid-only now), Net Zero Investor (RSS retired), New Civil Engineer (Cloudflare-blocked), Ofgem direct (returns 404 — site restructure). Replaced trade-press sources via Google News site: queries which always work, since Google indexes them. Added Ofcom backstop now that telecoms clients are in scope."
 }

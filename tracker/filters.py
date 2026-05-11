@@ -61,8 +61,17 @@ def _compile_client_patterns(clients: dict) -> dict[str, dict]:
 
 
 def _text_for_matching(item: NewsItem) -> tuple[str, str, str]:
-    """Return (title, summary, combined) — preserves case for acronym matching."""
-    title = item.title or ""
+    """
+    Return (title, summary, combined) — preserves case for acronym matching.
+
+    Google News appends " - Source Name" to article titles. When the source name
+    happens to equal the client name (e.g. "...- Virgin Media O2"), the bare title
+    would falsely match even if the article content has nothing to do with the client.
+    We strip that trailing suffix before matching.
+    """
+    raw_title = item.title or ""
+    # Strip the " - Source Name" / " | Source Name" / " – Source Name" suffix
+    title = _TITLE_SUFFIX_RE.sub("", raw_title).strip()
     summary = item.summary or ""
     combined = f"{title}\n{summary}"
     return title, summary, combined
@@ -165,12 +174,15 @@ def quality_gate(items: list[NewsItem], exclusions: dict) -> list[NewsItem]:
     if not stock_patterns:
         stock_patterns = [re.compile(exclusions.get("title_regex_stock_only", _STOCK_PATTERN_DEFAULT.pattern), re.IGNORECASE)]
 
+    # Entertainment / sponsorship noise patterns (drag shows, gig tickets, Priority by O2, etc)
+    entertainment_patterns = [re.compile(p, re.IGNORECASE | re.DOTALL) for p in exclusions.get("entertainment_noise_patterns", [])]
+
     # Topics that override stock-noise filter (these are genuinely material even if stock-y)
     OVERRIDE_TOPICS = {"financial_distress_or_crisis", "ma_and_corporate_activity", "regulatory_and_compliance", "leadership_and_governance"}
 
     cutoff = datetime.now(timezone.utc) - timedelta(days=max_age_days)
     survivors: list[NewsItem] = []
-    dropped = {"length": 0, "lang": 0, "age": 0, "sponsored": 0, "stock_only": 0, "domain": 0, "drop_phrase": 0, "stock_domain": 0, "stock_source": 0}
+    dropped = {"length": 0, "lang": 0, "age": 0, "sponsored": 0, "stock_only": 0, "domain": 0, "drop_phrase": 0, "stock_domain": 0, "stock_source": 0, "entertainment": 0}
 
     for item in items:
         # Domain blocklist
@@ -181,10 +193,18 @@ def quality_gate(items: list[NewsItem], exclusions: dict) -> list[NewsItem]:
         if any(pat in item.url.lower() for pat in url_patterns):
             dropped["sponsored"] += 1
             continue
-        # Drop-phrase titles
+        # Drop-phrase titles — check BOTH title and first 500 chars of summary
+        # (catches entertainment phrases that appear in body but not title)
         title_lower = item.title.lower()
-        if any(phrase.lower() in title_lower for phrase in drop_phrases):
+        summary_lower = (item.summary or "")[:500].lower()
+        combined_lower = title_lower + " " + summary_lower
+        if any(phrase.lower() in combined_lower for phrase in drop_phrases):
             dropped["drop_phrase"] += 1
+            continue
+        # Entertainment / sponsorship noise — regex over title + summary
+        combined_text = (item.title or "") + " " + (item.summary or "")[:800]
+        if any(p.search(combined_text) for p in entertainment_patterns):
+            dropped["entertainment"] += 1
             continue
         # Extract the real source from Google News title suffix " - Source Name"
         # so we can check it against stock-noise sources even when URL is wrapped.
