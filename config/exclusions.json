@@ -15,11 +15,25 @@
     "reminds farmers", "urge dog owners", "Water Park",
     "Focaccia", "water polo", "two hundred day moving average",
     "shares pass above", "two day moving average",
-    "British National Grid - now in Python"
+    "British National Grid - now in Python",
+
+    "wins major industry award", "industry award", "win industry award",
+    "wins industry award", "wins award for", "award winner announced",
+    "shortlisted for the", "shortlisted for three categories",
+    "shortlisted at the", "Water Saving Week", "ends water saving week",
+    "Supporting Women into Work", "Smart Works Leeds",
+    "ongoing work to reduce storm overflows",
+    "embarking on its largest",
+    "delivering its largest ever investment programme",
+    "grub out", "grub out 70-foot hedge",
+    "postpone Skipton Road", "Skipton Road works",
+    "Makes Presentation To", "Makes Presentation to Council",
+    "Open Doors event",
+    "Helicopter glamping", "helicopter glamping pods"
   ],
   "title_phrases_score_penalty": [
     "sponsors", "sponsorship", "match-day partner", "Premier League",
-    "charity football", "celebrity endorsement", "wins award for best"
+    "charity football", "celebrity endorsement"
   ],
   "domains_blocked": [
     "adhocnews.de", "ad-hoc-news.de"
@@ -31,6 +45,14 @@
     "techstock2.com", "ad-hoc-news.de", "adhocnews.de",
     "directorstalkinterviews.com", "stockstotrade.com",
     "idealinvestisseur.fr", "ideal-investisseur.fr"
+  ],
+  "stock_noise_source_names": [
+    "TradingView", "MarketBeat", "Finimize", "Investing.com", "Investing.com UK",
+    "Traders Union", "London South East", "Kalkine Media", "Invezz",
+    "marketscreener.com", "Fool UK", "The Motley Fool", "Motley Fool",
+    "TechStock\u00b2", "TechStock", "AD HOC NEWS", "Ad Hoc News",
+    "DirectorsTalk Interviews", "DirectorsTalk", "StocksToTrade",
+    "Id\u00e9al Investisseur", "Ideal Investisseur"
   ],
   "pr_wire_domains": [
     "prnewswire.com", "businesswire.com", "globenewswire.com",
@@ -46,9 +68,9 @@
     "broker\\s+ratings?",
     "stockpickers",
     "stock\\s+watch",
-    "shares\\s+to\\s+watch"
+    "shares\\s+to\\s+watch",
+    "sleep-?well\\s+stock"
   ],
   "min_summary_chars": 100,
-  "max_age_days": 7,
-  "comment": "stock_only_patterns are regexes applied via re.search() to titles. If ANY pattern matches AND the article has no high-value topic keywords, the article is dropped at quality gate."
+  "max_age_days": 7
 }

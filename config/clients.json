@@ -486,5 +486,112 @@
     "lse_ticker": null,
     "newsroom_rss": null,
     "notes": "Name is generic-sounding. Require exact full phrase, capitalised."
+  },
+  "bt_group": {
+    "canonical": "BT Group",
+    "sector": "Telecoms",
+    "exact_aliases": ["BT Group", "BT plc", "British Telecom", "Openreach"],
+    "contextual_aliases": ["BT"],
+    "requires_context": [
+      "telecom", "broadband", "Openreach", "Ofcom", "fibre", "FTTP",
+      "BT Sport", "TNT Sport", "EE", "mobile network", "ISP", "fixed line",
+      "Adastral", "Allison Kirkby", "Philip Jansen", "FTSE", "London Stock Exchange",
+      "shares", "trading update", "results"
+    ],
+    "negative_context": [
+      "Bitcoin (BT)", "Bluetooth", "BT-7", "BTC ", "British Triathlon",
+      "BTec", "BTEC", "Bachelor of Technology", "vitamin BT",
+      "between (bt)"
+    ],
+    "lse_ticker": "BT.A",
+    "newsroom_rss": null,
+    "notes": "BT alone is heavily overloaded — context-gated. Openreach is the regulated network arm (Ofcom-regulated), included as exact alias since it's distinctive."
+  },
+  "informa": {
+    "canonical": "Informa",
+    "sector": "Media",
+    "exact_aliases": [
+      "Informa plc", "Informa Group", "Informa Markets", "Informa Connect",
+      "Informa Tech", "Informa Festivals", "Taylor & Francis", "Taylor and Francis"
+    ],
+    "contextual_aliases": ["Informa"],
+    "requires_context": [
+      "events", "exhibition", "trade show", "publishing", "FTSE",
+      "Stephen Carter", "Routledge", "academic", "subscription", "media",
+      "London Stock Exchange", "festivals", "B2B", "Curinos", "Cebr"
+    ],
+    "negative_context": [
+      "se informa", "informa che", "informa que", "informa de que", "informa al",
+      "Italia informa", "Spagna informa", "El Pais informa"
+    ],
+    "lse_ticker": "INF",
+    "newsroom_rss": null,
+    "notes": "'Informa' is Spanish/Italian/Portuguese 3rd-person of 'inform'. Strict context-gating for bare 'Informa'."
+  },
+  "tesco_mobile": {
+    "canonical": "Tesco Mobile",
+    "sector": "Telecoms",
+    "exact_aliases": ["Tesco Mobile"],
+    "contextual_aliases": [],
+    "requires_context": [],
+    "negative_context": [],
+    "lse_ticker": null,
+    "newsroom_rss": null,
+    "notes": "Joint venture between Tesco (50%) and Virgin Media O2 (50%). Bare 'Tesco' is NOT tracked — only 'Tesco Mobile' as a distinct phrase."
+  },
+  "vodafone": {
+    "canonical": "Vodafone",
+    "sector": "Telecoms",
+    "exact_aliases": [
+      "Vodafone Group", "Vodafone UK", "Vodafone plc", "Vodafone Business",
+      "Vodafone Three", "VodafoneThree"
+    ],
+    "contextual_aliases": ["Vodafone"],
+    "requires_context": [
+      "telecom", "mobile", "Ofcom", "5G", "spectrum", "FTSE", "Newbury",
+      "Margherita Della Valle", "merger", "Three UK", "operator", "broadband",
+      "network", "MVNO", "wholesale"
+    ],
+    "negative_context": [
+      "Vodafone Idea", "Vodafone India", "Vi (formerly Vodafone)",
+      "Vodafone Egypt", "Vodafone Qatar"
+    ],
+    "lse_ticker": "VOD",
+    "newsroom_rss": null,
+    "notes": "Focus on UK / Group-level coverage. Foreign subsidiaries (Vodafone India / Idea / Egypt / Qatar) are not the NH UK focus and are filtered out."
+  },
+  "vmo2": {
+    "canonical": "Virgin Media O2",
+    "sector": "Telecoms",
+    "exact_aliases": [
+      "Virgin Media O2", "VMO2", "Virgin Media", "Virgin Mobile UK"
+    ],
+    "contextual_aliases": ["O2"],
+    "requires_context": [
+      "telecom", "mobile", "broadband", "Ofcom", "Lutz Schüler",
+      "network", "5G", "operator", "Telefonica", "Telefónica", "Liberty Global",
+      "Virgin Media", "MVNO", "spectrum", "fibre"
+    ],
+    "negative_context": [
+      "blood O2", "blood oxygen", "O2 saturation", "O2 levels",
+      "carbonate", "oxygen therapy", "O2 sensor",
+      "Virgin Atlantic", "Virgin Galactic", "Virgin Records", "Virgin Trains",
+      "Virgin Active", "Virgin Money", "Richard Branson",
+      "O2 Arena event", "O2 Forum gig", "concert at the O2",
+      "playing the O2", "O2 Academy gig"
+    ],
+    "lse_ticker": null,
+    "newsroom_rss": null,
+    "notes": "Bare 'O2' is heavily overloaded (oxygen, the venue, sponsorship deals). Context-gated to telecom usage. 'Virgin Media' alone is distinctive enough to be exact alias."
+  },
+  "lyca_mobile": {
+    "canonical": "Lyca Mobile",
+    "sector": "Telecoms",
+    "exact_aliases": ["Lyca Mobile", "Lycamobile", "Lyca Group", "LycaMobile"],
+    "contextual_aliases": [],
+    "requires_context": [],
+    "negative_context": [],
+    "lse_ticker": null,
+    "newsroom_rss": null
   }
 }

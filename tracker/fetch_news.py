@@ -144,7 +144,7 @@ def main() -> int:
     csv_path = _write_csv(enriched, run_date)   # CSV includes DISCARDED for transparency
 
     include_mentioned = os.environ.get("INCLUDE_MENTIONED", "").lower() in ("1", "true", "yes")
-    html = email_render.render_html(enriched, run_date, include_mentioned=include_mentioned)
+    html = email_render.render_html(enriched, run_date, include_mentioned=include_mentioned, clients_cfg=clients)
 
     # Local HTML copy (handy for debugging / re-sending)
     html_path = OUTPUT_DIR / f"nh_news_{run_date.isoformat()}.html"

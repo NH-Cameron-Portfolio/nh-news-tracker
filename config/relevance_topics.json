@@ -12,7 +12,9 @@
   "regulatory_and_compliance": [
     "fine", "penalty", "enforcement", "investigation", "PR24", "PR29",
     "RIIO", "ED2", "ED3", "GD2", "T2", "T3", "price control",
-    "licence breach", "compliance failure", "regulatory action", "consultation"
+    "licence breach", "compliance failure", "regulatory action", "consultation",
+    "Ofcom", "WFTMR", "Wholesale Fixed Telecoms Market Review",
+    "spectrum auction", "general conditions of entitlement"
   ],
   "financial_distress_or_crisis": [
     "special administration", "credit rating", "downgrade", "covenant",
@@ -49,5 +51,16 @@
     "capex", "capital plan", "investment programme", "business plan",
     "AMP8", "AMP9", "ED2", "ED3", "GD2", "T2", "T3", "RIIO",
     "infrastructure investment", "capital expenditure"
+  ],
+  "telecoms_infrastructure": [
+    "fibre rollout", "FTTP", "FTTC", "full fibre", "altnet", "altnets",
+    "5G rollout", "5G coverage", "spectrum", "spectrum auction", "MVNO",
+    "wholesale price", "interconnection", "net neutrality", "convergence",
+    "broadband rollout", "Openreach build", "Project Lightning"
+  ],
+  "media_and_events": [
+    "trade show", "exhibition", "events business", "subscription growth",
+    "open access", "academic publishing", "festival series", "audience growth",
+    "OTT", "linear TV", "streaming", "ad revenue", "circulation"
   ]
 }

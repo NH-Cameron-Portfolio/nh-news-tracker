@@ -129,6 +129,20 @@ _STOCK_PATTERN_DEFAULT = re.compile(
     r"^[A-Z][A-Za-z &]+\s+(shares|stock)\s+(up|down|rise|fall|jump|slip|gain|drop|rally)\s*\d+%?$"
 )
 
+# Match trailing " - Source Name" suffix that Google News appends to article titles.
+# Used to recover the real publisher when the URL is wrapped via news.google.com.
+_TITLE_SUFFIX_RE = re.compile(r"\s+[-|–]\s+([^-|–]{2,60})$")
+
+
+def _extract_real_source(title: str) -> str | None:
+    """Pull the real source name out of a Google News-style title suffix."""
+    if not title:
+        return None
+    m = _TITLE_SUFFIX_RE.search(title)
+    if m:
+        return m.group(1).strip()
+    return None
+
 
 def quality_gate(items: list[NewsItem], exclusions: dict) -> list[NewsItem]:
     """
@@ -141,6 +155,9 @@ def quality_gate(items: list[NewsItem], exclusions: dict) -> list[NewsItem]:
     drop_phrases = [p.lower() for p in exclusions.get("title_phrases_drop", [])]
     blocked_domains = set(exclusions.get("domains_blocked", []))
     stock_noise_domains = set(exclusions.get("stock_noise_domains", []))
+    # Friendly-name version of the stock-noise sources, for matching against the
+    # " - Source Name" suffix Google News appends to wrapped titles.
+    stock_noise_names = set(n.lower() for n in exclusions.get("stock_noise_source_names", []))
 
     # Multi-pattern stock detection (each applied via .search() not .match())
     stock_patterns = [re.compile(p, re.IGNORECASE) for p in exclusions.get("stock_only_patterns", [])]
@@ -153,7 +170,7 @@ def quality_gate(items: list[NewsItem], exclusions: dict) -> list[NewsItem]:
 
     cutoff = datetime.now(timezone.utc) - timedelta(days=max_age_days)
     survivors: list[NewsItem] = []
-    dropped = {"length": 0, "lang": 0, "age": 0, "sponsored": 0, "stock_only": 0, "domain": 0, "drop_phrase": 0, "stock_domain": 0}
+    dropped = {"length": 0, "lang": 0, "age": 0, "sponsored": 0, "stock_only": 0, "domain": 0, "drop_phrase": 0, "stock_domain": 0, "stock_source": 0}
 
     for item in items:
         # Domain blocklist
@@ -169,9 +186,11 @@ def quality_gate(items: list[NewsItem], exclusions: dict) -> list[NewsItem]:
         if any(phrase.lower() in title_lower for phrase in drop_phrases):
             dropped["drop_phrase"] += 1
             continue
-        # Stock-noise domain (drop unless the article looks materially newsworthy)
-        # At this point matched_topics isn't populated yet — scoring runs after this stage.
-        # So we use a cheap content-based check: does the title mention any override-worthy term?
+        # Extract the real source from Google News title suffix " - Source Name"
+        # so we can check it against stock-noise sources even when URL is wrapped.
+        real_source_name = _extract_real_source(item.title)
+
+        # Stock-noise check (drop unless the article looks materially newsworthy)
         override_terms = [
             # Corporate events
             "acquisition", "merger", "takeover", "profit warning", "special administration",
@@ -181,11 +200,19 @@ def quality_gate(items: list[NewsItem], exclusions: dict) -> list[NewsItem]:
             "cuts target", "cuts price target", "raises target", "raises price target",
             "broker ratings", "citi cuts", "jpmorgan cuts", "barclays cuts",
             "downgrades", "upgrades",
-            # Leadership
-            "resign", "appoints", "CEO", "CFO", "chair", "chairman", "steps down",
+            # Leadership — require an action verb, not bare role title (so 'CFO buys shares' doesn't qualify)
+            "resigns", "appoints", "appointed", "steps down", "promoted to",
+            "succeeded by", "named CEO", "named chair", "new chief executive",
+            "new CEO", "new CFO", "new chair", "new chairman",
         ]
         title_has_override = any(t.lower() in title_lower for t in override_terms)
-        if item.source_domain in stock_noise_domains and not title_has_override:
+
+        # Apply stock-noise check via TWO signals: (a) url domain, (b) real source from Google News title suffix.
+        is_stock_source = (
+            item.source_domain in stock_noise_domains
+            or (real_source_name and real_source_name.lower() in stock_noise_names)
+        )
+        if is_stock_source and not title_has_override:
             dropped["stock_domain"] += 1
             continue
         # Stock-only titles (regex search). Skip if from a primary source OR overridden by content.
