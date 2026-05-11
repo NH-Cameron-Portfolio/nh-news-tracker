@@ -58,13 +58,14 @@ def _save_last_run() -> None:
     )
 
 
-def _write_csv(items: list[sources.NewsItem], run_date: date) -> Path:
+def _write_csv(items: list[sources.NewsItem], run_date: date, clients: dict) -> Path:
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
     path = OUTPUT_DIR / f"nh_news_{run_date.isoformat()}.csv"
     fields = [
         "tier", "score", "client", "sector_guess", "source_name", "source_domain",
         "published_at", "title", "url", "summary", "topics", "why_it_matters",
     ]
+    sector_map = email_render._client_sector_map(clients)
     # UTF-8 BOM so Excel opens it cleanly
     with open(path, "w", encoding="utf-8-sig", newline="") as f:
         writer = csv.DictWriter(f, fieldnames=fields)
@@ -74,7 +75,7 @@ def _write_csv(items: list[sources.NewsItem], run_date: date) -> Path:
                 "tier": it.tier,
                 "score": it.score,
                 "client": " | ".join(it.matched_clients),
-                "sector_guess": email_render._first_sector(it),
+                "sector_guess": email_render._first_sector(it, sector_map),
                 "source_name": it.source_name,
                 "source_domain": it.source_domain,
                 "published_at": it.published_at.isoformat() if it.published_at else "",
@@ -141,7 +142,7 @@ def main() -> int:
     final_items = [it for it in enriched if it.tier != "DISCARDED"]
     log.info("Final items for digest: %d", len(final_items))
 
-    csv_path = _write_csv(enriched, run_date)   # CSV includes DISCARDED for transparency
+    csv_path = _write_csv(enriched, run_date, clients)   # CSV includes DISCARDED for transparency
 
     include_mentioned = os.environ.get("INCLUDE_MENTIONED", "").lower() in ("1", "true", "yes")
     html = email_render.render_html(enriched, run_date, include_mentioned=include_mentioned, clients_cfg=clients)
