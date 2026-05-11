@@ -133,18 +133,27 @@ _STOCK_PATTERN_DEFAULT = re.compile(
 def quality_gate(items: list[NewsItem], exclusions: dict) -> list[NewsItem]:
     """
     Apply hard rejects: length floor, language, age, sponsored markers, stock-only titles,
-    blocked domains, drop-phrase titles.
+    blocked domains, drop-phrase titles, stock-noise domains.
     """
     min_chars = exclusions.get("min_summary_chars", 100)
     max_age_days = exclusions.get("max_age_days", 7)
     url_patterns = exclusions.get("url_patterns", [])
     drop_phrases = [p.lower() for p in exclusions.get("title_phrases_drop", [])]
     blocked_domains = set(exclusions.get("domains_blocked", []))
-    stock_regex = re.compile(exclusions.get("title_regex_stock_only", _STOCK_PATTERN_DEFAULT.pattern))
+    stock_noise_domains = set(exclusions.get("stock_noise_domains", []))
+
+    # Multi-pattern stock detection (each applied via .search() not .match())
+    stock_patterns = [re.compile(p, re.IGNORECASE) for p in exclusions.get("stock_only_patterns", [])]
+    # Back-compat: keep the old single regex as a fallback
+    if not stock_patterns:
+        stock_patterns = [re.compile(exclusions.get("title_regex_stock_only", _STOCK_PATTERN_DEFAULT.pattern), re.IGNORECASE)]
+
+    # Topics that override stock-noise filter (these are genuinely material even if stock-y)
+    OVERRIDE_TOPICS = {"financial_distress_or_crisis", "ma_and_corporate_activity", "regulatory_and_compliance", "leadership_and_governance"}
 
     cutoff = datetime.now(timezone.utc) - timedelta(days=max_age_days)
     survivors: list[NewsItem] = []
-    dropped = {"length": 0, "lang": 0, "age": 0, "sponsored": 0, "stock_only": 0, "domain": 0, "drop_phrase": 0}
+    dropped = {"length": 0, "lang": 0, "age": 0, "sponsored": 0, "stock_only": 0, "domain": 0, "drop_phrase": 0, "stock_domain": 0}
 
     for item in items:
         # Domain blocklist
@@ -157,13 +166,33 @@ def quality_gate(items: list[NewsItem], exclusions: dict) -> list[NewsItem]:
             continue
         # Drop-phrase titles
         title_lower = item.title.lower()
-        if any(phrase in title_lower for phrase in drop_phrases):
+        if any(phrase.lower() in title_lower for phrase in drop_phrases):
             dropped["drop_phrase"] += 1
             continue
-        # Stock-only titles (unless from a primary source — those legitimately announce trading updates)
-        if stock_regex.match(item.title) and "primary" not in item.feed_tags:
-            dropped["stock_only"] += 1
+        # Stock-noise domain (drop unless the article looks materially newsworthy)
+        # At this point matched_topics isn't populated yet — scoring runs after this stage.
+        # So we use a cheap content-based check: does the title mention any override-worthy term?
+        override_terms = [
+            # Corporate events
+            "acquisition", "merger", "takeover", "profit warning", "special administration",
+            "downgrade", "upgrade", "fine", "enforcement", "investigation", "results",
+            "equity raise", "rights issue", "rescue", "dividend cut", "dividend suspended",
+            # Broker actions that ARE material (sector signal)
+            "cuts target", "cuts price target", "raises target", "raises price target",
+            "broker ratings", "citi cuts", "jpmorgan cuts", "barclays cuts",
+            "downgrades", "upgrades",
+            # Leadership
+            "resign", "appoints", "CEO", "CFO", "chair", "chairman", "steps down",
+        ]
+        title_has_override = any(t.lower() in title_lower for t in override_terms)
+        if item.source_domain in stock_noise_domains and not title_has_override:
+            dropped["stock_domain"] += 1
             continue
+        # Stock-only titles (regex search). Skip if from a primary source OR overridden by content.
+        if "primary" not in item.feed_tags and not title_has_override:
+            if any(p.search(item.title) for p in stock_patterns):
+                dropped["stock_only"] += 1
+                continue
         # Length floor
         if len(item.summary or "") < min_chars and not item.title:
             dropped["length"] += 1
@@ -172,7 +201,7 @@ def quality_gate(items: list[NewsItem], exclusions: dict) -> list[NewsItem]:
         if item.published_at and item.published_at < cutoff:
             dropped["age"] += 1
             continue
-        # Language check (cheap heuristic — full langdetect optional)
+        # Language check
         if _looks_non_english(item.title + " " + item.summary):
             dropped["lang"] += 1
             continue

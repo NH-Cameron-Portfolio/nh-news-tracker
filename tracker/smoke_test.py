@@ -101,8 +101,8 @@ CASES = [
         make("National grid struggles as cold snap hits demand",
              "Engineers warned that the national grid is operating close to capacity amid the cold snap.",
              "Sun", "thesun.co.uk"),
-        ["National Grid"],
-        "Generic 'national grid' phrase — current rules will match. (Acceptable false positive — capitalisation in titles is unreliable.)",
+        [],  # v2: National Grid demoted to contextual alias — generic 'national grid' phrase no longer matches without UK/Ofgem/etc context. Correct rejection.
+        "Generic 'national grid' phrase (v2: now correctly rejected)",
     ),
     (
         make("Energy UK chief executive warns of supplier failures",

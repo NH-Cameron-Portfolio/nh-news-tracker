@@ -7,18 +7,48 @@
     "wins prize draw", "horoscope", "match preview", "match report",
     "transfer rumour", "office dog", "Christmas party",
     "win a holiday", "competition closes",
-    "what time is", "where to watch", "tv guide"
+    "what time is", "where to watch", "tv guide",
+    "glamping pod", "padel court", "primary school",
+    "roadworks", "road closure", "road closed", "road shut", "road delayed",
+    "key road", "rural road", "town centre route", "one-way plan",
+    "reopening of road", "open doors event", "presentation to council",
+    "reminds farmers", "urge dog owners", "Water Park",
+    "Focaccia", "water polo", "two hundred day moving average",
+    "shares pass above", "two day moving average",
+    "British National Grid - now in Python"
   ],
   "title_phrases_score_penalty": [
     "sponsors", "sponsorship", "match-day partner", "Premier League",
     "charity football", "celebrity endorsement", "wins award for best"
   ],
-  "domains_blocked": [],
+  "domains_blocked": [
+    "adhocnews.de", "ad-hoc-news.de"
+  ],
+  "stock_noise_domains": [
+    "tradingview.com", "marketbeat.com", "finimize.com", "investing.com",
+    "tradersunion.com", "londonsoutheast.co.uk", "kalkinemedia.com",
+    "invezz.com", "marketscreener.com", "fool.co.uk", "fool.com",
+    "techstock2.com", "ad-hoc-news.de", "adhocnews.de",
+    "directorstalkinterviews.com", "stockstotrade.com",
+    "idealinvestisseur.fr", "ideal-investisseur.fr"
+  ],
   "pr_wire_domains": [
     "prnewswire.com", "businesswire.com", "globenewswire.com",
     "einpresswire.com", "pressreleasewire.com", "openpr.com"
   ],
-  "title_regex_stock_only": "^[A-Z][A-Za-z &]+ (shares|stock) (up|down|rise|fall|jump|slip|gain|drop|rally) ?\\d+%?$",
+  "stock_only_patterns": [
+    "\\bstock\\s+(holds?|drops?|trades?|rises?|falls?|gains?|slides?|jumps?|slips?|moves?|steady|flat)\\b",
+    "\\bshares?\\s+(up|down|rise|fall|jump|slip|gain|drop|rally|pass|move|hold)\\b\\s*\\d*\\s*%?",
+    "\\(GB00[A-Z0-9]{8}\\)",
+    "\\(LON:[A-Z]+\\)",
+    "share\\s+price\\s+target",
+    "moving\\s+average",
+    "broker\\s+ratings?",
+    "stockpickers",
+    "stock\\s+watch",
+    "shares\\s+to\\s+watch"
+  ],
   "min_summary_chars": 100,
-  "max_age_days": 7
+  "max_age_days": 7,
+  "comment": "stock_only_patterns are regexes applied via re.search() to titles. If ANY pattern matches AND the article has no high-value topic keywords, the article is dropped at quality gate."
 }

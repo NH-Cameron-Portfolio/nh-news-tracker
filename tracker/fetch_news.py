@@ -130,6 +130,10 @@ def main() -> int:
     # 7. Score and tier
     scored = scoring.score_and_tier(quality, topics, credibility, exclusions)
 
+    # 7b. Second-pass story clustering — collapse multi-outlet coverage of the same event
+    # (same primary client + same primary topic + same week)
+    scored = dedupe.cluster_by_story(scored, credibility, window_days=5)
+
     # 8. Optional LLM enrichment
     enriched = enrich.enrich_items(scored)
 

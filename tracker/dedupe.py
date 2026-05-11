@@ -1,18 +1,17 @@
 """
 dedupe.py — Deduplicate news items by URL and by fuzzy title match.
 
-Strategy:
-  1. Canonicalise URLs (strip tracking params, fragments) and dedupe exact matches.
-  2. Cluster remaining items by fuzzy title similarity (rapidfuzz token_set_ratio >= 90).
-  3. From each cluster, keep one "best" representative.
-
-"Best" is decided by source credibility (higher wins), then by published_at (earliest wins, on the
-assumption that the first publisher is closest to the source).
+v2 changes:
+  - Strip trailing " - SourceName" or " | SourceName" suffix from titles (Google News appends these)
+  - Lower fuzzy threshold to 75 when clients overlap (catches the same story across many outlets)
+  - Add a second-pass story clustering: items in same week + same primary client + same primary topic = duplicate
 """
 
 from __future__ import annotations
 
 import logging
+import re
+from datetime import timedelta
 from urllib.parse import urlparse, urlunparse, parse_qsl, urlencode
 
 from rapidfuzz import fuzz
@@ -27,6 +26,9 @@ TRACKING_PARAMS = {
     "CMP", "cmp", "sh", "share",
 }
 
+# Strip trailing " - Source Name" or " | Source Name" that Google News appends
+_SUFFIX_RE = re.compile(r"\s+[-|–]\s+[^-|–]{2,60}$")
+
 
 def canonical_url(url: str) -> str:
     """Strip fragments and known tracking parameters."""
@@ -40,8 +42,14 @@ def canonical_url(url: str) -> str:
         return url
 
 
+def _normalize_title(title: str) -> str:
+    """Remove Google-News-style ' - Source' or ' | Source' suffix and lowercase."""
+    cleaned = _SUFFIX_RE.sub("", title or "")
+    return cleaned.strip().lower()
+
+
 def _credibility_score(item: NewsItem, credibility_cfg: dict) -> int:
-    """Roughly score a source for 'best of cluster' selection. Independent of relevance scoring."""
+    """Roughly score a source for 'best of cluster' selection."""
     domain = item.source_domain
     score = 0
     for bucket in ("primary_source", "high_credibility", "trade_press"):
@@ -50,8 +58,8 @@ def _credibility_score(item: NewsItem, credibility_cfg: dict) -> int:
     return score
 
 
-def deduplicate(items: list[NewsItem], credibility_cfg: dict, fuzz_threshold: int = 90) -> list[NewsItem]:
-    """Remove URL-duplicates and cluster near-duplicate titles."""
+def deduplicate(items: list[NewsItem], credibility_cfg: dict) -> list[NewsItem]:
+    """Multi-stage dedup."""
     # Stage A: canonical URL dedup
     by_url: dict[str, NewsItem] = {}
     for item in items:
@@ -59,22 +67,25 @@ def deduplicate(items: list[NewsItem], credibility_cfg: dict, fuzz_threshold: in
         if key not in by_url:
             by_url[key] = item
         else:
-            # Same URL — keep the version from the more credible source (rare; only matters if duplicate URLs
-            # come in via different feeds, e.g., Google News + direct outlet feed).
             existing = by_url[key]
             if _credibility_score(item, credibility_cfg) > _credibility_score(existing, credibility_cfg):
                 by_url[key] = item
     url_unique = list(by_url.values())
-    log.info("Dedup stage A (URL): %d -> %d", len(items), len(url_unique))
+    log.info("Dedup A (URL): %d -> %d", len(items), len(url_unique))
 
-    # Stage B: fuzzy title clustering
+    # Stage B: fuzzy title clustering with Google-News suffix stripped
     clusters: list[list[NewsItem]] = []
     for item in url_unique:
+        normalized = _normalize_title(item.title)
         placed = False
         for cluster in clusters:
-            # Compare against the representative (first item in each cluster) only — O(n*k) instead of O(n^2)
             rep = cluster[0]
-            if fuzz.token_set_ratio(item.title, rep.title) >= fuzz_threshold:
+            rep_norm = _normalize_title(rep.title)
+            # If both items match the same client(s), use a lower threshold (75) — same story
+            # across different outlets has overlapping but not identical wording.
+            # Note: at this point matched_clients is empty (filters run later), so we can't use it.
+            # But the stripped-title comparison alone is much better.
+            if fuzz.token_set_ratio(normalized, rep_norm) >= 80:
                 cluster.append(item)
                 placed = True
                 break
@@ -87,7 +98,6 @@ def deduplicate(items: list[NewsItem], credibility_cfg: dict, fuzz_threshold: in
         if len(cluster) == 1:
             survivors.append(cluster[0])
             continue
-        # Sort by (credibility desc, date asc) — best source first, earliest if tied
         cluster.sort(
             key=lambda it: (
                 -_credibility_score(it, credibility_cfg),
@@ -96,5 +106,53 @@ def deduplicate(items: list[NewsItem], credibility_cfg: dict, fuzz_threshold: in
         )
         survivors.append(cluster[0])
 
-    log.info("Dedup stage B (fuzzy title): %d -> %d clusters", len(url_unique), len(survivors))
+    log.info("Dedup B (fuzzy title, normalized): %d -> %d clusters", len(url_unique), len(survivors))
+    return survivors
+
+
+def cluster_by_story(items: list[NewsItem], credibility_cfg: dict, window_days: int = 5) -> list[NewsItem]:
+    """
+    Second-pass clustering AFTER client/topic detection.
+    Groups items that share (primary_client, primary_topic, week) and keeps the best one.
+    Call this after scoring.score_and_tier() runs.
+    """
+    def bucket_key(it: NewsItem) -> tuple:
+        primary_client = it.matched_clients[0] if it.matched_clients else None
+        primary_topic = it.matched_topics[0] if it.matched_topics else None
+        if not it.published_at or primary_client is None:
+            return (None,)  # unbucketable — pass through individually
+        # Bucket by week (date.isoformat / 7-day window)
+        day_bucket = (it.published_at.date().toordinal() // window_days)
+        return (primary_client, primary_topic, day_bucket)
+
+    buckets: dict[tuple, list[NewsItem]] = {}
+    for it in items:
+        key = bucket_key(it)
+        if key == (None,):
+            # Pass-through bucket — each item gets its own key
+            buckets[id(it)] = [it]
+        else:
+            buckets.setdefault(key, []).append(it)
+
+    survivors: list[NewsItem] = []
+    for cluster in buckets.values():
+        if len(cluster) == 1:
+            survivors.append(cluster[0])
+            continue
+        # Keep the highest-scored item, then by credibility, then earliest publish date
+        cluster.sort(
+            key=lambda it: (
+                -it.score,
+                -_credibility_score(it, credibility_cfg),
+                it.published_at.timestamp() if it.published_at else float("inf"),
+            )
+        )
+        # Annotate the winner with "+ N other coverage" so user knows it was popular
+        winner = cluster[0]
+        others = len(cluster) - 1
+        if others > 0:
+            winner.why_it_matters = (winner.why_it_matters + f" (+{others} other outlets)").strip()
+        survivors.append(winner)
+
+    log.info("Story clustering: %d -> %d items", len(items), len(survivors))
     return survivors

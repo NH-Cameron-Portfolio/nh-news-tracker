@@ -45,9 +45,14 @@
     "exact_aliases": ["Yorkshire Water", "Kelda Group"],
     "contextual_aliases": [],
     "requires_context": [],
-    "negative_context": [],
+    "negative_context": [
+      "North Yorkshire Water Park", "Water Park",
+      "glamping", "padel court", "padel courts",
+      "helicopter glamping", "leisure park", "RAF Search And Rescue"
+    ],
     "lse_ticker": null,
-    "newsroom_rss": null
+    "newsroom_rss": null,
+    "notes": "North Yorkshire Water Park (leisure facility) is a frequent false positive."
   },
   "northumbrian_water": {
     "canonical": "Northumbrian Water",
@@ -187,7 +192,6 @@
     "canonical": "National Grid",
     "sector": "Electricity",
     "exact_aliases": [
-      "National Grid",
       "National Grid plc",
       "National Grid Group",
       "National Grid ESO",
@@ -198,12 +202,22 @@
       "National Grid Electricity Transmission",
       "NGET"
     ],
-    "contextual_aliases": [],
-    "requires_context": [],
-    "negative_context": ["the national grid failed generically", "national grid of"],
+    "contextual_aliases": ["National Grid"],
+    "requires_context": [
+      "UK", "Britain", "British", "England", "Wales", "Scotland",
+      "Ofgem", "RIIO", "ESO", "transmission", "distribution",
+      "London Stock Exchange", "FTSE", "plc", "Warwick", "GBX"
+    ],
+    "negative_context": [
+      "Nigeria", "Nigerian", "Tanzania", "Tanzanian", "Pakistan", "Pakistani",
+      "Bangladesh", "Bangladeshi", "Ghana", "Ghanaian", "Kenya", "Kenyan",
+      "Kagera", "Tegbe", "Osun", "Lagos", "Abuja", "Karachi", "Dhaka",
+      "Ordnance Survey", "Python and R", "British National Grid coordinate",
+      "British National Grid reference"
+    ],
     "lse_ticker": "NG.",
     "newsroom_rss": null,
-    "notes": "Includes NESO (spun out Oct 2024) and former WPD (now NGED)."
+    "notes": "Demoted exact 'National Grid' to contextual alias because the phrase is widely used for Nigerian/Tanzanian/Pakistani grids and the OS coordinate system. Full-name aliases (plc, NESO, NGED, NGET) remain exact."
   },
   "uk_power_networks": {
     "canonical": "UK Power Networks",
@@ -362,11 +376,14 @@
     "sector": "Industry Body",
     "exact_aliases": ["Energy UK"],
     "contextual_aliases": [],
-    "requires_context": ["trade body", "trade association", "industry body", "Dhara", "chief executive", "Ofgem", "supplier"],
-    "negative_context": ["energy UK economy", "energy UK market generally", "energy UK households"],
+    "requires_context": ["trade body", "trade association", "industry body", "Dhara Vyas", "chief executive", "Ofgem", "supplier"],
+    "negative_context": [
+      "energy UK economy", "energy UK market generally", "energy UK households",
+      "Plastic Energy", "Plastic Energy UK"
+    ],
     "lse_ticker": null,
     "newsroom_rss": null,
-    "notes": "Phrase 'Energy UK' is often used generically. Context-gate to trade-body usage."
+    "notes": "Phrase 'Energy UK' is often used generically AND collides with 'Plastic Energy UK' (a plastics-to-fuel company)."
   },
   "water_uk": {
     "canonical": "Water UK",
@@ -404,12 +421,18 @@
   "recco": {
     "canonical": "RECCo",
     "sector": "Industry Body",
-    "exact_aliases": ["RECCo", "Retail Energy Code Company"],
-    "contextual_aliases": [],
-    "requires_context": [],
-    "negative_context": [],
+    "exact_aliases": ["Retail Energy Code Company"],
+    "contextual_aliases": ["RECCo"],
+    "requires_context": ["Retail Energy Code", "REC ", "Ofgem", "energy supplier", "switching", "central switching service", "CSS", "Gemserv", "Elexon"],
+    "negative_context": [
+      "Pro Recco", "water polo", "Posillipo", "Brescia", "Savona", "Liguria",
+      "focaccia", "Genoa", "Italian", "Italy",
+      "St. John Vianney", "golf", "boys golf", "girls golf", "high school",
+      "Christian Brothers", "Recco and Brescia", "edges Posillipo"
+    ],
     "lse_ticker": null,
-    "newsroom_rss": null
+    "newsroom_rss": null,
+    "notes": "RECCo (Retail Energy Code Company) is heavily confused with Pro Recco (Italian water polo club), Recco the Italian town, focaccia di Recco, and 'Recco' as a US person's surname. Bare 'RECCo' requires strong UK energy context."
   },
   "mosl": {
     "canonical": "MOSL",

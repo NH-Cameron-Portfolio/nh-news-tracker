@@ -1,7 +1,10 @@
 """
 email_render.py — Build the HTML digest and send via Gmail SMTP.
 
-Mirrors the look of the tender tracker output: stats bar at top, then tiered sections.
+v2 changes:
+  - All styles inlined as `style="..."` attributes (Gmail strips <style> blocks in many contexts)
+  - Use table-based layout for stats bar to ensure proper spacing
+  - Add per-tier section caps (cap PRIORITY at 25, RELEVANT at 50) to keep email digestible
 """
 
 from __future__ import annotations
@@ -24,68 +27,69 @@ from tracker.sources import NewsItem
 log = logging.getLogger(__name__)
 
 
-# ---------- HTML rendering ----------
-
-CSS = """
-<style>
-  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; color: #222; line-height: 1.4; max-width: 760px; margin: 0 auto; padding: 16px; }
-  h1 { font-size: 20px; margin: 0 0 4px; color: #132E53; }
-  h2 { font-size: 16px; margin: 24px 0 8px; padding-bottom: 4px; border-bottom: 2px solid #132E53; color: #132E53; }
-  .stats { background: #f4f6f9; border: 1px solid #d8dde5; padding: 10px 14px; border-radius: 6px; margin: 12px 0 18px; font-size: 13px; }
-  .stats span { display: inline-block; margin-right: 14px; }
-  .stats b { color: #132E53; }
-  .item { padding: 10px 0; border-bottom: 1px solid #eee; }
-  .item:last-child { border-bottom: none; }
-  .title { font-weight: 600; font-size: 14px; }
-  .title a { color: #132E53; text-decoration: none; }
-  .title a:hover { text-decoration: underline; }
-  .meta { color: #666; font-size: 12px; margin: 2px 0 4px; }
-  .summary { font-size: 13px; color: #333; margin: 4px 0; }
-  .why { font-size: 12px; color: #039FB8; font-style: italic; margin: 4px 0; }
-  .tags { font-size: 11px; color: #666; margin-top: 4px; }
-  .tags .client { background: #e6eef7; padding: 1px 6px; border-radius: 3px; margin-right: 4px; color: #132E53; }
-  .tags .topic { background: #f0f0f0; padding: 1px 6px; border-radius: 3px; margin-right: 4px; }
-  .footer { font-size: 11px; color: #888; margin-top: 24px; padding-top: 12px; border-top: 1px solid #eee; }
-</style>
-"""
+# Inline style constants — used by every element directly
+S = {
+    "body":    "font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif;color:#222;line-height:1.4;max-width:760px;margin:0 auto;padding:16px;",
+    "h1":      "font-size:20px;margin:0 0 4px;color:#132E53;",
+    "h2":      "font-size:16px;margin:24px 0 8px;padding-bottom:4px;border-bottom:2px solid #132E53;color:#132E53;",
+    "stats":   "background:#f4f6f9;border:1px solid #d8dde5;padding:10px 14px;border-radius:6px;margin:12px 0 18px;font-size:13px;",
+    "stat":    "display:inline-block;margin-right:14px;",
+    "item":    "padding:10px 0;border-bottom:1px solid #eee;",
+    "title":   "font-weight:600;font-size:14px;margin-bottom:2px;",
+    "link":    "color:#132E53;text-decoration:none;",
+    "meta":    "color:#666;font-size:12px;margin:2px 0 4px;",
+    "summary": "font-size:13px;color:#333;margin:4px 0;",
+    "why":     "font-size:12px;color:#039FB8;font-style:italic;margin:4px 0;",
+    "tags":    "font-size:11px;color:#666;margin-top:4px;",
+    "client":  "display:inline-block;background:#e6eef7;padding:1px 6px;border-radius:3px;margin:0 4px 0 0;color:#132E53;",
+    "topic":   "display:inline-block;background:#f0f0f0;padding:1px 6px;border-radius:3px;margin:0 4px 0 0;",
+    "footer":  "font-size:11px;color:#888;margin-top:24px;padding-top:12px;border-top:1px solid #eee;",
+}
 
 
 def _fmt_date(item: NewsItem) -> str:
     if not item.published_at:
         return ""
-    return item.published_at.strftime("%-d %b") if hasattr(item.published_at, "strftime") else ""
+    try:
+        return item.published_at.strftime("%-d %b")
+    except ValueError:
+        return item.published_at.strftime("%d %b")
 
 
 def _render_item(item: NewsItem, condensed: bool = False) -> str:
-    title_html = f'<a href="{escape(item.url)}">{escape(item.title)}</a>'
-    parts = [f'<div class="title">{title_html}</div>']
+    title_html = f'<a href="{escape(item.url)}" style="{S["link"]}">{escape(item.title)}</a>'
+    parts = [f'<div style="{S["title"]}">{title_html}</div>']
     meta = f'{escape(item.source_name)} · {_fmt_date(item)} · score {item.score}'
-    parts.append(f'<div class="meta">{meta}</div>')
+    parts.append(f'<div style="{S["meta"]}">{meta}</div>')
 
     if not condensed:
         snippet = item.summary[:280]
         if len(item.summary) > 280:
             snippet += "…"
-        parts.append(f'<div class="summary">{escape(snippet)}</div>')
+        parts.append(f'<div style="{S["summary"]}">{escape(snippet)}</div>')
         if item.why_it_matters:
-            parts.append(f'<div class="why">Why it matters: {escape(item.why_it_matters)}</div>')
+            parts.append(f'<div style="{S["why"]}">Why it matters: {escape(item.why_it_matters)}</div>')
 
     tag_html = ""
     for c in item.matched_clients:
-        tag_html += f'<span class="client">{escape(c)}</span>'
+        tag_html += f'<span style="{S["client"]}">{escape(c)}</span>'
     for t in item.matched_topics[:4]:
-        tag_html += f'<span class="topic">{escape(t.replace("_", " "))}</span>'
+        tag_html += f'<span style="{S["topic"]}">{escape(t.replace("_", " "))}</span>'
     if tag_html:
-        parts.append(f'<div class="tags">{tag_html}</div>')
+        parts.append(f'<div style="{S["tags"]}">{tag_html}</div>')
 
-    return f'<div class="item">{"".join(parts)}</div>'
+    return f'<div style="{S["item"]}">{"".join(parts)}</div>'
 
 
-def _render_section(name: str, items: list[NewsItem], condensed: bool = False) -> str:
+def _render_section(name: str, items: list[NewsItem], condensed: bool = False, cap: int | None = None) -> str:
     if not items:
         return ""
-    rows = "\n".join(_render_item(it, condensed=condensed) for it in items)
-    return f'<h2>{escape(name)}</h2>\n{rows}'
+    shown = items[:cap] if cap else items
+    rows = "\n".join(_render_item(it, condensed=condensed) for it in shown)
+    overflow = ""
+    if cap and len(items) > cap:
+        overflow = f'<div style="{S["meta"]}">+{len(items)-cap} more items in this tier (see attached CSV).</div>'
+    return f'<h2 style="{S["h2"]}">{escape(name)}</h2>\n{rows}\n{overflow}'
 
 
 def render_html(items: list[NewsItem], run_date: date, include_mentioned: bool = False) -> str:
@@ -94,52 +98,53 @@ def render_html(items: list[NewsItem], run_date: date, include_mentioned: bool =
         if it.tier in by_tier:
             by_tier[it.tier].append(it)
 
-    # Sort each tier by score desc, then by date desc
     for tier in by_tier:
         by_tier[tier].sort(
             key=lambda it: (it.score, it.published_at.timestamp() if it.published_at else 0),
             reverse=True,
         )
 
-    sector_counts = Counter(c for it in items if it.tier != "DISCARDED" for c in [_first_sector(it)])
-    sector_line = " · ".join(f"{s}: <b>{sector_counts[s]}</b>" for s in ("Water", "Electricity", "Gas", "Regulator", "Industry Body") if sector_counts[s])
+    sector_counts = Counter(_first_sector(it) for it in items if it.tier != "DISCARDED")
+    sector_line_bits = []
+    for s in ("Water", "Electricity", "Gas", "Regulator", "Industry Body"):
+        if sector_counts[s]:
+            sector_line_bits.append(f'<span style="{S["stat"]}">{s}: <b>{sector_counts[s]}</b></span>')
+    sector_line = "".join(sector_line_bits)
+
+    total = sum(len(v) for k, v in by_tier.items() if k != "DISCARDED" and (k != "MENTIONED" or include_mentioned))
 
     stats = (
-        f'<div class="stats">'
-        f'<span>Total: <b>{sum(len(v) for k, v in by_tier.items() if k != "DISCARDED" and (k != "MENTIONED" or include_mentioned))}</b></span>'
-        f'<span>⭐ Priority: <b>{len(by_tier["PRIORITY"])}</b></span>'
-        f'<span>Relevant: <b>{len(by_tier["RELEVANT"])}</b></span>'
-        + (f'<span>Mentioned: <b>{len(by_tier["MENTIONED"])}</b></span>' if include_mentioned else "")
-        + f'<br><span>{sector_line}</span></div>'
+        f'<div style="{S["stats"]}">'
+        f'<span style="{S["stat"]}">Total: <b>{total}</b></span>'
+        f'<span style="{S["stat"]}">⭐ Priority: <b>{len(by_tier["PRIORITY"])}</b></span>'
+        f'<span style="{S["stat"]}">Relevant: <b>{len(by_tier["RELEVANT"])}</b></span>'
+        + (f'<span style="{S["stat"]}">Mentioned: <b>{len(by_tier["MENTIONED"])}</b></span>' if include_mentioned else "")
+        + f'<br>{sector_line}</div>'
     )
 
     sections = [
-        _render_section("⭐ PRIORITY", by_tier["PRIORITY"], condensed=False),
-        _render_section("RELEVANT", by_tier["RELEVANT"], condensed=True),
+        _render_section("⭐ PRIORITY", by_tier["PRIORITY"], condensed=False, cap=25),
+        _render_section("RELEVANT",   by_tier["RELEVANT"], condensed=True,  cap=50),
     ]
     if include_mentioned:
-        sections.append(_render_section("MENTIONED", by_tier["MENTIONED"], condensed=True))
+        sections.append(_render_section("MENTIONED", by_tier["MENTIONED"], condensed=True, cap=30))
 
     body = "\n".join(s for s in sections if s) or "<p>No relevant articles this week.</p>"
 
     html = f"""<!doctype html>
-<html><head><meta charset="utf-8">{CSS}</head><body>
-<h1>NH Client News Digest — Week of {run_date.strftime("%-d %B %Y")}</h1>
+<html><head><meta charset="utf-8"></head><body style="{S["body"]}">
+<h1 style="{S["h1"]}">NH Client News Digest — Week of {run_date.strftime("%d %B %Y").lstrip("0")}</h1>
 {stats}
 {body}
-<div class="footer">Automated digest. {len(items)} items considered. Filters: client name detection · quality gate · relevance scoring{" · LLM enrichment" if any(i.why_it_matters for i in items) else ""}.</div>
+<div style="{S["footer"]}">Automated digest. {len(items)} items considered after dedup. Filters: client name detection · quality gate · relevance scoring{" · LLM enrichment" if any(i.why_it_matters for i in items) else ""}.</div>
 </body></html>"""
     return html
 
 
 def _first_sector(item: NewsItem) -> str:
-    """Look up sector from the matched_clients list via a known mapping. Returns the first sector found."""
-    # Heuristic: use the first matched client and lean on item.feed_tags or fallback
-    # We don't have direct sector here; caller pre-tagged. For simplicity, infer from client name.
     if not item.matched_clients:
         return "Unknown"
     first = item.matched_clients[0]
-    # Quick sector lookup based on canonical names — defensive in case clients.json isn't injected
     water_set = {"Thames Water", "Severn Trent", "United Utilities", "Anglian Water", "Yorkshire Water",
                  "Northumbrian Water", "South West Water", "Wessex Water", "Southern Water",
                  "Affinity Water", "South East Water", "SES Water", "Portsmouth Water",
@@ -167,7 +172,10 @@ def send_email(html_body: str, csv_path: Path | None, run_date: date) -> None:
         raise RuntimeError("EMAIL_RECIPIENTS is empty")
 
     msg = MIMEMultipart("mixed")
-    msg["Subject"] = f"NH Client News Digest — {run_date.strftime('%-d %b %Y')}"
+    try:
+        msg["Subject"] = f"NH Client News Digest — {run_date.strftime('%-d %b %Y')}"
+    except ValueError:
+        msg["Subject"] = f"NH Client News Digest — {run_date.strftime('%d %b %Y')}"
     msg["From"] = user
     msg["To"] = ", ".join(recipients)
 
