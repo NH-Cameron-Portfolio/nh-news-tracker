@@ -1,0 +1,53 @@
+{
+  "strategy_and_transformation": [
+    "transformation", "strategic review", "restructuring", "turnaround",
+    "operating model", "target operating model", "reorganisation",
+    "cost reduction", "efficiency programme", "change programme"
+  ],
+  "leadership_and_governance": [
+    "appoints", "appointed", "steps down", "resigns", "new chief executive",
+    "new CEO", "new CFO", "new chair", "new chairman", "board change",
+    "interim CEO", "successor", "departure"
+  ],
+  "regulatory_and_compliance": [
+    "fine", "penalty", "enforcement", "investigation", "PR24", "PR29",
+    "RIIO", "ED2", "ED3", "GD2", "T2", "T3", "price control",
+    "licence breach", "compliance failure", "regulatory action", "consultation"
+  ],
+  "financial_distress_or_crisis": [
+    "special administration", "credit rating", "downgrade", "covenant",
+    "refinancing", "refinance", "bondholders", "creditors", "going concern",
+    "profit warning", "write-down", "writedown", "impairment",
+    "debt-for-equity", "equity raise", "rescue"
+  ],
+  "ma_and_corporate_activity": [
+    "acquisition", "acquires", "merger", "takeover", "buyout",
+    "joint venture", "divest", "divestment", "spin-off", "demerger",
+    "sale of", "stake sale", "minority stake", "majority stake"
+  ],
+  "technology_and_data": [
+    "digital transformation", "artificial intelligence", "machine learning",
+    "cloud migration", "SAP", "Oracle", "ERP", "system replacement",
+    "cyber attack", "cyber incident", "data breach", "ransomware",
+    "smart meter", "IT outage", "system failure"
+  ],
+  "workforce_and_capability": [
+    "redundancies", "redundancy", "job cuts", "layoffs", "hiring freeze",
+    "outsourcing", "insourcing", "trade union", "strike action", "industrial action",
+    "skills shortage", "headcount reduction"
+  ],
+  "customer_and_service": [
+    "complaints", "customer service", "outage", "supply interruption",
+    "burst main", "pollution incident", "sewage discharge", "sewage spill",
+    "blackout", "power cut", "service failure"
+  ],
+  "sustainability_and_net_zero": [
+    "net zero", "decarbonisation", "decarbonise", "ESG", "scope 3",
+    "climate plan", "biodiversity", "TNFD", "TCFD", "nature positive"
+  ],
+  "investment_and_capex": [
+    "capex", "capital plan", "investment programme", "business plan",
+    "AMP8", "AMP9", "ED2", "ED3", "GD2", "T2", "T3", "RIIO",
+    "infrastructure investment", "capital expenditure"
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "high_credibility": {
+    "weight": 2,
+    "domains": [
+      "ft.com", "reuters.com", "bloomberg.com", "bbc.co.uk", "bbc.com",
+      "thetimes.com", "thetimes.co.uk", "theguardian.com", "telegraph.co.uk",
+      "economist.com", "wsj.com", "cityam.com"
+    ]
+  },
+  "trade_press": {
+    "weight": 2,
+    "domains": [
+      "utilityweek.co.uk", "current-news.co.uk", "energylivenews.com",
+      "newpower.info", "thewaternetwork.com", "waterbriefing.org",
+      "wwtonline.co.uk", "newcivilengineer.com", "endsreport.com",
+      "edie.net", "netzeroinvestor.net", "theenergyst.com",
+      "publictechnology.net", "themj.co.uk"
+    ]
+  },
+  "primary_source": {
+    "weight": 4,
+    "domains": [
+      "ofgem.gov.uk", "ofwat.gov.uk", "ccwater.org.uk",
+      "gov.uk", "londonstockexchange.com",
+      "energy-uk.org.uk", "water.org.uk", "elexon.co.uk", "xoserve.com",
+      "retailenergycode.co.uk", "mosl.co.uk", "gemserv.com",
+      "energynetworks.org", "theccc.org.uk"
+    ]
+  },
+  "default_weight": 0,
+  "comment": "Domain scoring is additive — a primary source on a high-credibility outlet stacks. Weights matter most when filtering borderline-score items."
+}

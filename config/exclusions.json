@@ -1,0 +1,24 @@
+{
+  "url_patterns": [
+    "/sponsored/", "/partner-content/", "/promoted/", "/advertorial/",
+    "utm_medium=paid", "utm_source=ad"
+  ],
+  "title_phrases_drop": [
+    "wins prize draw", "horoscope", "match preview", "match report",
+    "transfer rumour", "office dog", "Christmas party",
+    "win a holiday", "competition closes",
+    "what time is", "where to watch", "tv guide"
+  ],
+  "title_phrases_score_penalty": [
+    "sponsors", "sponsorship", "match-day partner", "Premier League",
+    "charity football", "celebrity endorsement", "wins award for best"
+  ],
+  "domains_blocked": [],
+  "pr_wire_domains": [
+    "prnewswire.com", "businesswire.com", "globenewswire.com",
+    "einpresswire.com", "pressreleasewire.com", "openpr.com"
+  ],
+  "title_regex_stock_only": "^[A-Z][A-Za-z &]+ (shares|stock) (up|down|rise|fall|jump|slip|gain|drop|rally) ?\\d+%?$",
+  "min_summary_chars": 100,
+  "max_age_days": 7
+}

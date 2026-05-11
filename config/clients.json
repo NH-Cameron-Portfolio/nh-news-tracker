@@ -1,0 +1,467 @@
+{
+  "thames_water": {
+    "canonical": "Thames Water",
+    "sector": "Water",
+    "exact_aliases": ["Thames Water", "Thames Water Utilities", "TWUL"],
+    "contextual_aliases": [],
+    "requires_context": [],
+    "negative_context": ["river Thames", "Thames Path", "Thames Valley", "Thames estuary"],
+    "lse_ticker": null,
+    "newsroom_rss": null
+  },
+  "severn_trent": {
+    "canonical": "Severn Trent",
+    "sector": "Water",
+    "exact_aliases": ["Severn Trent", "Severn Trent Water", "Severn Trent plc"],
+    "contextual_aliases": [],
+    "requires_context": [],
+    "negative_context": ["river Severn", "Severn estuary", "Severn Bridge"],
+    "lse_ticker": "SVT",
+    "newsroom_rss": null
+  },
+  "united_utilities": {
+    "canonical": "United Utilities",
+    "sector": "Water",
+    "exact_aliases": ["United Utilities", "United Utilities Water", "United Utilities Group"],
+    "contextual_aliases": [],
+    "requires_context": [],
+    "negative_context": [],
+    "lse_ticker": "UU.",
+    "newsroom_rss": null
+  },
+  "anglian_water": {
+    "canonical": "Anglian Water",
+    "sector": "Water",
+    "exact_aliases": ["Anglian Water", "Anglian Water Services"],
+    "contextual_aliases": [],
+    "requires_context": [],
+    "negative_context": ["East Anglia region", "Anglian region"],
+    "lse_ticker": null,
+    "newsroom_rss": null
+  },
+  "yorkshire_water": {
+    "canonical": "Yorkshire Water",
+    "sector": "Water",
+    "exact_aliases": ["Yorkshire Water", "Kelda Group"],
+    "contextual_aliases": [],
+    "requires_context": [],
+    "negative_context": [],
+    "lse_ticker": null,
+    "newsroom_rss": null
+  },
+  "northumbrian_water": {
+    "canonical": "Northumbrian Water",
+    "sector": "Water",
+    "exact_aliases": ["Northumbrian Water", "Northumbrian Water Group", "NWG"],
+    "contextual_aliases": [],
+    "requires_context": [],
+    "negative_context": [],
+    "lse_ticker": null,
+    "newsroom_rss": null
+  },
+  "south_west_water": {
+    "canonical": "South West Water",
+    "sector": "Water",
+    "exact_aliases": ["South West Water", "Pennon Group"],
+    "contextual_aliases": ["Pennon"],
+    "requires_context": ["water", "Ofwat", "South West", "Devon", "Cornwall", "Bristol", "Bournemouth"],
+    "negative_context": [],
+    "lse_ticker": "PNN",
+    "newsroom_rss": null,
+    "notes": "Pennon Group is parent (owns also Bristol Water and Bournemouth Water)."
+  },
+  "wessex_water": {
+    "canonical": "Wessex Water",
+    "sector": "Water",
+    "exact_aliases": ["Wessex Water", "YTL UK"],
+    "contextual_aliases": [],
+    "requires_context": [],
+    "negative_context": [],
+    "lse_ticker": null,
+    "newsroom_rss": null
+  },
+  "southern_water": {
+    "canonical": "Southern Water",
+    "sector": "Water",
+    "exact_aliases": ["Southern Water", "Southern Water Services"],
+    "contextual_aliases": [],
+    "requires_context": [],
+    "negative_context": ["southern water levels", "southern water supply generally"],
+    "lse_ticker": null,
+    "newsroom_rss": null
+  },
+  "affinity_water": {
+    "canonical": "Affinity Water",
+    "sector": "Water",
+    "exact_aliases": ["Affinity Water"],
+    "contextual_aliases": [],
+    "requires_context": [],
+    "negative_context": [],
+    "lse_ticker": null,
+    "newsroom_rss": null
+  },
+  "south_east_water": {
+    "canonical": "South East Water",
+    "sector": "Water",
+    "exact_aliases": ["South East Water"],
+    "contextual_aliases": [],
+    "requires_context": [],
+    "negative_context": [],
+    "lse_ticker": null,
+    "newsroom_rss": null
+  },
+  "ses_water": {
+    "canonical": "SES Water",
+    "sector": "Water",
+    "exact_aliases": ["SES Water", "Sutton and East Surrey Water"],
+    "contextual_aliases": ["SES"],
+    "requires_context": ["water", "Surrey", "Sutton", "Ofwat"],
+    "negative_context": ["SES satellites", "SES S.A.", "SES Networks satellites"],
+    "lse_ticker": null,
+    "newsroom_rss": null,
+    "notes": "SES is also a satellite company — context-gate strictly."
+  },
+  "portsmouth_water": {
+    "canonical": "Portsmouth Water",
+    "sector": "Water",
+    "exact_aliases": ["Portsmouth Water"],
+    "contextual_aliases": [],
+    "requires_context": [],
+    "negative_context": [],
+    "lse_ticker": null,
+    "newsroom_rss": null
+  },
+  "bristol_water": {
+    "canonical": "Bristol Water",
+    "sector": "Water",
+    "exact_aliases": ["Bristol Water"],
+    "contextual_aliases": [],
+    "requires_context": [],
+    "negative_context": [],
+    "lse_ticker": null,
+    "newsroom_rss": null,
+    "notes": "Now part of Pennon/South West Water but still operates under Bristol Water brand."
+  },
+  "south_staffs_water": {
+    "canonical": "South Staffs Water",
+    "sector": "Water",
+    "exact_aliases": ["South Staffs Water", "South Staffordshire Water", "Cambridge Water"],
+    "contextual_aliases": [],
+    "requires_context": [],
+    "negative_context": [],
+    "lse_ticker": null,
+    "newsroom_rss": null,
+    "notes": "Cambridge Water is part of the South Staffs group."
+  },
+  "welsh_water": {
+    "canonical": "Welsh Water",
+    "sector": "Water",
+    "exact_aliases": ["Welsh Water", "Dwr Cymru", "Dŵr Cymru", "Dwr Cymru Welsh Water"],
+    "contextual_aliases": [],
+    "requires_context": [],
+    "negative_context": [],
+    "lse_ticker": null,
+    "newsroom_rss": null
+  },
+  "scottish_water": {
+    "canonical": "Scottish Water",
+    "sector": "Water",
+    "exact_aliases": ["Scottish Water"],
+    "contextual_aliases": [],
+    "requires_context": [],
+    "negative_context": [],
+    "lse_ticker": null,
+    "newsroom_rss": null
+  },
+  "ni_water": {
+    "canonical": "NI Water",
+    "sector": "Water",
+    "exact_aliases": ["NI Water", "Northern Ireland Water"],
+    "contextual_aliases": [],
+    "requires_context": [],
+    "negative_context": [],
+    "lse_ticker": null,
+    "newsroom_rss": null
+  },
+  "national_grid": {
+    "canonical": "National Grid",
+    "sector": "Electricity",
+    "exact_aliases": [
+      "National Grid",
+      "National Grid plc",
+      "National Grid Group",
+      "National Grid ESO",
+      "NESO",
+      "National Energy System Operator",
+      "National Grid Electricity Distribution",
+      "NGED",
+      "National Grid Electricity Transmission",
+      "NGET"
+    ],
+    "contextual_aliases": [],
+    "requires_context": [],
+    "negative_context": ["the national grid failed generically", "national grid of"],
+    "lse_ticker": "NG.",
+    "newsroom_rss": null,
+    "notes": "Includes NESO (spun out Oct 2024) and former WPD (now NGED)."
+  },
+  "uk_power_networks": {
+    "canonical": "UK Power Networks",
+    "sector": "Electricity",
+    "exact_aliases": ["UK Power Networks", "UKPN"],
+    "contextual_aliases": [],
+    "requires_context": [],
+    "negative_context": [],
+    "lse_ticker": null,
+    "newsroom_rss": null
+  },
+  "sp_energy_networks": {
+    "canonical": "SP Energy Networks",
+    "sector": "Electricity",
+    "exact_aliases": ["SP Energy Networks", "Scottish Power Energy Networks", "SPEN", "ScottishPower Energy Networks"],
+    "contextual_aliases": [],
+    "requires_context": [],
+    "negative_context": [],
+    "lse_ticker": null,
+    "newsroom_rss": null,
+    "notes": "Regulated DNO/TO arm of ScottishPower (owned by Iberdrola). Distinct from ScottishPower retail/generation."
+  },
+  "ssen": {
+    "canonical": "SSEN",
+    "sector": "Electricity",
+    "exact_aliases": [
+      "Scottish and Southern Electricity Networks",
+      "SSE Networks",
+      "SSEN Distribution",
+      "SSEN Transmission"
+    ],
+    "contextual_aliases": ["SSEN"],
+    "requires_context": ["network", "distribution", "transmission", "grid", "power", "electricity", "Ofgem", "RIIO", "ED2", "ED3"],
+    "negative_context": ["SSE Thermal", "SSE Renewables", "SSE Airtricity", "SSE Energy Services"],
+    "lse_ticker": null,
+    "newsroom_rss": null,
+    "notes": "Only the regulated networks arm is in scope. SSE plc parent + retail/generation are NOT tracked."
+  },
+  "western_power_distribution": {
+    "canonical": "Western Power Distribution",
+    "sector": "Electricity",
+    "exact_aliases": ["Western Power Distribution", "WPD"],
+    "contextual_aliases": [],
+    "requires_context": [],
+    "negative_context": [],
+    "lse_ticker": null,
+    "newsroom_rss": null,
+    "notes": "Renamed to National Grid Electricity Distribution (NGED) in 2021. Kept as separate entry to catch historical refs."
+  },
+  "electricity_north_west": {
+    "canonical": "Electricity North West",
+    "sector": "Electricity",
+    "exact_aliases": ["Electricity North West", "ENWL", "ENW Ltd"],
+    "contextual_aliases": [],
+    "requires_context": [],
+    "negative_context": [],
+    "lse_ticker": null,
+    "newsroom_rss": null
+  },
+  "northern_powergrid": {
+    "canonical": "Northern Powergrid",
+    "sector": "Electricity",
+    "exact_aliases": ["Northern Powergrid"],
+    "contextual_aliases": [],
+    "requires_context": [],
+    "negative_context": [],
+    "lse_ticker": null,
+    "newsroom_rss": null,
+    "notes": "Owned by Berkshire Hathaway Energy."
+  },
+  "cadent_gas": {
+    "canonical": "Cadent Gas",
+    "sector": "Gas",
+    "exact_aliases": ["Cadent Gas", "Cadent"],
+    "contextual_aliases": [],
+    "requires_context": [],
+    "negative_context": ["Cadent Health", "Cadent Marketing", "Cadent Therapeutics"],
+    "lse_ticker": null,
+    "newsroom_rss": null
+  },
+  "sgn": {
+    "canonical": "SGN",
+    "sector": "Gas",
+    "exact_aliases": ["Scotia Gas Networks", "Southern Gas Networks"],
+    "contextual_aliases": ["SGN"],
+    "requires_context": ["gas", "pipeline", "network", "Ofgem", "Scotland", "southern", "GD2", "RIIO"],
+    "negative_context": [],
+    "lse_ticker": null,
+    "newsroom_rss": null
+  },
+  "northern_gas_networks": {
+    "canonical": "Northern Gas Networks",
+    "sector": "Gas",
+    "exact_aliases": ["Northern Gas Networks"],
+    "contextual_aliases": ["NGN"],
+    "requires_context": ["gas", "pipeline", "network", "Ofgem", "RIIO", "GD2"],
+    "negative_context": [],
+    "lse_ticker": null,
+    "newsroom_rss": null,
+    "notes": "NGN acronym is heavily overloaded — strictly context-gated."
+  },
+  "wales_west_utilities": {
+    "canonical": "Wales & West Utilities",
+    "sector": "Gas",
+    "exact_aliases": ["Wales & West Utilities", "Wales and West Utilities", "WWU"],
+    "contextual_aliases": [],
+    "requires_context": [],
+    "negative_context": [],
+    "lse_ticker": null,
+    "newsroom_rss": null
+  },
+  "national_gas_transmission": {
+    "canonical": "National Gas Transmission",
+    "sector": "Gas",
+    "exact_aliases": ["National Gas Transmission", "National Gas", "National Grid Gas Transmission", "NGGT"],
+    "contextual_aliases": [],
+    "requires_context": [],
+    "negative_context": [],
+    "lse_ticker": null,
+    "newsroom_rss": null,
+    "notes": "Demerged from National Grid in 2023, now owned by consortium."
+  },
+  "ofwat": {
+    "canonical": "Ofwat",
+    "sector": "Regulator",
+    "exact_aliases": ["Ofwat", "Water Services Regulation Authority"],
+    "contextual_aliases": [],
+    "requires_context": [],
+    "negative_context": [],
+    "lse_ticker": null,
+    "newsroom_rss": "https://www.ofwat.gov.uk/feed/"
+  },
+  "ofgem": {
+    "canonical": "Ofgem",
+    "sector": "Regulator",
+    "exact_aliases": ["Ofgem", "Office of Gas and Electricity Markets"],
+    "contextual_aliases": [],
+    "requires_context": [],
+    "negative_context": [],
+    "lse_ticker": null,
+    "newsroom_rss": "https://www.ofgem.gov.uk/news/rss.xml"
+  },
+  "ccw": {
+    "canonical": "CCW",
+    "sector": "Regulator",
+    "exact_aliases": ["Consumer Council for Water"],
+    "contextual_aliases": ["CCW"],
+    "requires_context": ["water", "consumer", "Ofwat", "bills", "complaints", "household"],
+    "negative_context": ["Climate Change Committee"],
+    "lse_ticker": null,
+    "newsroom_rss": null,
+    "notes": "CCW often confused with CCC (Climate Change Committee). Strict context-gating."
+  },
+  "energy_uk": {
+    "canonical": "Energy UK",
+    "sector": "Industry Body",
+    "exact_aliases": ["Energy UK"],
+    "contextual_aliases": [],
+    "requires_context": ["trade body", "trade association", "industry body", "Dhara", "chief executive", "Ofgem", "supplier"],
+    "negative_context": ["energy UK economy", "energy UK market generally", "energy UK households"],
+    "lse_ticker": null,
+    "newsroom_rss": null,
+    "notes": "Phrase 'Energy UK' is often used generically. Context-gate to trade-body usage."
+  },
+  "water_uk": {
+    "canonical": "Water UK",
+    "sector": "Industry Body",
+    "exact_aliases": ["Water UK"],
+    "contextual_aliases": [],
+    "requires_context": ["trade body", "trade association", "industry body", "chief executive", "spokesperson", "David Henderson", "Ruth Kelly"],
+    "negative_context": ["water UK households", "water UK supply"],
+    "lse_ticker": null,
+    "newsroom_rss": null,
+    "notes": "Same generic-phrase risk as Energy UK."
+  },
+  "elexon": {
+    "canonical": "Elexon",
+    "sector": "Industry Body",
+    "exact_aliases": ["Elexon"],
+    "contextual_aliases": [],
+    "requires_context": [],
+    "negative_context": [],
+    "lse_ticker": null,
+    "newsroom_rss": null,
+    "notes": "Operates the Balancing and Settlement Code (BSC)."
+  },
+  "xoserve": {
+    "canonical": "Xoserve",
+    "sector": "Industry Body",
+    "exact_aliases": ["Xoserve"],
+    "contextual_aliases": [],
+    "requires_context": [],
+    "negative_context": [],
+    "lse_ticker": null,
+    "newsroom_rss": null,
+    "notes": "Central Data Services Provider for the gas industry."
+  },
+  "recco": {
+    "canonical": "RECCo",
+    "sector": "Industry Body",
+    "exact_aliases": ["RECCo", "Retail Energy Code Company"],
+    "contextual_aliases": [],
+    "requires_context": [],
+    "negative_context": [],
+    "lse_ticker": null,
+    "newsroom_rss": null
+  },
+  "mosl": {
+    "canonical": "MOSL",
+    "sector": "Industry Body",
+    "exact_aliases": ["MOSL", "Market Operator Services Ltd", "Market Operator Services Limited"],
+    "contextual_aliases": [],
+    "requires_context": [],
+    "negative_context": [],
+    "lse_ticker": null,
+    "newsroom_rss": null,
+    "notes": "Operates the non-household water retail market (CMOS)."
+  },
+  "gemserv": {
+    "canonical": "Gemserv",
+    "sector": "Industry Body",
+    "exact_aliases": ["Gemserv"],
+    "contextual_aliases": [],
+    "requires_context": [],
+    "negative_context": [],
+    "lse_ticker": null,
+    "newsroom_rss": null
+  },
+  "energy_networks_association": {
+    "canonical": "Energy Networks Association",
+    "sector": "Industry Body",
+    "exact_aliases": ["Energy Networks Association"],
+    "contextual_aliases": ["ENA"],
+    "requires_context": ["DNO", "distribution network", "gas network", "electricity network", "Ofgem", "trade body", "Lawrence Slade"],
+    "negative_context": ["European Nurses Association", "Eastern Nazarene"],
+    "lse_ticker": null,
+    "newsroom_rss": null
+  },
+  "climate_change_committee": {
+    "canonical": "Climate Change Committee",
+    "sector": "Industry Body",
+    "exact_aliases": ["Climate Change Committee", "Committee on Climate Change"],
+    "contextual_aliases": [],
+    "requires_context": [],
+    "negative_context": ["Cricket Club", "Currency Co", "Crown Court"],
+    "lse_ticker": null,
+    "newsroom_rss": null,
+    "notes": "Often abbreviated CCC. Do NOT match bare 'CCC' — too many collisions."
+  },
+  "future_energy_networks": {
+    "canonical": "Future Energy Networks",
+    "sector": "Industry Body",
+    "exact_aliases": ["Future Energy Networks"],
+    "contextual_aliases": [],
+    "requires_context": [],
+    "negative_context": ["future energy networks generally", "future of energy networks article"],
+    "lse_ticker": null,
+    "newsroom_rss": null,
+    "notes": "Name is generic-sounding. Require exact full phrase, capitalised."
+  }
+}
