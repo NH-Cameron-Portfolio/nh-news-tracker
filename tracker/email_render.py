@@ -66,6 +66,7 @@ S = {
     "wrapper":      "font-family:Arial,Helvetica,sans-serif;color:#222;line-height:1.45;max-width:760px;margin:0 auto;padding:16px;background:#ffffff;",
     "h1":           "font-size:20px;margin:0 0 6px;color:#132E53;font-weight:bold;",
     "subtitle":     "font-size:13px;color:#666;margin:0 0 16px;",
+    "subscription_notice": "font-size:12px;color:#555;background:#fff8e1;border-left:3px solid #d4a017;padding:8px 12px;margin:12px 0 16px;line-height:1.5;",
     "stats":        "background:#f4f6f9;border:1px solid #d8dde5;padding:10px 14px;font-size:13px;",
     "stat":         "margin-right:14px;",
     # Jump-to index
@@ -384,6 +385,7 @@ def render_html(items: list[NewsItem], run_date: date, include_mentioned: bool =
 <div style="{S["wrapper"]}">
   <div style="{S["h1"]}">NH Client News Digest</div>
   <div style="{S["subtitle"]}">Week of {date_str}</div>
+  <div style="{S["subscription_notice"]}">You have received this weekly news digest because you are a member of the Cameron Portfolio Teams Channel. If you would like to be removed from this mailing list please contact Finn Bearman.</div>
   {stats_html}
   {index_html}
   {body_html}
