@@ -20,7 +20,11 @@
     "special administration", "credit rating", "downgrade", "covenant",
     "refinancing", "refinance", "bondholders", "creditors", "going concern",
     "profit warning", "write-down", "writedown", "impairment",
-    "debt-for-equity", "equity raise", "rescue"
+    "debt-for-equity", "equity raise", "rescue",
+    "dividend cut", "dividend warning", "dividend at risk", "dividend pressure",
+    "analyst warning", "warns UBS", "warns Citi", "warns JPMorgan",
+    "debt target", "debt burden", "high leverage", "leverage concerns",
+    "balance sheet", "capital constraints"
   ],
   "ma_and_corporate_activity": [
     "acquisition", "acquires", "merger", "takeover", "buyout",

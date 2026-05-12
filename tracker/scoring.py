@@ -97,23 +97,31 @@ def score_item(
 
     score = 0
 
-    # ---- Client position scoring ----
+    # ---- Client position scoring (v9: uses matched_aliases, not canonical names) ----
+    # The matched_aliases are the actual alias strings that appeared in the article text,
+    # e.g. ["BT"] for an article that matched client BT Group via the contextual alias "BT".
+    # Previously this checked the canonical name ("BT Group") which wasn't necessarily in the text.
     title_lower = title.lower()
-    for canonical in item.matched_clients:
-        if canonical.lower() in title_lower:
+    alias_strings = item.matched_aliases or item.matched_clients  # fallback for safety
+    for alias in alias_strings:
+        # Use word-boundary match so "BT" doesn't match "BTec"
+        if re.search(r"\b" + re.escape(alias) + r"\b", title, re.IGNORECASE):
             score += 5
-            break  # only credit title once
+            break
 
     # Only credit body match if the summary is substantive (not just a title repeat)
     if _summary_is_substantive(item):
-        head = summary[:300].lower()
-        for canonical in item.matched_clients:
-            if canonical.lower() in head:
+        head = summary[:300]
+        for alias in alias_strings:
+            if re.search(r"\b" + re.escape(alias) + r"\b", head, re.IGNORECASE):
                 score += 3
                 break
 
-    # Multi-mention bonus
-    total_mentions = sum(_client_mentions_count(combined, c) for c in item.matched_clients)
+    # Multi-mention bonus (using aliases for the count, since canonical may never appear)
+    total_mentions = sum(
+        len(re.findall(r"\b" + re.escape(a) + r"\b", combined, re.IGNORECASE))
+        for a in alias_strings
+    )
     if total_mentions >= 3:
         score += 2
 

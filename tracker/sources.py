@@ -38,7 +38,8 @@ class NewsItem:
     source_domain: str         # the actual publisher domain (extracted from URL)
     feed_tags: list[str] = field(default_factory=list)
     published_at: datetime | None = None
-    matched_clients: list[str] = field(default_factory=list)   # filled by filters.py
+    matched_clients: list[str] = field(default_factory=list)   # filled by filters.py — canonical names
+    matched_aliases: list[str] = field(default_factory=list)   # filled by filters.py — actual aliases matched in the text
     matched_topics: list[str] = field(default_factory=list)    # filled by scoring.py
     score: int = 0                                              # filled by scoring.py
     tier: str = ""                                              # filled by scoring.py

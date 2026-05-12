@@ -106,17 +106,12 @@ def _is_high_credibility(item: NewsItem) -> bool:
 
 def detect_clients(items: list[NewsItem], clients: dict) -> list[NewsItem]:
     """
-    For each item, populate .matched_clients with canonical names of any client(s) detected.
-    Items with no matches are dropped.
+    For each item, populate .matched_clients with canonical names AND .matched_aliases with
+    the actual alias strings that matched in the text. Items with no matches are dropped.
 
-    v6 logic:
-      - For most sources: strict matching (exact alias OR contextual alias + required context).
-      - For high-credibility sources (FT, Reuters, BBC, Bloomberg, Times, Telegraph, Guardian, Economist):
-        the context-gating requirement is dropped. Any mention of a client alias counts.
-        Rationale: these outlets don't write filler about regulated utilities; if they're writing
-        about a client by name, it's almost always material news. Saves us from missing major
-        stories like "BT is back" where the headline doesn't include the keywords we'd otherwise require.
-      - Negative context still applies (e.g. "Vodafone Idea India" still won't match Vodafone UK).
+    v9: matched_aliases is critical for scoring — scoring looks for any matched alias in title,
+    not just the canonical name. This fixes a long-standing bug where articles like
+    "'BT is back'" (alias='BT', canonical='BT Group') scored 0 because 'BT Group' isn't in the title.
     """
     patterns = _compile_client_patterns(clients)
     survivors: list[NewsItem] = []
@@ -125,44 +120,47 @@ def detect_clients(items: list[NewsItem], clients: dict) -> list[NewsItem]:
         title, summary, combined = _text_for_matching(item)
         combined_lower = combined.lower()
         high_cred = _is_high_credibility(item)
-        matched: list[str] = []
+        matched_canonicals: list[str] = []
+        matched_aliases: list[str] = []   # all alias strings that actually fired
 
         for client_id, p in patterns.items():
-            # Negative context check applies in both regimes
             negative_hits = any(neg in combined_lower for neg in p["negative_context"])
+            client_cfg = clients[client_id]
+            all_exact = client_cfg.get("exact_aliases", [])
+            all_contextual = client_cfg.get("contextual_aliases", [])
 
-            # Try exact aliases first (always strict)
-            exact_hit = any(pat.search(combined) for pat in p["exact_patterns"])
+            # Find which exact aliases actually matched
+            matched_exact = [a for a in all_exact if _build_alias_regex(a).search(combined)]
 
-            if exact_hit and not negative_hits:
-                matched.append(p["canonical"])
+            if matched_exact and not negative_hits:
+                matched_canonicals.append(p["canonical"])
+                matched_aliases.extend(matched_exact)
                 continue
-            if exact_hit and negative_hits:
-                # If the exact alias is also a multi-word distinctive phrase, allow it through
-                # despite negative context.
-                if any(len(a.split()) > 2 for a in clients[client_id].get("exact_aliases", [])):
-                    if any(
-                        _build_alias_regex(a).search(combined)
-                        for a in clients[client_id].get("exact_aliases", [])
-                        if len(a.split()) > 2
-                    ):
-                        matched.append(p["canonical"])
-                        continue
+            if matched_exact and negative_hits:
+                # If a multi-word distinctive alias matched, override negative_context
+                distinctive = [a for a in matched_exact if len(a.split()) > 2]
+                if distinctive:
+                    matched_canonicals.append(p["canonical"])
+                    matched_aliases.extend(distinctive)
+                    continue
                 continue
 
             # Contextual aliases
-            ctx_hit = any(pat.search(combined) for pat in p["contextual_patterns"])
-            if ctx_hit and not negative_hits:
+            matched_contextual = [a for a in all_contextual if _build_alias_regex(a).search(combined)]
+            if matched_contextual and not negative_hits:
                 if high_cred:
-                    # High-credibility source: skip context-word requirement
-                    matched.append(p["canonical"])
+                    matched_canonicals.append(p["canonical"])
+                    matched_aliases.extend(matched_contextual)
                 elif any(ctx in combined_lower for ctx in p["requires_context"]):
-                    matched.append(p["canonical"])
+                    matched_canonicals.append(p["canonical"])
+                    matched_aliases.extend(matched_contextual)
 
-        if matched:
+        if matched_canonicals:
             # Deduplicate while preserving order
-            seen = set()
-            item.matched_clients = [c for c in matched if not (c in seen or seen.add(c))]
+            seen_c: set = set()
+            item.matched_clients = [c for c in matched_canonicals if not (c in seen_c or seen_c.add(c))]
+            seen_a: set = set()
+            item.matched_aliases = [a for a in matched_aliases if not (a in seen_a or seen_a.add(a))]
             survivors.append(item)
 
     log.info("Stage 2 (client detection): %d -> %d", len(items), len(survivors))

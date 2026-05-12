@@ -558,11 +558,18 @@
     ],
     "negative_context": [
       "Vodafone Idea", "Vodafone India", "Vi (formerly Vodafone)",
-      "Vodafone Egypt", "Vodafone Qatar"
+      "Vodafone Egypt", "Vodafone Qatar",
+      "Vodafone Germany", "Vodafone Spain", "Vodafone Italy", "Vodafone Italia",
+      "Vodafone Portugal", "Vodafone Greece", "Vodafone Romania",
+      "Vodafone Hungary", "Vodafone Czech", "Vodafone Turkey",
+      "Vodafone Ireland", "Vodafone Netherlands", "Vodafone Albania",
+      "Fastweb+Vodafone", "TIM 5G network sharing",
+      "VodafoneZiggo",
+      "Vodafone South Africa", "Vodacom"
     ],
     "lse_ticker": "VOD",
     "newsroom_rss": null,
-    "notes": "Focus on UK / Group-level coverage. Foreign subsidiaries (Vodafone India / Idea / Egypt / Qatar) are not the NH UK focus and are filtered out."
+    "notes": "Focus on UK / Group-level coverage. Vodafone Group has ops in 20+ countries — all explicitly excluded so we only see UK/Group news. Fastweb+Vodafone is the Italian merger (separate from Vodafone Three UK)."
   },
   "vmo2": {
     "canonical": "Virgin Media O2",

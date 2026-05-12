@@ -44,7 +44,17 @@
     "Vodafone Big Top", "Vodafone Generations", "Vodafone Originals",
     "podcast launch", "podcast episode",
     "summer festival", "summer of music",
-    "blockbuster line-up", "headlining act"
+    "blockbuster line-up", "headlining act",
+
+    "TV channel guide", "TV guide:", "channel guide",
+    "TV shows and films", "shows and films to stream", "shows to stream",
+    "best sport on tv", "free holiday when you switch",
+    "Razr Fold smartphone", "Motorola Razr",
+    "free router", "free security", "free upgrade", "vital free upgrade",
+    "swimming pool", "hotel plans", "rooftop swimming",
+    "launches new 5G Broadband", "5G Broadband service",
+    "5G FWA offer", "now offering",
+    "Connected Britain", "Connected Communities"
   ],
   "title_phrases_score_penalty": [
     "sponsors", "sponsorship", "match-day partner", "Premier League",

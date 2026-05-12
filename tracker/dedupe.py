@@ -204,9 +204,13 @@ def cluster_by_story(items: list[NewsItem], credibility_cfg: dict, window_days: 
             if len(sub) == 1:
                 survivors.append(sub[0])
                 continue
+            # v9b: prefer higher tier first (PRIORITY > RELEVANT > MENTIONED > DISCARDED)
+            # so a cluster doesn't accidentally promote a MENTIONED winner over a PRIORITY peer
+            tier_rank = {"PRIORITY": 0, "RELEVANT": 1, "MENTIONED": 2, "DISCARDED": 3, "": 4}
             sub.sort(
                 key=lambda it: (
-                    -it.score,
+                    tier_rank.get(it.tier, 4),                            # higher tier first
+                    -it.score,                                            # then higher score
                     -_credibility_score(it, credibility_cfg),
                     it.published_at.timestamp() if it.published_at else float("inf"),
                 )
