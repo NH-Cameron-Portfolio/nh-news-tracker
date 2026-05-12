@@ -110,6 +110,41 @@ def deduplicate(items: list[NewsItem], credibility_cfg: dict) -> list[NewsItem]:
     return survivors
 
 
+# Concept groups: titles sharing a concept group keyword are likely the same story
+# even if their wording differs significantly.
+_CONCEPT_GROUPS = [
+    # Leadership departures (catches all the 'boss quits / CEO resigns / chief executive resigns' variants)
+    {"quits", "resigns", "resign", "step down", "steps down", "stepping down",
+     "departs", "departure", "leaves", "leaving", "exit", "exits",
+     "ousted", "fired", "removed"},
+    # Leadership appointments
+    {"appoints", "appointed", "named ceo", "named chair", "names new",
+     "joins", "joining", "new chief", "successor", "incoming"},
+    # M&A / corporate activity
+    {"acquires", "acquisition", "merger", "merges", "takeover", "buyout",
+     "buys", "buy out", "takes full control", "exits joint venture",
+     "stake sale", "divestment", "demerger"},
+    # Financial / regulatory action
+    {"fine", "fined", "penalty", "enforcement", "investigation", "probe",
+     "downgrade", "downgraded", "credit rating", "going concern"},
+    # Sewage / pollution incidents
+    {"sewage spill", "sewage discharge", "pollution incident", "pollution incidents",
+     "raw sewage", "untreated sewage"},
+]
+
+
+def _concept_match(title_a: str, title_b: str) -> bool:
+    """True if both titles hit the same concept group — even if wording differs."""
+    a_lower = title_a.lower()
+    b_lower = title_b.lower()
+    for group in _CONCEPT_GROUPS:
+        a_hit = any(kw in a_lower for kw in group)
+        b_hit = any(kw in b_lower for kw in group)
+        if a_hit and b_hit:
+            return True
+    return False
+
+
 def cluster_by_story(items: list[NewsItem], credibility_cfg: dict, window_days: int = 7, fuzz_threshold: int = 65) -> list[NewsItem]:
     """
     Second-pass clustering AFTER client/topic detection.
@@ -117,25 +152,22 @@ def cluster_by_story(items: list[NewsItem], credibility_cfg: dict, window_days: 
     Groups items that are likely the same story:
       1. Bucket items by (primary_client, week)
       2. Within each bucket, run fuzzy title clustering on suffix-stripped titles
+         OR concept-based matching (e.g. "boss quits" + "CEO resigns" = same story)
       3. Keep the best representative from each cluster
-      4. Annotate the winner with "(+N other outlets)" so the user knows coverage was wide
+      4. Annotate the winner with "(+N other outlets covered this)"
 
-    v7 changes from v6:
-      - Bucket key no longer includes primary_topic (was causing same-story clustering to fail
-        when articles got tagged with different primary topics, e.g. 'CEO resigns' could be
-        either leadership_and_governance or customer_and_service depending on word order)
-      - Lower fuzz threshold (65) since same-story headlines vary more than dedup stage A
-        ("boss quits after supply failures" vs "CEO to step down after outages" — same story,
-        very different wording)
+    v8 changes from v7:
+      - Added concept-based matching as a fallback when fuzzy title score falls below threshold.
+        This catches the "boss quits" vs "chief executive resigns" vs "what next after boss quits"
+        case where titles vary too much for token_set_ratio but are clearly the same story.
     """
     def bucket_key(it: NewsItem) -> tuple:
         primary_client = it.matched_clients[0] if it.matched_clients else None
         if not it.published_at or primary_client is None:
-            return None  # unbucketable
+            return None
         day_bucket = (it.published_at.date().toordinal() // window_days)
         return (primary_client, day_bucket)
 
-    # First bucket by (client, week)
     raw_buckets: dict[tuple, list[NewsItem]] = {}
     unbucketable: list[NewsItem] = []
     for it in items:
@@ -147,27 +179,27 @@ def cluster_by_story(items: list[NewsItem], credibility_cfg: dict, window_days: 
 
     survivors: list[NewsItem] = list(unbucketable)
 
-    # Within each (client, week) bucket, run fuzzy title clustering
     for cluster in raw_buckets.values():
         if len(cluster) <= 1:
             survivors.extend(cluster)
             continue
 
-        # Sub-cluster by fuzzy title similarity (suffix-stripped)
+        # Sub-cluster by fuzzy title similarity OR concept match
         sub_clusters: list[list[NewsItem]] = []
         for it in cluster:
             normalized = _normalize_title(it.title)
             placed = False
             for sub in sub_clusters:
                 rep_norm = _normalize_title(sub[0].title)
-                if fuzz.token_set_ratio(normalized, rep_norm) >= fuzz_threshold:
+                fuzzy_score = fuzz.token_set_ratio(normalized, rep_norm)
+                concept_match = _concept_match(normalized, rep_norm)
+                if fuzzy_score >= fuzz_threshold or concept_match:
                     sub.append(it)
                     placed = True
                     break
             if not placed:
                 sub_clusters.append([it])
 
-        # Pick a winner from each sub-cluster
         for sub in sub_clusters:
             if len(sub) == 1:
                 survivors.append(sub[0])
@@ -189,5 +221,5 @@ def cluster_by_story(items: list[NewsItem], credibility_cfg: dict, window_days: 
                     winner.why_it_matters = annotation
             survivors.append(winner)
 
-    log.info("Story clustering: %d items -> %d after (client, week, fuzzy-title) clustering", len(items), len(survivors))
+    log.info("Story clustering: %d items -> %d after (client, week, fuzzy-or-concept) clustering", len(items), len(survivors))
     return survivors

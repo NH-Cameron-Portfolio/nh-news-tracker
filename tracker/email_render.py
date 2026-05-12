@@ -176,12 +176,29 @@ def _render_relevant_item(item: NewsItem) -> str:
 
 # ---------- Client section rendering ----------
 
-def _render_client_section(client_name: str, sector: str, priority_items: list[NewsItem], relevant_items: list[NewsItem]) -> str:
-    """Render one client's card: coloured header bar, then priority + relevant items."""
+def _render_client_section(client_name: str, sector: str, priority_items: list[NewsItem], relevant_items: list[NewsItem], per_client_cap: int = 3) -> str:
+    """
+    Render one client's card: coloured header bar, then priority + relevant items.
+
+    v8: caps to per_client_cap (default 3) combined priority+relevant items per client.
+    Priority items are always shown first (up to the cap). If there's still room, fills
+    with relevant items, preferring topic diversity (one per topic before showing a second
+    from the same topic).
+    """
     anchor = _slugify(client_name)
     colour = SECTOR_COLOURS.get(sector, SECTOR_COLOURS["Unknown"])
-    total = len(priority_items) + len(relevant_items)
-    count_text = f' <span style="{S["client_count"]}">· {total} {"story" if total == 1 else "stories"}</span>'
+    total_before_cap = len(priority_items) + len(relevant_items)
+
+    # Apply the cap: always include all priority items, then top up with relevant items
+    # selecting for topic diversity
+    shown_priority = priority_items[:per_client_cap]
+    remaining_slots = max(0, per_client_cap - len(shown_priority))
+    shown_relevant = _select_diverse_relevant(relevant_items, remaining_slots)
+    shown_total = len(shown_priority) + len(shown_relevant)
+    hidden = total_before_cap - shown_total
+
+    # Header: show TOTAL not capped count (so reader knows how much they could click into)
+    count_text = f' <span style="{S["client_count"]}">· {total_before_cap} {"story" if total_before_cap == 1 else "stories"}</span>'
 
     parts = [
         f'<a name="{anchor}"></a>',
@@ -190,21 +207,64 @@ def _render_client_section(client_name: str, sector: str, priority_items: list[N
         f'  <tr><td style="{S["client_body"]}">',
     ]
 
-    if priority_items:
+    if shown_priority:
         parts.append(f'<div style="{S["tier_label"]}">⭐ Priority</div>')
-        for it in priority_items:
+        for it in shown_priority:
             parts.append(_render_priority_item(it))
 
-    if relevant_items:
-        if priority_items:
+    if shown_relevant:
+        if shown_priority:
             parts.append(f'<div style="{S["tier_label"]}">Relevant</div>')
-        # If only relevant items, no label needed — the client header is enough
-        for it in relevant_items:
+        for it in shown_relevant:
             parts.append(_render_relevant_item(it))
+
+    if hidden > 0:
+        parts.append(
+            f'<div style="{S["meta"]};font-style:italic;padding:8px 0 4px;">'
+            f'+ {hidden} more {"story" if hidden == 1 else "stories"} about {escape(client_name)} this week (see attached CSV).'
+            f'</div>'
+        )
 
     parts.append('  </td></tr>')
     parts.append('</table>')
     return "\n".join(parts)
+
+
+def _select_diverse_relevant(items: list[NewsItem], n: int) -> list[NewsItem]:
+    """
+    Pick up to n items, preferring topic diversity (one per topic bucket before showing
+    a second from the same topic). Items are pre-sorted by score desc.
+
+    Algorithm: round-robin through topic buckets. Items with no topics go in a fallback
+    bucket that's only drawn from when topic-tagged items run out.
+    """
+    if n <= 0 or not items:
+        return []
+    if len(items) <= n:
+        return items
+
+    # Group by primary topic (first one)
+    by_topic: dict[str, list[NewsItem]] = {}
+    for it in items:
+        key = it.matched_topics[0] if it.matched_topics else "_untagged_"
+        by_topic.setdefault(key, []).append(it)
+
+    # Round-robin draw, prioritising tagged topics first
+    selected: list[NewsItem] = []
+    topic_keys = [k for k in by_topic if k != "_untagged_"] + (["_untagged_"] if "_untagged_" in by_topic else [])
+    idx = {k: 0 for k in topic_keys}
+    while len(selected) < n:
+        progressed = False
+        for k in topic_keys:
+            if idx[k] < len(by_topic[k]):
+                selected.append(by_topic[k][idx[k]])
+                idx[k] += 1
+                progressed = True
+                if len(selected) >= n:
+                    break
+        if not progressed:
+            break
+    return selected
 
 
 # ---------- Main entry point ----------

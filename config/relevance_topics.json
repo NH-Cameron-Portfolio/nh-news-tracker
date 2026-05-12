@@ -40,8 +40,11 @@
   ],
   "customer_and_service": [
     "complaints", "customer service", "outage", "supply interruption",
-    "burst main", "pollution incident", "sewage discharge", "sewage spill",
-    "blackout", "power cut", "service failure"
+    "burst main", "pollution incident", "pollution incidents", "sewage discharge",
+    "sewage spill", "pumped sewage", "raw sewage", "untreated sewage",
+    "sewage into", "discharge into", "spilled sewage",
+    "bathing water", "bathing waters", "river pollution",
+    "blackout", "power cut", "service failure", "supply failure", "supply failures"
   ],
   "sustainability_and_net_zero": [
     "net zero", "decarbonisation", "decarbonise", "ESG", "scope 3",

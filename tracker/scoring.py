@@ -151,16 +151,136 @@ def score_item(
     item.score = score
 
 
-def assign_tier(item: NewsItem) -> None:
-    """Set item.tier based on score."""
+# Material-news topic buckets — being in any of these is positive evidence the article
+# is genuinely business news, not promotional / community / sponsorship fluff.
+MATERIAL_TOPICS = {
+    "strategy_and_transformation",
+    "leadership_and_governance",
+    "regulatory_and_compliance",
+    "financial_distress_or_crisis",
+    "ma_and_corporate_activity",
+    "workforce_and_capability",
+    "investment_and_capex",
+    # v8b: pollution/sewage incidents and major service failures are material business news
+    # for utilities — they trigger regulatory action and reputational consequences
+    "customer_and_service",
+    "technology_and_data",
+}
+
+# High-credibility source buckets (FT, Reuters, BBC, Bloomberg, etc.) and primary sources
+# (Ofgem/Ofwat/RNS) count as material signal even when no topic keywords are present.
+MATERIAL_SOURCE_BUCKETS = ("primary_source", "high_credibility")
+
+# Promotional / non-material phrase patterns. If a title matches one of these AND has no
+# other material signal, the article is treated as MENTIONED (or discarded depending on score)
+# rather than RELEVANT/PRIORITY. These don't penalise score — they only block tier promotion.
+NON_MATERIAL_PATTERNS = [
+    r"\bpartner award", r"\bsmartphone", r"\bnow offering",
+    r"\b(connects?|sponsor) (to|of) (UEFA|FIFA|Premier League|Euro \d+|Olympics?)",
+    r"\bsponsorship deal", r"\b(launches?|introduces?) (the )?(new |latest )?(?!.*5G|.*FTTP|.*fibre)\w+\s+(phone|handset|tablet|device)",
+    r"\bcommunity (event|fund|scheme|project)\b(?!.*(?:Ofgem|Ofwat|Ofcom|fine|enforcement))",
+    r"\bcompetition (?!and markets|commission|authority|CMA)",
+    r"\bawakens? your soul", r"\bawaken your soul",
+    r"\bexpect delays\b", r"\bcautioned motorists",
+    r"\bjoins .* as Head of (People|HR|Culture|Diversity)",
+    r"\bjoins .* as .* (India|Singapore|Australia|Hong Kong|UAE)\b",
+    r"\bpartners? with .* (charity|community|school)\b",
+]
+
+
+def _has_material_signal(item: NewsItem, credibility_cfg: dict) -> bool:
+    """
+    Does the article exhibit ANY signal that it's material business news (vs promotional fluff)?
+
+    A material signal is any of:
+      - Any MATERIAL_TOPICS keyword bucket hit
+      - Article comes from a primary source (Ofgem/Ofwat/RNS)
+      - Article comes from a high-credibility business outlet (FT/Reuters/BBC/Bloomberg/etc.)
+      - Article comes from sector trade press
+      - Title or summary mentions a substantial £ or $ figure (≥ £10m / $10m)
+        — captures investment, M&A, financial impact stories
+    """
+    # Topic-based signal
+    if any(t in MATERIAL_TOPICS for t in item.matched_topics):
+        return True
+    # Source-based signal
+    for bucket in ("primary_source", "high_credibility", "trade_press"):
+        if item.source_domain in credibility_cfg.get(bucket, {}).get("domains", []):
+            return True
+    # Google News title suffix can also tell us the source is high-credibility
+    title_low = (item.title or "").lower()
+    HIGH_CRED_SUFFIXES = [
+        "- financial times", "- ft.com", "- the times", "- reuters", "- bbc",
+        "- bbc news", "- bbc business", "- bloomberg", "- the guardian",
+        "- telegraph", "- the telegraph", "- the economist", "- economist",
+        "- wall street journal", "- wsj", "- bloomberg.com",
+    ]
+    if any(title_low.endswith(s) for s in HIGH_CRED_SUFFIXES):
+        return True
+    # Substantial financial figure (≥ £10m or $10m) — strong signal of material news
+    combined = (item.title or "") + " " + (item.summary or "")[:400]
+    if _has_substantial_money(combined):
+        return True
+    return False
+
+
+# Match £ or $ figures of £10m+ ($10m+) or £1bn+. Matches: £42m, £230m, £4.3bn, $5.8 billion, £400 million, etc.
+_MONEY_PATTERN = re.compile(
+    r"(?:£|\$)\s*"                                      # currency
+    r"(?:"
+    r"\d{1,3}(?:[\.,]\d+)?\s*(?:bn|billion|tr|trillion)" # ≥1bn
+    r"|"
+    r"(?:[1-9]\d|\d{3,})(?:[\.,]\d+)?\s*(?:m|mn|million)"  # ≥10m
+    r"|"
+    r"(?:[1-9]\d|\d{3,})(?:[\.,]\d+)?\s*(?:bn|m|million)?" # large bare number with £/$
+    r")",
+    re.IGNORECASE,
+)
+
+
+def _has_substantial_money(text: str) -> bool:
+    """True if the text contains a substantial currency figure (£10m+ or $10m+ or £1bn+)."""
+    return bool(_MONEY_PATTERN.search(text))
+
+
+def _matches_non_material_pattern(item: NewsItem) -> bool:
+    """True if title or summary matches a known non-material pattern (sponsorship,
+    smartphone launches, junior overseas hires, community events, etc)."""
+    text = ((item.title or "") + " " + (item.summary or "")[:400]).lower()
+    return any(re.search(pat, text, re.IGNORECASE) for pat in NON_MATERIAL_PATTERNS)
+
+
+def assign_tier(item: NewsItem, credibility_cfg: dict | None = None) -> None:
+    """
+    Set item.tier based on score AND materiality.
+
+    v8 changes:
+      - Items must demonstrate a MATERIAL signal (topic, source-credibility, or trade press)
+        to be eligible for PRIORITY or RELEVANT tier
+      - Items matching NON_MATERIAL_PATTERNS (partner awards, smartphone launches,
+        sponsorship deals, junior overseas hires, community events) are capped at MENTIONED
+        regardless of score
+      - Net effect: client-name-mention alone is no longer enough to make RELEVANT tier;
+        the article must actually contain business news
+    """
+    # Base score-based tier
     if item.score >= 10:
-        item.tier = "PRIORITY"
+        base_tier = "PRIORITY"
     elif item.score >= 5:
-        item.tier = "RELEVANT"
+        base_tier = "RELEVANT"
     elif item.score >= 2:
-        item.tier = "MENTIONED"
+        base_tier = "MENTIONED"
     else:
-        item.tier = "DISCARDED"
+        base_tier = "DISCARDED"
+
+    # Materiality gate: PRIORITY and RELEVANT both require a material signal
+    if base_tier in ("PRIORITY", "RELEVANT") and credibility_cfg is not None:
+        if not _has_material_signal(item, credibility_cfg):
+            base_tier = "MENTIONED"
+        if _matches_non_material_pattern(item):
+            base_tier = "MENTIONED"
+
+    item.tier = base_tier
 
 
 def score_and_tier(
@@ -172,7 +292,7 @@ def score_and_tier(
     """Score every item, assign tiers, log distribution."""
     for item in items:
         score_item(item, topics, credibility_cfg, exclusions)
-        assign_tier(item)
+        assign_tier(item, credibility_cfg)
 
     distribution = {"PRIORITY": 0, "RELEVANT": 0, "MENTIONED": 0, "DISCARDED": 0}
     for item in items:
