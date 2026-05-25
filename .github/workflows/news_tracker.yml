@@ -2,11 +2,8 @@ name: NH News Tracker
 
 on:
   workflow_dispatch:
-    # Triggered externally via GitHub REST API by cron-job.org every Monday 06:00 UTC.
-    # Native GitHub `schedule:` cron is unreliable, so we rely on the external trigger.
-  schedule:
-    # Belt-and-braces fallback. May not fire reliably; cron-job.org is the primary trigger.
-    - cron: "0 6 * * 1"
+    # Triggered externally via GitHub REST API by cron-job.org.
+    # GitHub's native `schedule:` is intentionally NOT used here — cron-job.org is the only trigger.
 
 permissions:
   contents: write   # needed to commit CSV + last_run.json back to the repo

@@ -402,9 +402,16 @@ def send_email(html_body: str, csv_path: Path | None, run_date: date) -> None:
     port = int(os.environ["SMTP_PORT"])
     user = os.environ["SMTP_USER"]
     password = os.environ["SMTP_PASS"]
-    recipients = [r.strip() for r in os.environ["EMAIL_RECIPIENTS"].split(",") if r.strip()]
+    # Defensive parse: split on commas AND any whitespace (newlines, tabs, etc.),
+    # then strip and drop empty entries. This prevents email-header injection if the
+    # EMAIL_RECIPIENTS secret accidentally contains line breaks.
+    raw = os.environ["EMAIL_RECIPIENTS"]
+    # Normalise: replace all whitespace runs (incl. newlines) with single space, then split on comma
+    raw_clean = re.sub(r"\s+", " ", raw)
+    recipients = [r.strip() for r in raw_clean.split(",") if r.strip() and "@" in r]
     if not recipients:
-        raise RuntimeError("EMAIL_RECIPIENTS is empty")
+        raise RuntimeError("EMAIL_RECIPIENTS is empty or contains no valid email addresses")
+    log.info("Parsed %d recipient email addresses", len(recipients))
 
     msg = MIMEMultipart("mixed")
     try:
