@@ -1102,5 +1102,116 @@
     "negative_context": [],
     "lse_ticker": null,
     "newsroom_rss": null
+  },
+  "rwe": {
+    "canonical": "RWE",
+    "sector": "Electricity",
+    "exact_aliases": [
+      "RWE Generation",
+      "RWE Renewables",
+      "RWE npower",
+      "RWE AG"
+    ],
+    "contextual_aliases": [
+      "RWE"
+    ],
+    "requires_context": [
+      "energy",
+      "power",
+      "electricity",
+      "generation",
+      "wind",
+      "offshore",
+      "renewables",
+      "gas-fired",
+      "CCGT",
+      "power station",
+      "power plant",
+      "grid",
+      "Ofgem",
+      "UK",
+      "Britain",
+      "Pembroke",
+      "Tilbury",
+      "Markinch",
+      "Sofia",
+      "Dogger Bank",
+      "Triton Knoll",
+      "hydrogen",
+      "battery storage",
+      "decarbonisation",
+      "net zero",
+      "capacity market",
+      "MW",
+      "GW",
+      "turbine"
+    ],
+    "negative_context": [
+      "RWE Cup",
+      "Rwe (Rwanda)",
+      "RWE rugby"
+    ],
+    "lse_ticker": null,
+    "notes": "German-headquartered energy major; significant UK presence in offshore wind and power generation (not a regulated network). 'RWE' is a short acronym so context-gated to energy/UK terms."
+  },
+  "dcc_plc": {
+    "canonical": "DCC plc",
+    "sector": "Electricity",
+    "exact_aliases": [
+      "DCC plc",
+      "DCC Energy",
+      "DCC Healthcare",
+      "DCC Technology"
+    ],
+    "contextual_aliases": [
+      "DCC"
+    ],
+    "requires_context": [
+      "FTSE",
+      "plc",
+      "shares",
+      "results",
+      "trading update",
+      "earnings",
+      "revenue",
+      "profit",
+      "dividend",
+      "acquisition",
+      "LPG",
+      "liquefied petroleum",
+      "fuel distribution",
+      "oil distribution",
+      "energy distribution",
+      "Tibbett",
+      "Flogas",
+      "Certas",
+      "Donal Murphy",
+      "London Stock Exchange",
+      "interim results",
+      "full year results",
+      "half year",
+      "demerger"
+    ],
+    "negative_context": [
+      "Data Communications Company",
+      "Smart DCC",
+      "smart meter",
+      "smart metering",
+      "DCCC",
+      "Dundee City Council",
+      "Derbyshire County Council",
+      "Durham County Council",
+      "Dorset Council",
+      "Devon County Council",
+      "Dublin City Council",
+      "city council",
+      "county council",
+      "district council",
+      "DCC United",
+      "Diamond Cricket",
+      "Disney"
+    ],
+    "lse_ticker": "DCC",
+    "notes": "FTSE 100 sales/distribution group with major energy division (LPG/oil). 'DCC' is highly ambiguous — heavily negative-gated against Smart DCC (the smart-meter body) and councils (Dundee/Derbyshire/Durham etc.). Requires corporate/financial context."
   }
 }
