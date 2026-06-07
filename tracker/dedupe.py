@@ -51,7 +51,6 @@ def _normalize_title(title: str) -> str:
 # Maps lowercase title-suffix source names to a credibility weight.
 # Used because Google News items have source_domain = news.google.com, hiding the real outlet.
 _SUFFIX_SOURCE_WEIGHTS = {
-    # High-credibility national/business press
     "financial times": 3, "ft.com": 3, "ft": 3,
     "reuters": 3, "bloomberg": 3, "bloomberg.com": 3,
     "the times": 3, "the sunday times": 3, "times": 3,
@@ -62,8 +61,7 @@ _SUFFIX_SOURCE_WEIGHTS = {
     "wall street journal": 3, "wsj": 3,
     "city am": 2, "cityam": 2, "city a.m.": 2,
     "sky news": 2,
-    # Trade press
-    "utility week": 3, "current news": 2, "current±": 2,
+    "utility week": 3, "current news": 2,
     "ends report": 3, "edie": 2, "new civil engineer": 2,
     "net zero investor": 2, "the energyst": 2,
     "ispreview uk": 1, "ispreview": 1, "telecompaper": 1,
@@ -83,17 +81,14 @@ def _credibility_score(item: NewsItem, credibility_cfg: dict) -> int:
     """
     Roughly score a source for 'best of cluster' selection.
 
-    v9c: also reads the Google News title suffix, because Google-wrapped items have
-    source_domain = news.google.com which hides the real outlet. Without this, an FT
-    article and a tabloid article about the same story were indistinguishable to the
-    dedup, so the FT version could lose. Now the FT/Times version reliably wins.
+    Also reads the Google News title suffix, because Google-wrapped items have
+    source_domain = news.google.com which hides the real outlet.
     """
     domain = item.source_domain
     score = 0
     for bucket in ("primary_source", "high_credibility", "trade_press"):
         if domain in credibility_cfg.get(bucket, {}).get("domains", []):
             score += credibility_cfg[bucket]["weight"]
-    # Add suffix-derived weight (for Google-News-wrapped items)
     score += _suffix_source_weight(item.title)
     return score
 

@@ -7,7 +7,11 @@
   "leadership_and_governance": [
     "appoints", "appointed", "steps down", "resigns", "new chief executive",
     "new CEO", "new CFO", "new chair", "new chairman", "board change",
-    "interim CEO", "successor", "departure"
+    "interim CEO", "successor", "departure",
+    "CEO on", "ceo on why", "chief executive on", "boss on why", "boss on how",
+    "CEO interview", "chief executive interview", "ceo tells", "chief executive tells",
+    "ceo says", "chief executive says", "boss tells", "boss says",
+    "ceo warns", "chief executive warns", "in conversation with", "exclusive interview"
   ],
   "regulatory_and_compliance": [
     "fine", "penalty", "enforcement", "investigation", "PR24", "PR29",

@@ -2,27 +2,48 @@
   "thames_water": {
     "canonical": "Thames Water",
     "sector": "Water",
-    "exact_aliases": ["Thames Water", "Thames Water Utilities", "TWUL"],
+    "exact_aliases": [
+      "Thames Water",
+      "Thames Water Utilities",
+      "TWUL"
+    ],
     "contextual_aliases": [],
     "requires_context": [],
-    "negative_context": ["river Thames", "Thames Path", "Thames Valley", "Thames estuary"],
+    "negative_context": [
+      "river Thames",
+      "Thames Path",
+      "Thames Valley",
+      "Thames estuary"
+    ],
     "lse_ticker": null,
     "newsroom_rss": null
   },
   "severn_trent": {
     "canonical": "Severn Trent",
     "sector": "Water",
-    "exact_aliases": ["Severn Trent", "Severn Trent Water", "Severn Trent plc"],
+    "exact_aliases": [
+      "Severn Trent",
+      "Severn Trent Water",
+      "Severn Trent plc"
+    ],
     "contextual_aliases": [],
     "requires_context": [],
-    "negative_context": ["river Severn", "Severn estuary", "Severn Bridge"],
+    "negative_context": [
+      "river Severn",
+      "Severn estuary",
+      "Severn Bridge"
+    ],
     "lse_ticker": "SVT",
     "newsroom_rss": null
   },
   "united_utilities": {
     "canonical": "United Utilities",
     "sector": "Water",
-    "exact_aliases": ["United Utilities", "United Utilities Water", "United Utilities Group"],
+    "exact_aliases": [
+      "United Utilities",
+      "United Utilities Water",
+      "United Utilities Group"
+    ],
     "contextual_aliases": [],
     "requires_context": [],
     "negative_context": [],
@@ -32,23 +53,37 @@
   "anglian_water": {
     "canonical": "Anglian Water",
     "sector": "Water",
-    "exact_aliases": ["Anglian Water", "Anglian Water Services"],
+    "exact_aliases": [
+      "Anglian Water",
+      "Anglian Water Services"
+    ],
     "contextual_aliases": [],
     "requires_context": [],
-    "negative_context": ["East Anglia region", "Anglian region"],
+    "negative_context": [
+      "East Anglia region",
+      "Anglian region"
+    ],
     "lse_ticker": null,
     "newsroom_rss": null
   },
   "yorkshire_water": {
     "canonical": "Yorkshire Water",
     "sector": "Water",
-    "exact_aliases": ["Yorkshire Water", "Kelda Group"],
+    "exact_aliases": [
+      "Yorkshire Water",
+      "Kelda Group"
+    ],
     "contextual_aliases": [],
     "requires_context": [],
     "negative_context": [
-      "North Yorkshire Water Park", "Water Park",
-      "glamping", "padel court", "padel courts",
-      "helicopter glamping", "leisure park", "RAF Search And Rescue"
+      "North Yorkshire Water Park",
+      "Water Park",
+      "glamping",
+      "padel court",
+      "padel courts",
+      "helicopter glamping",
+      "leisure park",
+      "RAF Search And Rescue"
     ],
     "lse_ticker": null,
     "newsroom_rss": null,
@@ -57,7 +92,11 @@
   "northumbrian_water": {
     "canonical": "Northumbrian Water",
     "sector": "Water",
-    "exact_aliases": ["Northumbrian Water", "Northumbrian Water Group", "NWG"],
+    "exact_aliases": [
+      "Northumbrian Water",
+      "Northumbrian Water Group",
+      "NWG"
+    ],
     "contextual_aliases": [],
     "requires_context": [],
     "negative_context": [],
@@ -67,9 +106,22 @@
   "south_west_water": {
     "canonical": "South West Water",
     "sector": "Water",
-    "exact_aliases": ["South West Water", "Pennon Group"],
-    "contextual_aliases": ["Pennon"],
-    "requires_context": ["water", "Ofwat", "South West", "Devon", "Cornwall", "Bristol", "Bournemouth"],
+    "exact_aliases": [
+      "South West Water",
+      "Pennon Group"
+    ],
+    "contextual_aliases": [
+      "Pennon"
+    ],
+    "requires_context": [
+      "water",
+      "Ofwat",
+      "South West",
+      "Devon",
+      "Cornwall",
+      "Bristol",
+      "Bournemouth"
+    ],
     "negative_context": [],
     "lse_ticker": "PNN",
     "newsroom_rss": null,
@@ -78,7 +130,10 @@
   "wessex_water": {
     "canonical": "Wessex Water",
     "sector": "Water",
-    "exact_aliases": ["Wessex Water", "YTL UK"],
+    "exact_aliases": [
+      "Wessex Water",
+      "YTL UK"
+    ],
     "contextual_aliases": [],
     "requires_context": [],
     "negative_context": [],
@@ -88,17 +143,25 @@
   "southern_water": {
     "canonical": "Southern Water",
     "sector": "Water",
-    "exact_aliases": ["Southern Water", "Southern Water Services"],
+    "exact_aliases": [
+      "Southern Water",
+      "Southern Water Services"
+    ],
     "contextual_aliases": [],
     "requires_context": [],
-    "negative_context": ["southern water levels", "southern water supply generally"],
+    "negative_context": [
+      "southern water levels",
+      "southern water supply generally"
+    ],
     "lse_ticker": null,
     "newsroom_rss": null
   },
   "affinity_water": {
     "canonical": "Affinity Water",
     "sector": "Water",
-    "exact_aliases": ["Affinity Water"],
+    "exact_aliases": [
+      "Affinity Water"
+    ],
     "contextual_aliases": [],
     "requires_context": [],
     "negative_context": [],
@@ -108,7 +171,9 @@
   "south_east_water": {
     "canonical": "South East Water",
     "sector": "Water",
-    "exact_aliases": ["South East Water"],
+    "exact_aliases": [
+      "South East Water"
+    ],
     "contextual_aliases": [],
     "requires_context": [],
     "negative_context": [],
@@ -118,10 +183,24 @@
   "ses_water": {
     "canonical": "SES Water",
     "sector": "Water",
-    "exact_aliases": ["SES Water", "Sutton and East Surrey Water"],
-    "contextual_aliases": ["SES"],
-    "requires_context": ["water", "Surrey", "Sutton", "Ofwat"],
-    "negative_context": ["SES satellites", "SES S.A.", "SES Networks satellites"],
+    "exact_aliases": [
+      "SES Water",
+      "Sutton and East Surrey Water"
+    ],
+    "contextual_aliases": [
+      "SES"
+    ],
+    "requires_context": [
+      "water",
+      "Surrey",
+      "Sutton",
+      "Ofwat"
+    ],
+    "negative_context": [
+      "SES satellites",
+      "SES S.A.",
+      "SES Networks satellites"
+    ],
     "lse_ticker": null,
     "newsroom_rss": null,
     "notes": "SES is also a satellite company — context-gate strictly."
@@ -129,7 +208,9 @@
   "portsmouth_water": {
     "canonical": "Portsmouth Water",
     "sector": "Water",
-    "exact_aliases": ["Portsmouth Water"],
+    "exact_aliases": [
+      "Portsmouth Water"
+    ],
     "contextual_aliases": [],
     "requires_context": [],
     "negative_context": [],
@@ -139,7 +220,9 @@
   "bristol_water": {
     "canonical": "Bristol Water",
     "sector": "Water",
-    "exact_aliases": ["Bristol Water"],
+    "exact_aliases": [
+      "Bristol Water"
+    ],
     "contextual_aliases": [],
     "requires_context": [],
     "negative_context": [],
@@ -150,7 +233,11 @@
   "south_staffs_water": {
     "canonical": "South Staffs Water",
     "sector": "Water",
-    "exact_aliases": ["South Staffs Water", "South Staffordshire Water", "Cambridge Water"],
+    "exact_aliases": [
+      "South Staffs Water",
+      "South Staffordshire Water",
+      "Cambridge Water"
+    ],
     "contextual_aliases": [],
     "requires_context": [],
     "negative_context": [],
@@ -161,7 +248,12 @@
   "welsh_water": {
     "canonical": "Welsh Water",
     "sector": "Water",
-    "exact_aliases": ["Welsh Water", "Dwr Cymru", "Dŵr Cymru", "Dwr Cymru Welsh Water"],
+    "exact_aliases": [
+      "Welsh Water",
+      "Dwr Cymru",
+      "Dŵr Cymru",
+      "Dwr Cymru Welsh Water"
+    ],
     "contextual_aliases": [],
     "requires_context": [],
     "negative_context": [],
@@ -171,7 +263,9 @@
   "scottish_water": {
     "canonical": "Scottish Water",
     "sector": "Water",
-    "exact_aliases": ["Scottish Water"],
+    "exact_aliases": [
+      "Scottish Water"
+    ],
     "contextual_aliases": [],
     "requires_context": [],
     "negative_context": [],
@@ -181,7 +275,10 @@
   "ni_water": {
     "canonical": "NI Water",
     "sector": "Water",
-    "exact_aliases": ["NI Water", "Northern Ireland Water"],
+    "exact_aliases": [
+      "NI Water",
+      "Northern Ireland Water"
+    ],
     "contextual_aliases": [],
     "requires_context": [],
     "negative_context": [],
@@ -202,17 +299,50 @@
       "National Grid Electricity Transmission",
       "NGET"
     ],
-    "contextual_aliases": ["National Grid"],
+    "contextual_aliases": [
+      "National Grid"
+    ],
     "requires_context": [
-      "UK", "Britain", "British", "England", "Wales", "Scotland",
-      "Ofgem", "RIIO", "ESO", "transmission", "distribution",
-      "London Stock Exchange", "FTSE", "plc", "Warwick", "GBX"
+      "UK",
+      "Britain",
+      "British",
+      "England",
+      "Wales",
+      "Scotland",
+      "Ofgem",
+      "RIIO",
+      "ESO",
+      "transmission",
+      "distribution",
+      "London Stock Exchange",
+      "FTSE",
+      "plc",
+      "Warwick",
+      "GBX"
     ],
     "negative_context": [
-      "Nigeria", "Nigerian", "Tanzania", "Tanzanian", "Pakistan", "Pakistani",
-      "Bangladesh", "Bangladeshi", "Ghana", "Ghanaian", "Kenya", "Kenyan",
-      "Kagera", "Tegbe", "Osun", "Lagos", "Abuja", "Karachi", "Dhaka",
-      "Ordnance Survey", "Python and R", "British National Grid coordinate",
+      "Nigeria",
+      "Nigerian",
+      "Tanzania",
+      "Tanzanian",
+      "Pakistan",
+      "Pakistani",
+      "Bangladesh",
+      "Bangladeshi",
+      "Ghana",
+      "Ghanaian",
+      "Kenya",
+      "Kenyan",
+      "Kagera",
+      "Tegbe",
+      "Osun",
+      "Lagos",
+      "Abuja",
+      "Karachi",
+      "Dhaka",
+      "Ordnance Survey",
+      "Python and R",
+      "British National Grid coordinate",
       "British National Grid reference"
     ],
     "lse_ticker": "NG.",
@@ -222,7 +352,10 @@
   "uk_power_networks": {
     "canonical": "UK Power Networks",
     "sector": "Electricity",
-    "exact_aliases": ["UK Power Networks", "UKPN"],
+    "exact_aliases": [
+      "UK Power Networks",
+      "UKPN"
+    ],
     "contextual_aliases": [],
     "requires_context": [],
     "negative_context": [],
@@ -232,7 +365,12 @@
   "sp_energy_networks": {
     "canonical": "SP Energy Networks",
     "sector": "Electricity",
-    "exact_aliases": ["SP Energy Networks", "Scottish Power Energy Networks", "SPEN", "ScottishPower Energy Networks"],
+    "exact_aliases": [
+      "SP Energy Networks",
+      "Scottish Power Energy Networks",
+      "SPEN",
+      "ScottishPower Energy Networks"
+    ],
     "contextual_aliases": [],
     "requires_context": [],
     "negative_context": [],
@@ -249,9 +387,27 @@
       "SSEN Distribution",
       "SSEN Transmission"
     ],
-    "contextual_aliases": ["SSEN"],
-    "requires_context": ["network", "distribution", "transmission", "grid", "power", "electricity", "Ofgem", "RIIO", "ED2", "ED3"],
-    "negative_context": ["SSE Thermal", "SSE Renewables", "SSE Airtricity", "SSE Energy Services"],
+    "contextual_aliases": [
+      "SSEN"
+    ],
+    "requires_context": [
+      "network",
+      "distribution",
+      "transmission",
+      "grid",
+      "power",
+      "electricity",
+      "Ofgem",
+      "RIIO",
+      "ED2",
+      "ED3"
+    ],
+    "negative_context": [
+      "SSE Thermal",
+      "SSE Renewables",
+      "SSE Airtricity",
+      "SSE Energy Services"
+    ],
     "lse_ticker": null,
     "newsroom_rss": null,
     "notes": "Only the regulated networks arm is in scope. SSE plc parent + retail/generation are NOT tracked."
@@ -259,7 +415,10 @@
   "western_power_distribution": {
     "canonical": "Western Power Distribution",
     "sector": "Electricity",
-    "exact_aliases": ["Western Power Distribution", "WPD"],
+    "exact_aliases": [
+      "Western Power Distribution",
+      "WPD"
+    ],
     "contextual_aliases": [],
     "requires_context": [],
     "negative_context": [],
@@ -270,7 +429,11 @@
   "electricity_north_west": {
     "canonical": "Electricity North West",
     "sector": "Electricity",
-    "exact_aliases": ["Electricity North West", "ENWL", "ENW Ltd"],
+    "exact_aliases": [
+      "Electricity North West",
+      "ENWL",
+      "ENW Ltd"
+    ],
     "contextual_aliases": [],
     "requires_context": [],
     "negative_context": [],
@@ -280,7 +443,9 @@
   "northern_powergrid": {
     "canonical": "Northern Powergrid",
     "sector": "Electricity",
-    "exact_aliases": ["Northern Powergrid"],
+    "exact_aliases": [
+      "Northern Powergrid"
+    ],
     "contextual_aliases": [],
     "requires_context": [],
     "negative_context": [],
@@ -291,19 +456,40 @@
   "cadent_gas": {
     "canonical": "Cadent Gas",
     "sector": "Gas",
-    "exact_aliases": ["Cadent Gas", "Cadent"],
+    "exact_aliases": [
+      "Cadent Gas",
+      "Cadent"
+    ],
     "contextual_aliases": [],
     "requires_context": [],
-    "negative_context": ["Cadent Health", "Cadent Marketing", "Cadent Therapeutics"],
+    "negative_context": [
+      "Cadent Health",
+      "Cadent Marketing",
+      "Cadent Therapeutics"
+    ],
     "lse_ticker": null,
     "newsroom_rss": null
   },
   "sgn": {
     "canonical": "SGN",
     "sector": "Gas",
-    "exact_aliases": ["Scotia Gas Networks", "Southern Gas Networks"],
-    "contextual_aliases": ["SGN"],
-    "requires_context": ["gas", "pipeline", "network", "Ofgem", "Scotland", "southern", "GD2", "RIIO"],
+    "exact_aliases": [
+      "Scotia Gas Networks",
+      "Southern Gas Networks"
+    ],
+    "contextual_aliases": [
+      "SGN"
+    ],
+    "requires_context": [
+      "gas",
+      "pipeline",
+      "network",
+      "Ofgem",
+      "Scotland",
+      "southern",
+      "GD2",
+      "RIIO"
+    ],
     "negative_context": [],
     "lse_ticker": null,
     "newsroom_rss": null
@@ -311,9 +497,20 @@
   "northern_gas_networks": {
     "canonical": "Northern Gas Networks",
     "sector": "Gas",
-    "exact_aliases": ["Northern Gas Networks"],
-    "contextual_aliases": ["NGN"],
-    "requires_context": ["gas", "pipeline", "network", "Ofgem", "RIIO", "GD2"],
+    "exact_aliases": [
+      "Northern Gas Networks"
+    ],
+    "contextual_aliases": [
+      "NGN"
+    ],
+    "requires_context": [
+      "gas",
+      "pipeline",
+      "network",
+      "Ofgem",
+      "RIIO",
+      "GD2"
+    ],
     "negative_context": [],
     "lse_ticker": null,
     "newsroom_rss": null,
@@ -322,7 +519,11 @@
   "wales_west_utilities": {
     "canonical": "Wales & West Utilities",
     "sector": "Gas",
-    "exact_aliases": ["Wales & West Utilities", "Wales and West Utilities", "WWU"],
+    "exact_aliases": [
+      "Wales & West Utilities",
+      "Wales and West Utilities",
+      "WWU"
+    ],
     "contextual_aliases": [],
     "requires_context": [],
     "negative_context": [],
@@ -332,7 +533,12 @@
   "national_gas_transmission": {
     "canonical": "National Gas Transmission",
     "sector": "Gas",
-    "exact_aliases": ["National Gas Transmission", "National Gas", "National Grid Gas Transmission", "NGGT"],
+    "exact_aliases": [
+      "National Gas Transmission",
+      "National Gas",
+      "National Grid Gas Transmission",
+      "NGGT"
+    ],
     "contextual_aliases": [],
     "requires_context": [],
     "negative_context": [],
@@ -343,7 +549,10 @@
   "ofwat": {
     "canonical": "Ofwat",
     "sector": "Regulator",
-    "exact_aliases": ["Ofwat", "Water Services Regulation Authority"],
+    "exact_aliases": [
+      "Ofwat",
+      "Water Services Regulation Authority"
+    ],
     "contextual_aliases": [],
     "requires_context": [],
     "negative_context": [],
@@ -353,7 +562,10 @@
   "ofgem": {
     "canonical": "Ofgem",
     "sector": "Regulator",
-    "exact_aliases": ["Ofgem", "Office of Gas and Electricity Markets"],
+    "exact_aliases": [
+      "Ofgem",
+      "Office of Gas and Electricity Markets"
+    ],
     "contextual_aliases": [],
     "requires_context": [],
     "negative_context": [],
@@ -363,10 +575,23 @@
   "ccw": {
     "canonical": "CCW",
     "sector": "Regulator",
-    "exact_aliases": ["Consumer Council for Water"],
-    "contextual_aliases": ["CCW"],
-    "requires_context": ["water", "consumer", "Ofwat", "bills", "complaints", "household"],
-    "negative_context": ["Climate Change Committee"],
+    "exact_aliases": [
+      "Consumer Council for Water"
+    ],
+    "contextual_aliases": [
+      "CCW"
+    ],
+    "requires_context": [
+      "water",
+      "consumer",
+      "Ofwat",
+      "bills",
+      "complaints",
+      "household"
+    ],
+    "negative_context": [
+      "Climate Change Committee"
+    ],
     "lse_ticker": null,
     "newsroom_rss": null,
     "notes": "CCW often confused with CCC (Climate Change Committee). Strict context-gating."
@@ -374,12 +599,25 @@
   "energy_uk": {
     "canonical": "Energy UK",
     "sector": "Industry Body",
-    "exact_aliases": ["Energy UK"],
+    "exact_aliases": [
+      "Energy UK"
+    ],
     "contextual_aliases": [],
-    "requires_context": ["trade body", "trade association", "industry body", "Dhara Vyas", "chief executive", "Ofgem", "supplier"],
+    "requires_context": [
+      "trade body",
+      "trade association",
+      "industry body",
+      "Dhara Vyas",
+      "chief executive",
+      "Ofgem",
+      "supplier"
+    ],
     "negative_context": [
-      "energy UK economy", "energy UK market generally", "energy UK households",
-      "Plastic Energy", "Plastic Energy UK"
+      "energy UK economy",
+      "energy UK market generally",
+      "energy UK households",
+      "Plastic Energy",
+      "Plastic Energy UK"
     ],
     "lse_ticker": null,
     "newsroom_rss": null,
@@ -388,10 +626,23 @@
   "water_uk": {
     "canonical": "Water UK",
     "sector": "Industry Body",
-    "exact_aliases": ["Water UK"],
+    "exact_aliases": [
+      "Water UK"
+    ],
     "contextual_aliases": [],
-    "requires_context": ["trade body", "trade association", "industry body", "chief executive", "spokesperson", "David Henderson", "Ruth Kelly"],
-    "negative_context": ["water UK households", "water UK supply"],
+    "requires_context": [
+      "trade body",
+      "trade association",
+      "industry body",
+      "chief executive",
+      "spokesperson",
+      "David Henderson",
+      "Ruth Kelly"
+    ],
+    "negative_context": [
+      "water UK households",
+      "water UK supply"
+    ],
     "lse_ticker": null,
     "newsroom_rss": null,
     "notes": "Same generic-phrase risk as Energy UK."
@@ -399,7 +650,9 @@
   "elexon": {
     "canonical": "Elexon",
     "sector": "Industry Body",
-    "exact_aliases": ["Elexon"],
+    "exact_aliases": [
+      "Elexon"
+    ],
     "contextual_aliases": [],
     "requires_context": [],
     "negative_context": [],
@@ -410,7 +663,9 @@
   "xoserve": {
     "canonical": "Xoserve",
     "sector": "Industry Body",
-    "exact_aliases": ["Xoserve"],
+    "exact_aliases": [
+      "Xoserve"
+    ],
     "contextual_aliases": [],
     "requires_context": [],
     "negative_context": [],
@@ -421,14 +676,42 @@
   "recco": {
     "canonical": "RECCo",
     "sector": "Industry Body",
-    "exact_aliases": ["Retail Energy Code Company"],
-    "contextual_aliases": ["RECCo"],
-    "requires_context": ["Retail Energy Code", "REC ", "Ofgem", "energy supplier", "switching", "central switching service", "CSS", "Gemserv", "Elexon"],
+    "exact_aliases": [
+      "Retail Energy Code Company"
+    ],
+    "contextual_aliases": [
+      "RECCo"
+    ],
+    "requires_context": [
+      "Retail Energy Code",
+      "REC ",
+      "Ofgem",
+      "energy supplier",
+      "switching",
+      "central switching service",
+      "CSS",
+      "Gemserv",
+      "Elexon"
+    ],
     "negative_context": [
-      "Pro Recco", "water polo", "Posillipo", "Brescia", "Savona", "Liguria",
-      "focaccia", "Genoa", "Italian", "Italy",
-      "St. John Vianney", "golf", "boys golf", "girls golf", "high school",
-      "Christian Brothers", "Recco and Brescia", "edges Posillipo"
+      "Pro Recco",
+      "water polo",
+      "Posillipo",
+      "Brescia",
+      "Savona",
+      "Liguria",
+      "focaccia",
+      "Genoa",
+      "Italian",
+      "Italy",
+      "St. John Vianney",
+      "golf",
+      "boys golf",
+      "girls golf",
+      "high school",
+      "Christian Brothers",
+      "Recco and Brescia",
+      "edges Posillipo"
     ],
     "lse_ticker": null,
     "newsroom_rss": null,
@@ -437,18 +720,61 @@
   "mosl": {
     "canonical": "MOSL",
     "sector": "Industry Body",
-    "exact_aliases": ["MOSL", "Market Operator Services Ltd", "Market Operator Services Limited"],
-    "contextual_aliases": [],
-    "requires_context": [],
-    "negative_context": [],
+    "exact_aliases": [
+      "Market Operator Services Ltd",
+      "Market Operator Services Limited"
+    ],
+    "contextual_aliases": [
+      "MOSL"
+    ],
+    "requires_context": [
+      "water",
+      "retail market",
+      "non-household",
+      "CMOS",
+      "wholesaler",
+      "Ofwat",
+      "water market",
+      "settlement",
+      "trading party",
+      "switching",
+      "Open Water",
+      "business retail"
+    ],
+    "negative_context": [
+      "Motilal Oswal",
+      "Motilal",
+      "ICICI",
+      "SBI",
+      "Nifty",
+      "Sensex",
+      "ITC",
+      "broker",
+      "buy rating",
+      "sell rating",
+      "target price",
+      "ET Now",
+      "CNBC",
+      "Mint",
+      "rupee",
+      "crore",
+      "lakh",
+      "BSE",
+      "NSE",
+      "share price in focus",
+      "stock in focus",
+      "leveraged positions"
+    ],
     "lse_ticker": null,
     "newsroom_rss": null,
-    "notes": "Operates the non-household water retail market (CMOS)."
+    "notes": "Operates the non-household water retail market (CMOS). 'MOSL' is also the ticker/abbreviation for Motilal Oswal, an Indian financial-services firm — hence context-gated and heavily negative-gated against Indian stock-market terms."
   },
   "gemserv": {
     "canonical": "Gemserv",
     "sector": "Industry Body",
-    "exact_aliases": ["Gemserv"],
+    "exact_aliases": [
+      "Gemserv"
+    ],
     "contextual_aliases": [],
     "requires_context": [],
     "negative_context": [],
@@ -458,20 +784,42 @@
   "energy_networks_association": {
     "canonical": "Energy Networks Association",
     "sector": "Industry Body",
-    "exact_aliases": ["Energy Networks Association"],
-    "contextual_aliases": ["ENA"],
-    "requires_context": ["DNO", "distribution network", "gas network", "electricity network", "Ofgem", "trade body", "Lawrence Slade"],
-    "negative_context": ["European Nurses Association", "Eastern Nazarene"],
+    "exact_aliases": [
+      "Energy Networks Association"
+    ],
+    "contextual_aliases": [
+      "ENA"
+    ],
+    "requires_context": [
+      "DNO",
+      "distribution network",
+      "gas network",
+      "electricity network",
+      "Ofgem",
+      "trade body",
+      "Lawrence Slade"
+    ],
+    "negative_context": [
+      "European Nurses Association",
+      "Eastern Nazarene"
+    ],
     "lse_ticker": null,
     "newsroom_rss": null
   },
   "climate_change_committee": {
     "canonical": "Climate Change Committee",
     "sector": "Industry Body",
-    "exact_aliases": ["Climate Change Committee", "Committee on Climate Change"],
+    "exact_aliases": [
+      "Climate Change Committee",
+      "Committee on Climate Change"
+    ],
     "contextual_aliases": [],
     "requires_context": [],
-    "negative_context": ["Cricket Club", "Currency Co", "Crown Court"],
+    "negative_context": [
+      "Cricket Club",
+      "Currency Co",
+      "Crown Court"
+    ],
     "lse_ticker": null,
     "newsroom_rss": null,
     "notes": "Often abbreviated CCC. Do NOT match bare 'CCC' — too many collisions."
@@ -479,10 +827,15 @@
   "future_energy_networks": {
     "canonical": "Future Energy Networks",
     "sector": "Industry Body",
-    "exact_aliases": ["Future Energy Networks"],
+    "exact_aliases": [
+      "Future Energy Networks"
+    ],
     "contextual_aliases": [],
     "requires_context": [],
-    "negative_context": ["future energy networks generally", "future of energy networks article"],
+    "negative_context": [
+      "future energy networks generally",
+      "future of energy networks article"
+    ],
     "lse_ticker": null,
     "newsroom_rss": null,
     "notes": "Name is generic-sounding. Require exact full phrase, capitalised."
@@ -490,21 +843,68 @@
   "bt_group": {
     "canonical": "BT Group",
     "sector": "Telecoms",
-    "exact_aliases": ["BT Group", "BT plc", "British Telecom", "Openreach"],
-    "contextual_aliases": ["BT"],
+    "exact_aliases": [
+      "BT Group",
+      "BT plc",
+      "British Telecom",
+      "Openreach"
+    ],
+    "contextual_aliases": [
+      "BT"
+    ],
     "requires_context": [
-      "telecom", "telecoms", "broadband", "Openreach", "Ofcom", "fibre", "FTTP", "FTTC",
-      "BT Sport", "TNT Sport", "EE", "mobile network", "ISP", "fixed line",
-      "Adastral", "Allison Kirkby", "Philip Jansen", "FTSE", "London Stock Exchange",
-      "shares", "trading update", "results", "earnings", "revenue", "profit",
-      "turnaround", "transformation", "restructuring", "strategic review",
-      "Openreach", "BT Group", "BT plc",
-      "rollout", "5G", "spectrum", "dividend", "guidance", "outlook",
-      "Sunil Bharti Mittal", "Patrick Drahi", "Altice"
+      "telecom",
+      "telecoms",
+      "broadband",
+      "Openreach",
+      "Ofcom",
+      "fibre",
+      "FTTP",
+      "FTTC",
+      "BT Sport",
+      "TNT Sport",
+      "EE",
+      "mobile network",
+      "ISP",
+      "fixed line",
+      "Adastral",
+      "Allison Kirkby",
+      "Philip Jansen",
+      "FTSE",
+      "London Stock Exchange",
+      "shares",
+      "trading update",
+      "results",
+      "earnings",
+      "revenue",
+      "profit",
+      "turnaround",
+      "transformation",
+      "restructuring",
+      "strategic review",
+      "Openreach",
+      "BT Group",
+      "BT plc",
+      "rollout",
+      "5G",
+      "spectrum",
+      "dividend",
+      "guidance",
+      "outlook",
+      "Sunil Bharti Mittal",
+      "Patrick Drahi",
+      "Altice"
     ],
     "negative_context": [
-      "Bitcoin (BT)", "Bluetooth", "BT-7", "BTC ", "British Triathlon",
-      "BTec", "BTEC", "Bachelor of Technology", "vitamin BT",
+      "Bitcoin (BT)",
+      "Bluetooth",
+      "BT-7",
+      "BTC ",
+      "British Triathlon",
+      "BTec",
+      "BTEC",
+      "Bachelor of Technology",
+      "vitamin BT",
       "between (bt)"
     ],
     "lse_ticker": "BT.A",
@@ -515,18 +915,44 @@
     "canonical": "Informa",
     "sector": "Media",
     "exact_aliases": [
-      "Informa plc", "Informa Group", "Informa Markets", "Informa Connect",
-      "Informa Tech", "Informa Festivals", "Taylor & Francis", "Taylor and Francis"
+      "Informa plc",
+      "Informa Group",
+      "Informa Markets",
+      "Informa Connect",
+      "Informa Tech",
+      "Informa Festivals",
+      "Taylor & Francis",
+      "Taylor and Francis"
     ],
-    "contextual_aliases": ["Informa"],
+    "contextual_aliases": [
+      "Informa"
+    ],
     "requires_context": [
-      "events", "exhibition", "trade show", "publishing", "FTSE",
-      "Stephen Carter", "Routledge", "academic", "subscription", "media",
-      "London Stock Exchange", "festivals", "B2B", "Curinos", "Cebr"
+      "events",
+      "exhibition",
+      "trade show",
+      "publishing",
+      "FTSE",
+      "Stephen Carter",
+      "Routledge",
+      "academic",
+      "subscription",
+      "media",
+      "London Stock Exchange",
+      "festivals",
+      "B2B",
+      "Curinos",
+      "Cebr"
     ],
     "negative_context": [
-      "se informa", "informa che", "informa que", "informa de que", "informa al",
-      "Italia informa", "Spagna informa", "El Pais informa"
+      "se informa",
+      "informa che",
+      "informa que",
+      "informa de que",
+      "informa al",
+      "Italia informa",
+      "Spagna informa",
+      "El Pais informa"
     ],
     "lse_ticker": "INF",
     "newsroom_rss": null,
@@ -535,7 +961,9 @@
   "tesco_mobile": {
     "canonical": "Tesco Mobile",
     "sector": "Telecoms",
-    "exact_aliases": ["Tesco Mobile"],
+    "exact_aliases": [
+      "Tesco Mobile"
+    ],
     "contextual_aliases": [],
     "requires_context": [],
     "negative_context": [],
@@ -547,25 +975,60 @@
     "canonical": "Vodafone",
     "sector": "Telecoms",
     "exact_aliases": [
-      "Vodafone Group", "Vodafone UK", "Vodafone plc", "Vodafone Business",
-      "Vodafone Three", "VodafoneThree"
+      "Vodafone Group",
+      "Vodafone UK",
+      "Vodafone plc",
+      "Vodafone Business",
+      "Vodafone Three",
+      "VodafoneThree"
     ],
-    "contextual_aliases": ["Vodafone"],
+    "contextual_aliases": [
+      "Vodafone"
+    ],
     "requires_context": [
-      "telecom", "mobile", "Ofcom", "5G", "spectrum", "FTSE", "Newbury",
-      "Margherita Della Valle", "merger", "Three UK", "operator", "broadband",
-      "network", "MVNO", "wholesale"
+      "telecom",
+      "mobile",
+      "Ofcom",
+      "5G",
+      "spectrum",
+      "FTSE",
+      "Newbury",
+      "Margherita Della Valle",
+      "merger",
+      "Three UK",
+      "operator",
+      "broadband",
+      "network",
+      "MVNO",
+      "wholesale"
     ],
     "negative_context": [
-      "Vodafone Idea", "Vodafone India", "Vi (formerly Vodafone)",
-      "Vodafone Egypt", "Vodafone Qatar",
-      "Vodafone Germany", "Vodafone Spain", "Vodafone Italy", "Vodafone Italia",
-      "Vodafone Portugal", "Vodafone Greece", "Vodafone Romania",
-      "Vodafone Hungary", "Vodafone Czech", "Vodafone Turkey",
-      "Vodafone Ireland", "Vodafone Netherlands", "Vodafone Albania",
-      "Fastweb+Vodafone", "TIM 5G network sharing",
+      "Vodafone Idea",
+      "Vodafone India",
+      "Vi (formerly Vodafone)",
+      "Vodafone Egypt",
+      "Vodafone Qatar",
+      "Vodafone Germany",
+      "Vodafone Spain",
+      "Vodafone Italy",
+      "Vodafone Italia",
+      "Vodafone Portugal",
+      "Vodafone Greece",
+      "Vodafone Romania",
+      "Vodafone Hungary",
+      "Vodafone Czech",
+      "Vodafone Turkey",
+      "Vodafone Ireland",
+      "Vodafone Netherlands",
+      "Vodafone Albania",
+      "Fastweb+Vodafone",
+      "TIM 5G network sharing",
       "VodafoneZiggo",
-      "Vodafone South Africa", "Vodacom"
+      "Vodafone South Africa",
+      "Vodacom",
+      "Fastweb + Vodafone",
+      "Fastweb",
+      "AI factories in France"
     ],
     "lse_ticker": "VOD",
     "newsroom_rss": null,
@@ -575,21 +1038,51 @@
     "canonical": "Virgin Media O2",
     "sector": "Telecoms",
     "exact_aliases": [
-      "Virgin Media O2", "VMO2", "Virgin Media", "Virgin Mobile UK"
+      "Virgin Media O2",
+      "VMO2",
+      "Virgin Media",
+      "Virgin Mobile UK"
     ],
-    "contextual_aliases": ["O2"],
+    "contextual_aliases": [
+      "O2"
+    ],
     "requires_context": [
-      "telecom", "mobile", "broadband", "Ofcom", "Lutz Schüler",
-      "network", "5G", "operator", "Telefonica", "Telefónica", "Liberty Global",
-      "Virgin Media", "MVNO", "spectrum", "fibre"
+      "telecom",
+      "mobile",
+      "broadband",
+      "Ofcom",
+      "Lutz Schüler",
+      "network",
+      "5G",
+      "operator",
+      "Telefonica",
+      "Telefónica",
+      "Liberty Global",
+      "Virgin Media",
+      "MVNO",
+      "spectrum",
+      "fibre"
     ],
     "negative_context": [
-      "blood O2", "blood oxygen", "O2 saturation", "O2 levels",
-      "carbonate", "oxygen therapy", "O2 sensor",
-      "Virgin Atlantic", "Virgin Galactic", "Virgin Records", "Virgin Trains",
-      "Virgin Active", "Virgin Money", "Richard Branson",
-      "O2 Arena event", "O2 Forum gig", "concert at the O2",
-      "playing the O2", "O2 Academy gig"
+      "blood O2",
+      "blood oxygen",
+      "O2 saturation",
+      "O2 levels",
+      "carbonate",
+      "oxygen therapy",
+      "O2 sensor",
+      "Virgin Atlantic",
+      "Virgin Galactic",
+      "Virgin Records",
+      "Virgin Trains",
+      "Virgin Active",
+      "Virgin Money",
+      "Richard Branson",
+      "O2 Arena event",
+      "O2 Forum gig",
+      "concert at the O2",
+      "playing the O2",
+      "O2 Academy gig"
     ],
     "lse_ticker": null,
     "newsroom_rss": null,
@@ -598,7 +1091,12 @@
   "lyca_mobile": {
     "canonical": "Lyca Mobile",
     "sector": "Telecoms",
-    "exact_aliases": ["Lyca Mobile", "Lycamobile", "Lyca Group", "LycaMobile"],
+    "exact_aliases": [
+      "Lyca Mobile",
+      "Lycamobile",
+      "Lyca Group",
+      "LycaMobile"
+    ],
     "contextual_aliases": [],
     "requires_context": [],
     "negative_context": [],
