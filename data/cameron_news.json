@@ -2,33 +2,45 @@
   {
     "industry": "utilities",
     "period": "Week of 9 Jun 2026",
+    "date": "2026-06-11",
     "source": "BBC",
+    "headline": "Thames Water agrees £749m creditor takeover deal",
+    "body": "Thames Water has agreed a £749m takeover by its creditors, averting special administration. The deal restructures the company's debt and brings in new equity.",
+    "why_matters": "Major restructuring of the UK's largest water company — directly relevant to turnaround and regulatory work.",
+    "relevance": 92,
+    "url": "https://www.bbc.co.uk/news/example"
+  },
+  {
+    "industry": "utilities",
+    "period": "Week of 9 Jun 2026",
+    "date": "2026-06-10",
+    "source": "Reuters",
     "headline": "Ofwat confirms £44.7m enforcement package for Welsh Water",
-    "body": "Ofwat has confirmed a £44.7m enforcement package for Welsh Water. The money will reduce spills and improve river water quality. It is funded by the company, not customers.",
-    "why_matters": "Signals tougher AMP8 enforcement — relevant to regulatory-readiness work."
+    "body": "Ofwat has confirmed a £44.7m enforcement package for Welsh Water over sewage spills.",
+    "why_matters": "",
+    "relevance": 79,
+    "url": "https://www.reuters.com/example"
   },
   {
     "industry": "energy",
     "period": "Week of 9 Jun 2026",
+    "date": "2026-06-09",
     "source": "Energy Live News",
     "headline": "National Grid told to approve £4.5bn transmission spend",
     "body": "National Grid says the money is needed to invest in the network over five years.",
-    "why_matters": ""
+    "why_matters": "",
+    "relevance": 66,
+    "url": "https://www.energylivenews.com/example"
   },
   {
     "industry": "comms",
     "period": "Week of 9 Jun 2026",
+    "date": "2026-06-10",
     "source": "Fortune",
     "headline": "BT CEO on why telecoms needs more strikers",
     "body": "BT's chief executive sets out a growth strategy in a wide-ranging interview.",
-    "why_matters": ""
-  },
-  {
-    "industry": "media",
-    "period": "Week of 9 Jun 2026",
-    "source": "FT",
-    "headline": "Informa lifts full-year guidance on events strength",
-    "body": "Informa raised guidance citing strong live-events demand.",
-    "why_matters": ""
+    "why_matters": "",
+    "relevance": 57,
+    "url": "https://fortune.com/example"
   }
 ]

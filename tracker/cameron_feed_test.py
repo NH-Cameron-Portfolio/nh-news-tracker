@@ -17,21 +17,24 @@ ROOT = Path(__file__).resolve().parent.parent
 CONFIG = ROOT / "config"
 
 ALLOWED_INDUSTRIES = {"energy", "utilities", "media", "comms"}
-REQUIRED_KEYS = {"industry", "period", "source", "headline", "body", "why_matters"}
+REQUIRED_KEYS = {"industry", "period", "date", "source", "headline", "body", "why_matters", "relevance"}
+# url is included when present, so it's an optional key
 
 
 def load(name):
     return json.load(open(CONFIG / name))
 
 
-def mk(title, summary, matched, why=""):
+def mk(title, summary, matched, why="", tier="RELEVANT", score=7, url="https://news.google.com/x"):
     it = sources.NewsItem(
-        title=title, url="https://x", summary=summary,
+        title=title, url=url, summary=summary,
         source_name="Google News", source_domain="news.google.com",
         feed_tags=[], published_at=datetime.now(timezone.utc),
     )
     it.matched_clients = matched
     it.why_it_matters = why
+    it.tier = tier
+    it.score = score
     return it
 
 
@@ -70,13 +73,17 @@ def run():
     row = cameron_feed.build_feed_items([item], date(2026, 6, 9), sector_map)[0]
 
     checks = [
-        (set(row.keys()) == REQUIRED_KEYS, f"schema keys exact ({set(row.keys())})"),
+        (REQUIRED_KEYS.issubset(set(row.keys())), f"all required keys present ({set(row.keys())})"),
+        (set(row.keys()) - REQUIRED_KEYS <= {"url"}, "no unexpected keys beyond optional url"),
         (row["industry"] in ALLOWED_INDUSTRIES, f"industry in allowed set"),
         (row["source"] == "BBC News", f"source from suffix ('{row['source']}')"),
         ("**" not in row["body"] and "  " not in row["body"], f"body markdown/whitespace stripped ('{row['body']}')"),
         (" - BBC News" not in row["headline"], f"headline suffix stripped ('{row['headline']}')"),
         (row["why_matters"] == "Matters to AMP8 work.", f"why_matters populated"),
         (row["period"] == "Week of 9 Jun 2026", f"period label ('{row['period']}')"),
+        (isinstance(row["relevance"], int) and 0 <= row["relevance"] <= 100, f"relevance is 0-100 int ({row['relevance']})"),
+        ("url" in row and row["url"].startswith("http"), f"url present and looks valid"),
+        (len(row["date"]) == 10 and row["date"][4] == "-", f"date is ISO YYYY-MM-DD ('{row['date']}')"),
     ]
     for ok, desc in checks:
         if ok:
@@ -104,6 +111,51 @@ def run():
         passed += 1
     else:
         print(f"  ✗ FAIL: some industry value out of allowed set")
+        failed += 1
+
+    # Relevance banding: PRIORITY->75-100, RELEVANT->40-74, MENTIONED->10-39
+    band_cases = [
+        ("PRIORITY", 18, 75, 100, "PRIORITY high score"),
+        ("PRIORITY", 10, 75, 100, "PRIORITY threshold"),
+        ("RELEVANT", 9, 40, 74, "RELEVANT high"),
+        ("RELEVANT", 5, 40, 74, "RELEVANT threshold"),
+        ("MENTIONED", 4, 10, 39, "MENTIONED high"),
+        ("MENTIONED", 2, 10, 39, "MENTIONED threshold"),
+    ]
+    for tier, score, lo, hi, note in band_cases:
+        item = mk("Test - Reuters", "Body.", ["RWE"], tier=tier, score=score)
+        rel = cameron_feed.relevance_score(item)
+        if lo <= rel <= hi:
+            print(f"  ✓ {note}: relevance {rel} in [{lo},{hi}]")
+            passed += 1
+        else:
+            print(f"  ✗ FAIL {note}: relevance {rel} not in [{lo},{hi}]")
+            failed += 1
+
+    # Sort order: higher relevance first
+    mixed = [
+        mk("Noise - Sharecast", "x", ["United Utilities"], tier="MENTIONED", score=2),
+        mk("Big deal - BBC", "x", ["Thames Water"], tier="PRIORITY", score=18),
+        mk("Medium - FT", "x", ["BT Group"], tier="RELEVANT", score=7),
+    ]
+    feed_sorted = cameron_feed.build_feed_items(mixed, date(2026, 6, 9), sector_map)
+    rels = [f["relevance"] for f in feed_sorted]
+    if rels == sorted(rels, reverse=True):
+        print(f"  ✓ feed pre-sorted by relevance descending {rels}")
+        passed += 1
+    else:
+        print(f"  ✗ FAIL: feed not sorted by relevance: {rels}")
+        failed += 1
+
+    # url omitted when genuinely absent
+    item_nourl = mk("No url item - BBC", "Body.", ["RWE"])
+    item_nourl.url = ""
+    row_nourl = cameron_feed.build_feed_items([item_nourl], date(2026, 6, 9), sector_map)[0]
+    if "url" not in row_nourl:
+        print(f"  ✓ url omitted when absent")
+        passed += 1
+    else:
+        print(f"  ✗ FAIL: url should be omitted when empty, got '{row_nourl.get('url')}'")
         failed += 1
 
     print(f"\ncameron_feed: {passed} passed, {failed} failed")

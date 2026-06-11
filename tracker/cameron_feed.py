@@ -12,10 +12,14 @@ missing file can never break the microsite — but we still write valid JSON eve
 Schema (one object per news item):
     industry     : one of exactly "energy" | "utilities" | "media" | "comms"
     period       : human-readable label, e.g. "Week of 9 Jun 2026"
+    date         : ISO date YYYY-MM-DD (article publish date; run date if unknown)
     source       : publication / organisation, e.g. "FT", "Ofwat", "Reuters"
     headline     : plain-text headline
     body         : plain-text 2-5 sentence summary
     why_matters  : plain-text "so what for NH" angle, or "" if not produced
+    url          : direct link to the source article (omitted only if genuinely absent)
+    relevance    : integer 0-100; higher = more relevant. Maps the bot's internal
+                   tier+score onto High(75-100)/Medium(40-74)/Low(0-39) bands.
 """
 
 from __future__ import annotations
@@ -72,6 +76,46 @@ _CLIENT_NAME_TO_INDUSTRY = {
 _DEFAULT_INDUSTRY = "energy"  # safest catch-all for unmapped energy/utilities bodies
 
 
+# ---------- Relevance score (0-100) for the microsite ----------
+# The microsite sorts each industry's items by `relevance` descending, shows the top 5,
+# and hides anything below a threshold it sets. We map the bot's internal tier + raw score
+# onto the 0-100 scale, aligned to the bands the microsite asked for:
+#     High   75-100 : PRIORITY  (named clients, M&A, determinations, restructuring, big capex)
+#     Medium 40-74  : RELEVANT  (sector-relevant, consultations, competitor moves)
+#     Low    0-39   : MENTIONED (general noise, routine movements, tangential mentions)
+# Within each band we spread by the raw score so finer ordering is preserved.
+
+_TIER_BANDS = {
+    "PRIORITY":  (75, 100),
+    "RELEVANT":  (40, 74),
+    "MENTIONED": (10, 39),
+    "DISCARDED": (0, 9),
+}
+
+# Raw-score anchors: a PRIORITY item scores >=10; RELEVANT 5-9; MENTIONED 2-4.
+# We linearly position the raw score within its tier's band, capping sensibly.
+_TIER_SCORE_RANGE = {
+    "PRIORITY":  (10, 22),   # 10 -> 75, 22+ -> 100
+    "RELEVANT":  (5, 9),     # 5  -> 40, 9   -> 74
+    "MENTIONED": (2, 4),     # 2  -> 10, 4   -> 39
+    "DISCARDED": (0, 1),
+}
+
+
+def relevance_score(item: NewsItem) -> int:
+    """Map the bot's internal tier + raw score onto a 0-100 relevance scale."""
+    tier = item.tier or "MENTIONED"
+    band_lo, band_hi = _TIER_BANDS.get(tier, (10, 39))
+    score_lo, score_hi = _TIER_SCORE_RANGE.get(tier, (2, 4))
+    raw = item.score
+    if score_hi <= score_lo:
+        frac = 1.0
+    else:
+        frac = (raw - score_lo) / (score_hi - score_lo)
+        frac = max(0.0, min(1.0, frac))   # clamp to [0,1]
+    return int(round(band_lo + frac * (band_hi - band_lo)))
+
+
 def _industry_for_item(item: NewsItem, sector_map: dict[str, str]) -> str:
     """Resolve an item to one of the four microsite industry values."""
     # 1. If any matched client has an explicit name-based mapping, prefer it.
@@ -125,14 +169,24 @@ def build_feed_items(items: list[NewsItem], run_date: date, sector_map: dict[str
     period = _period_label(run_date)
     feed: list[dict] = []
     for it in items:
-        feed.append({
+        row = {
             "industry": _industry_for_item(it, sector_map),
             "period": period,
+            "date": (it.published_at.date().isoformat() if it.published_at else run_date.isoformat()),
             "source": _source_label(it),
             "headline": _clean_text(it.title),
             "body": _clean_text(it.summary)[:600],
             "why_matters": _clean_text(it.why_it_matters),
-        })
+            "relevance": relevance_score(it),
+        }
+        # url: include only when it's a real article link. Google-News RSS wraps links in
+        # news.google.com redirect URLs which still resolve to the article, so they're usable.
+        if it.url:
+            row["url"] = it.url
+        feed.append(row)
+    # Sort by relevance desc, then date desc — so the file itself is already in priority order
+    # (the microsite re-sorts, but this makes the raw file readable and a sensible fallback).
+    feed.sort(key=lambda r: (r["relevance"], r.get("date", "")), reverse=True)
     return feed
 
 
