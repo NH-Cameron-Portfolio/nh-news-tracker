@@ -25,13 +25,14 @@ import time
 from datetime import date, datetime, timezone
 from pathlib import Path
 
-from tracker import sources, dedupe, filters, scoring, enrich, email_render
+from tracker import sources, dedupe, filters, scoring, enrich, email_render, cameron_feed
 
 # ---------- Config paths ----------
 ROOT = Path(__file__).resolve().parent.parent
 CONFIG = ROOT / "config"
 OUTPUT_DIR = ROOT / "output"
 LAST_RUN = ROOT / "tracker" / "last_run.json"
+CAMERON_JSON = ROOT / "data" / "cameron_news.json"   # microsite feed (committed each run)
 
 # ---------- Time budget ----------
 DEADLINE_MINUTES = 25  # leave 5 min for CSV + email + git commit before GitHub's 30 min timeout
@@ -143,6 +144,15 @@ def main() -> int:
     log.info("Final items for digest: %d", len(final_items))
 
     csv_path = _write_csv(enriched, run_date, clients)   # CSV includes DISCARDED for transparency
+
+    # Additional byproduct: write cameron_news.json for the Cameron Portfolio microsite.
+    # This is fully isolated — wrapped so any failure here cannot affect the digest/email.
+    # Uses the same final (non-DISCARDED) items the email shows.
+    try:
+        sector_map = email_render._client_sector_map(clients)
+        cameron_feed.write_cameron_json(final_items, run_date, sector_map, CAMERON_JSON)
+    except Exception as exc:
+        log.exception("Failed to write cameron_news.json (non-fatal): %s", exc)
 
     include_mentioned = os.environ.get("INCLUDE_MENTIONED", "").lower() in ("1", "true", "yes")
     html = email_render.render_html(enriched, run_date, include_mentioned=include_mentioned, clients_cfg=clients)
