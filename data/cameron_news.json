@@ -1,34 +1,1138 @@
 [
   {
     "industry": "utilities",
-    "period": "Week of 9 Jun 2026",
+    "period": "Week of 11 Jun 2026",
+    "source": "Financial Times",
+    "headline": "Thames Water to pay £749mn under creditor takeover deal",
+    "body": "Thames Water to pay £749mn under creditor takeover deal Financial Times",
+    "why_matters": "+1 other outlet covered this"
+  },
+  {
+    "industry": "utilities",
+    "period": "Week of 11 Jun 2026",
+    "source": "AJ Bell",
+    "headline": "Daily market update: Markets steady after wobble, WH Smith, Thames Water",
+    "body": "Daily market update: Markets steady after wobble, WH Smith, Thames Water AJ Bell",
+    "why_matters": ""
+  },
+  {
+    "industry": "utilities",
+    "period": "Week of 11 Jun 2026",
+    "source": "City AM",
+    "headline": "Thames Water eyes return to London Stock Exchange while Pennon back in profit",
+    "body": "Thames Water eyes return to London Stock Exchange while Pennon back in profit City AM",
+    "why_matters": ""
+  },
+  {
+    "industry": "utilities",
+    "period": "Week of 11 Jun 2026",
+    "source": "Twickenham Nub News",
+    "headline": "Emergency Thames Water works in Twickenham set to cause delays",
+    "body": "Emergency Thames Water works in Twickenham set to cause delays Twickenham Nub News",
+    "why_matters": ""
+  },
+  {
+    "industry": "utilities",
+    "period": "Week of 11 Jun 2026",
+    "source": "Reading Chronicle",
+    "headline": "Artist puts 'follow the stench of corruption' sign at Thames Water headquarters",
+    "body": "Artist puts 'follow the stench of corruption' sign at Thames Water headquarters Reading Chronicle",
+    "why_matters": ""
+  },
+  {
+    "industry": "utilities",
+    "period": "Week of 11 Jun 2026",
+    "source": "Bloomberg.com",
+    "headline": "Starmer Crisis Throws Further Doubt on Thames Water Deal",
+    "body": "Starmer Crisis Throws Further Doubt on Thames Water Deal Bloomberg.com",
+    "why_matters": ""
+  },
+  {
+    "industry": "utilities",
+    "period": "Week of 11 Jun 2026",
+    "source": "London Business News",
+    "headline": "Private equity, Thames Water and the new colonialism of capital",
+    "body": "Private equity, Thames Water and the new colonialism of capital London Business News",
+    "why_matters": ""
+  },
+  {
+    "industry": "utilities",
+    "period": "Week of 11 Jun 2026",
+    "source": "Bishop's Stortford Independent",
+    "headline": "Minister to challenge Thames Water after Stortford MP calls it out in Commons for River Stort sewage pollution",
+    "body": "Minister to challenge Thames Water after Stortford MP calls it out in Commons for River Stort sewage pollution Bishop's Stortford Independent",
+    "why_matters": ""
+  },
+  {
+    "industry": "utilities",
+    "period": "Week of 11 Jun 2026",
+    "source": "Reading Chronicle",
+    "headline": "Thames Water to spend more than £20m on Berkshire sites upgrade",
+    "body": "Thames Water to spend more than £20m on Berkshire sites upgrade Reading Chronicle",
+    "why_matters": ""
+  },
+  {
+    "industry": "utilities",
+    "period": "Week of 11 Jun 2026",
+    "source": "Radio Royal",
+    "headline": "Ofwat set for talks on Thames Water rescue deal | Mark Kleinman blog",
+    "body": "Ofwat set for talks on Thames Water rescue deal",
+    "why_matters": ""
+  },
+  {
+    "industry": "utilities",
+    "period": "Week of 11 Jun 2026",
+    "source": "The Guardian",
+    "headline": "Thames Water should be nationalised, says Andy Burnham",
+    "body": "Thames Water should be nationalised, says Andy Burnham The Guardian",
+    "why_matters": ""
+  },
+  {
+    "industry": "utilities",
+    "period": "Week of 11 Jun 2026",
+    "source": "Herald Series",
+    "headline": "Thames Water urges cutbacks as record May heat boosts demand",
+    "body": "Thames Water urges cutbacks as record May heat boosts demand Herald Series",
+    "why_matters": ""
+  },
+  {
+    "industry": "utilities",
+    "period": "Week of 11 Jun 2026",
+    "source": "Oxford Mail",
+    "headline": "Thames Water in Oxford plea amid Port Meadow poo pollution claims",
+    "body": "Thames Water in Oxford plea amid Port Meadow poo pollution claims Oxford Mail",
+    "why_matters": ""
+  },
+  {
+    "industry": "utilities",
+    "period": "Week of 11 Jun 2026",
+    "source": "Derbyshire Times",
+    "headline": "Severn Trent invests £6 million to improve Linacre Water – with public footpath closing for 10 months",
+    "body": "Severn Trent invests £6 million to improve Linacre Water",
+    "why_matters": ""
+  },
+  {
+    "industry": "utilities",
+    "period": "Week of 11 Jun 2026",
+    "source": "Construction Index",
+    "headline": "Severn Trent picks Tracto for pipe bursting",
+    "body": "Severn Trent picks Tracto for pipe bursting Construction Index",
+    "why_matters": "+1 other outlet covered this"
+  },
+  {
+    "industry": "utilities",
+    "period": "Week of 11 Jun 2026",
+    "source": "Yahoo News UK",
+    "headline": "Severn Trent submits amended plans for new access",
+    "body": "Severn Trent submits amended plans for new access Yahoo News UK",
+    "why_matters": ""
+  },
+  {
+    "industry": "utilities",
+    "period": "Week of 11 Jun 2026",
+    "source": "Water Magazine",
+    "headline": "United Utilities unveils £30m plan to create a ‘spongier’ city",
+    "body": "United Utilities unveils £30m plan to create a ‘spongier’ city Water Magazine",
+    "why_matters": ""
+  },
+  {
+    "industry": "utilities",
+    "period": "Week of 11 Jun 2026",
+    "source": "Smart Water Magazine",
+    "headline": "United Utilities commits £30 million to expand nature-based rainwater management across Liverpool",
+    "body": "United Utilities commits £30 million to expand nature-based rainwater management across Liverpool Smart Water Magazine",
+    "why_matters": ""
+  },
+  {
+    "industry": "utilities",
+    "period": "Week of 11 Jun 2026",
+    "source": "Wirral Globe",
+    "headline": "United Utilities' plan for construction compound behind Wirral pub",
+    "body": "United Utilities' plan for construction compound behind Wirral pub Wirral Globe",
+    "why_matters": ""
+  },
+  {
+    "industry": "utilities",
+    "period": "Week of 11 Jun 2026",
+    "source": "Water Magazine",
+    "headline": "Ofwat grants financing subsidiary guarantee consents to United Utilities and South West Water",
+    "body": "Ofwat grants financing subsidiary guarantee consents to United Utilities and South West Water Water Magazine",
+    "why_matters": ""
+  },
+  {
+    "industry": "utilities",
+    "period": "Week of 11 Jun 2026",
+    "source": "Bdaily",
+    "headline": "NWBLT appoints United Utilities representative",
+    "body": "NWBLT appoints United Utilities representative Bdaily",
+    "why_matters": ""
+  },
+  {
+    "industry": "utilities",
+    "period": "Week of 11 Jun 2026",
+    "source": "New Civil Engineer",
+    "headline": "United Utilities’ Enterprise framework",
+    "body": "United Utilities’ Enterprise framework New Civil Engineer",
+    "why_matters": ""
+  },
+  {
+    "industry": "utilities",
+    "period": "Week of 11 Jun 2026",
+    "source": "Westmorland Gazette",
+    "headline": "United Utilities invests £4.8m upgrading Troutbeck water and wastewater networks",
+    "body": "United Utilities invests £4.8m upgrading Troutbeck water and wastewater networks Westmorland Gazette",
+    "why_matters": ""
+  },
+  {
+    "industry": "utilities",
+    "period": "Week of 11 Jun 2026",
+    "source": "Water Magazine",
+    "headline": "Anglian Water reports £1.1bn investment as AMP8 programme gathers pace",
+    "body": "Anglian Water reports £1.1bn investment as AMP8 programme gathers pace Water Magazine",
+    "why_matters": ""
+  },
+  {
+    "industry": "utilities",
+    "period": "Week of 11 Jun 2026",
+    "source": "Northamptonshire Telegraph",
+    "headline": "Anglian Water and North Northants Council invest more than £1 million to improve drainage capacity in Kettering village",
+    "body": "Anglian Water and North Northants Council invest more than £1 million to improve drainage capacity in Kettering village Northamptonshire Telegraph",
+    "why_matters": ""
+  },
+  {
+    "industry": "utilities",
+    "period": "Week of 11 Jun 2026",
+    "source": "Eastern Daily Press",
+    "headline": "Anglian Water admits catalgoue of blunders after burst main caused chaos in town",
+    "body": "Anglian Water admits catalgoue of blunders after burst main caused chaos in town Eastern Daily Press",
+    "why_matters": ""
+  },
+  {
+    "industry": "utilities",
+    "period": "Week of 11 Jun 2026",
+    "source": "Partnerships Bulletin",
+    "headline": "Anglian Water looks for PPP advice",
+    "body": "Anglian Water looks for PPP advice Partnerships Bulletin",
+    "why_matters": ""
+  },
+  {
+    "industry": "utilities",
+    "period": "Week of 11 Jun 2026",
+    "source": "Rayo",
+    "headline": "MP holds Anglian Water accountable for disruptions impacting local villages",
+    "body": "MP holds Anglian Water accountable for disruptions impacting local villages Rayo",
+    "why_matters": ""
+  },
+  {
+    "industry": "utilities",
+    "period": "Week of 11 Jun 2026",
+    "source": "Rayo",
+    "headline": "Daventry MP meets Anglian Water bosses",
+    "body": "Daventry MP meets Anglian Water bosses Rayo",
+    "why_matters": ""
+  },
+  {
+    "industry": "utilities",
+    "period": "Week of 11 Jun 2026",
     "source": "BBC",
-    "headline": "Ofwat confirms £44.7m enforcement package for Welsh Water",
-    "body": "Ofwat has confirmed a £44.7m enforcement package for Welsh Water. The money will reduce spills and improve river water quality. It is funded by the company, not customers.",
-    "why_matters": "Signals tougher AMP8 enforcement — relevant to regulatory-readiness work."
+    "headline": "Yorkshire Water starts work on storm overflows in Armley and Temple Newsam",
+    "body": "Yorkshire Water starts work on storm overflows in Armley and Temple Newsam BBC",
+    "why_matters": "+1 other outlet covered this"
+  },
+  {
+    "industry": "utilities",
+    "period": "Week of 11 Jun 2026",
+    "source": "New Civil Engineer",
+    "headline": "Yorkshire Water appoints Jacobs to £32M AI framework",
+    "body": "Yorkshire Water appoints Jacobs to £32M AI framework New Civil Engineer",
+    "why_matters": "+1 other outlet covered this"
+  },
+  {
+    "industry": "utilities",
+    "period": "Week of 11 Jun 2026",
+    "source": "This is the Coast",
+    "headline": "Yorkshire Water to Upgrade Scarborough Storm Overflow Telemetry",
+    "body": "Yorkshire Water to Upgrade Scarborough Storm Overflow Telemetry This is the Coast",
+    "why_matters": ""
+  },
+  {
+    "industry": "utilities",
+    "period": "Week of 11 Jun 2026",
+    "source": "Smart Water Magazine",
+    "headline": "Yorkshire Water hires six firms in £32 million push to bring AI into daily operations",
+    "body": "Yorkshire Water hires six firms in £32 million push to bring AI into daily operations Smart Water Magazine",
+    "why_matters": ""
+  },
+  {
+    "industry": "utilities",
+    "period": "Week of 11 Jun 2026",
+    "source": "New Civil Engineer",
+    "headline": "Barhale wins £16M contract to build new service reservoir for Yorkshire Water",
+    "body": "Barhale wins £16M contract to build new service reservoir for Yorkshire Water New Civil Engineer",
+    "why_matters": "+2 other outlets covered this"
+  },
+  {
+    "industry": "utilities",
+    "period": "Week of 11 Jun 2026",
+    "source": "This is the Coast",
+    "headline": "Yorkshire Water Plans New Service Reservoir for Sandybed in Scarborough",
+    "body": "Yorkshire Water Plans New Service Reservoir for Sandybed in Scarborough This is the Coast",
+    "why_matters": "+1 other outlet covered this"
+  },
+  {
+    "industry": "utilities",
+    "period": "Week of 11 Jun 2026",
+    "source": "thestar.co.uk",
+    "headline": "Yorkshire Water issues update after burst main floods Sheffield city centre street",
+    "body": "Yorkshire Water issues update after burst main floods Sheffield city centre street thestar.co.uk",
+    "why_matters": ""
+  },
+  {
+    "industry": "utilities",
+    "period": "Week of 11 Jun 2026",
+    "source": "New Civil Engineer",
+    "headline": "Yorkshire Water plans £50M framework to bolster capital delivery resources",
+    "body": "Yorkshire Water plans £50M framework to bolster capital delivery resources New Civil Engineer",
+    "why_matters": ""
+  },
+  {
+    "industry": "utilities",
+    "period": "Week of 11 Jun 2026",
+    "source": "The Northern Echo",
+    "headline": "Northumbrian Water discharged sewage into rivers more than 27,000 times in 2025",
+    "body": "Northumbrian Water discharged sewage into rivers more than 27,000 times in 2025 The Northern Echo",
+    "why_matters": ""
+  },
+  {
+    "industry": "utilities",
+    "period": "Week of 11 Jun 2026",
+    "source": "South Hams Gazette",
+    "headline": "Devon Trade Union group calls for public ownership of South West Water",
+    "body": "Devon Trade Union group calls for public ownership of South West Water South Hams Gazette",
+    "why_matters": ""
+  },
+  {
+    "industry": "utilities",
+    "period": "Week of 11 Jun 2026",
+    "source": "Cornish Stuff",
+    "headline": "What Ofwat Told Newquay After the South West Water Vote",
+    "body": "What Ofwat Told Newquay After the South West Water Vote Cornish Stuff",
+    "why_matters": ""
+  },
+  {
+    "industry": "utilities",
+    "period": "Week of 11 Jun 2026",
+    "source": "Utility Week",
+    "headline": "New South West Water chief won’t ‘tolerate’ one star environmental rating",
+    "body": "New South West Water chief won’t ‘tolerate’ one star environmental rating Utility Week",
+    "why_matters": ""
+  },
+  {
+    "industry": "utilities",
+    "period": "Week of 11 Jun 2026",
+    "source": "Business Live",
+    "headline": "South West Water boss says group must 'rebuild trust' after making £92.6m profit",
+    "body": "South West Water boss says group must 'rebuild trust' after making £92.6m profit Business Live",
+    "why_matters": "+1 other outlet covered this"
+  },
+  {
+    "industry": "utilities",
+    "period": "Week of 11 Jun 2026",
+    "source": "Tavistock Times Gazette",
+    "headline": "'A serious failure': South West Water fined over cryptosporidium outbreak",
+    "body": "'A serious failure': South West Water fined over cryptosporidium outbreak Tavistock Times Gazette",
+    "why_matters": ""
+  },
+  {
+    "industry": "utilities",
+    "period": "Week of 11 Jun 2026",
+    "source": "Rayo",
+    "headline": "'Enough is enough' as council looks to take legal action against South West Water | News - Hits Radio (Cornwall)",
+    "body": "'Enough is enough' as council looks to take legal action against South West Water | News",
+    "why_matters": ""
+  },
+  {
+    "industry": "utilities",
+    "period": "Week of 11 Jun 2026",
+    "source": "Water Magazine",
+    "headline": "South West Water supports UNESCO’s wildlife education scheme",
+    "body": "South West Water supports UNESCO’s wildlife education scheme Water Magazine",
+    "why_matters": ""
+  },
+  {
+    "industry": "utilities",
+    "period": "Week of 11 Jun 2026",
+    "source": "Cornish Stuff",
+    "headline": "What South West Water Says It’s Doing Before Bathing Season",
+    "body": "What South West Water Says It’s Doing Before Bathing Season Cornish Stuff",
+    "why_matters": ""
+  },
+  {
+    "industry": "utilities",
+    "period": "Week of 11 Jun 2026",
+    "source": "South West Water",
+    "headline": "Insight: How South West Water’s dedicated teams help prepare the network ahead of the bathing season",
+    "body": "Insight: How South West Water’s dedicated teams help prepare the network ahead of the bathing season South West Water",
+    "why_matters": ""
+  },
+  {
+    "industry": "utilities",
+    "period": "Week of 11 Jun 2026",
+    "source": "Isle of Wight News from OnTheWight",
+    "headline": "Totland parish councillors raise sewage failings ahead of Southern Water chief’s Island visit",
+    "body": "Totland parish councillors raise sewage failings ahead of Southern Water chief’s Island visit Isle of Wight News from OnTheWight",
+    "why_matters": "+1 other outlet covered this"
+  },
+  {
+    "industry": "utilities",
+    "period": "Week of 11 Jun 2026",
+    "source": "The Isle of Thanet News",
+    "headline": "Southern Water dealing with UV glitch at Weatherlees treatment station",
+    "body": "Southern Water dealing with UV glitch at Weatherlees treatment station The Isle of Thanet News",
+    "why_matters": ""
+  },
+  {
+    "industry": "utilities",
+    "period": "Week of 11 Jun 2026",
+    "source": "Island Echo",
+    "headline": "BATHING WATER WARNINGS MAIN INTEREST IN SOUTHERN WATER AND COUNTY HALL MEETING",
+    "body": "BATHING WATER WARNINGS MAIN INTEREST IN SOUTHERN WATER AND COUNTY HALL MEETING Island Echo",
+    "why_matters": "+1 other outlet covered this"
+  },
+  {
+    "industry": "utilities",
+    "period": "Week of 11 Jun 2026",
+    "source": "Isle of Wight County Press",
+    "headline": "Southern Water boss: Isle of Wight treated 'poorly' and sewage spills 'unacceptable'",
+    "body": "Southern Water boss: Isle of Wight treated 'poorly' and sewage spills 'unacceptable' Isle of Wight County Press",
+    "why_matters": ""
+  },
+  {
+    "industry": "utilities",
+    "period": "Week of 11 Jun 2026",
+    "source": "Isle of Wight News from OnTheWight",
+    "headline": "Southern Water defends Bembridge outfall repair as legal challenge keeps work on hold",
+    "body": "Southern Water defends Bembridge outfall repair as legal challenge keeps work on hold Isle of Wight News from OnTheWight",
+    "why_matters": ""
+  },
+  {
+    "industry": "utilities",
+    "period": "Week of 11 Jun 2026",
+    "source": "Isle of Wight County Press",
+    "headline": "Southern Water boss to face questions over 'grave' sewage concerns",
+    "body": "Southern Water boss to face questions over 'grave' sewage concerns Isle of Wight County Press",
+    "why_matters": ""
+  },
+  {
+    "industry": "utilities",
+    "period": "Week of 11 Jun 2026",
+    "source": "Isle of Wight News from OnTheWight",
+    "headline": "Southern Water chief executive to face Isle of Wight councillors over sewage concerns",
+    "body": "Southern Water chief executive to face Isle of Wight councillors over sewage concerns Isle of Wight News from OnTheWight",
+    "why_matters": ""
+  },
+  {
+    "industry": "utilities",
+    "period": "Week of 11 Jun 2026",
+    "source": "The People’s Daily",
+    "headline": "Southern Water sparks fury with ‘absolutely disgusting’ sewage dumping plans - Morning Star",
+    "body": "Southern Water sparks fury with ‘absolutely disgusting’ sewage dumping plans Morning Star",
+    "why_matters": ""
+  },
+  {
+    "industry": "utilities",
+    "period": "Week of 11 Jun 2026",
+    "source": "BBC",
+    "headline": "South East Water to double compensation for businesses - MP",
+    "body": "South East Water to double compensation for businesses",
+    "why_matters": "+1 other outlet covered this"
+  },
+  {
+    "industry": "utilities",
+    "period": "Week of 11 Jun 2026",
+    "source": "Ashdown Radio",
+    "headline": "South East Water issues reservoir safety advice",
+    "body": "South East Water issues reservoir safety advice Ashdown Radio",
+    "why_matters": ""
+  },
+  {
+    "industry": "utilities",
+    "period": "Week of 11 Jun 2026",
+    "source": "The Times",
+    "headline": "South East Water hunts for £100m to plug its finances",
+    "body": "South East Water hunts for £100m to plug its finances The Times",
+    "why_matters": ""
+  },
+  {
+    "industry": "utilities",
+    "period": "Week of 11 Jun 2026",
+    "source": "New Civil Engineer",
+    "headline": "Vysiion secures £3M Portsmouth Water framework contract",
+    "body": "Vysiion secures £3M Portsmouth Water framework contract New Civil Engineer",
+    "why_matters": "+1 other outlet covered this"
+  },
+  {
+    "industry": "utilities",
+    "period": "Week of 11 Jun 2026",
+    "source": "Smart Water Magazine",
+    "headline": "Portsmouth Water selects Vysiion for long-term telephony and resilience infrastructure programme",
+    "body": "Portsmouth Water selects Vysiion for long-term telephony and resilience infrastructure programme Smart Water Magazine",
+    "why_matters": ""
+  },
+  {
+    "industry": "utilities",
+    "period": "Week of 11 Jun 2026",
+    "source": "Water Magazine",
+    "headline": "Bristol Water to support UK’s largest free festival of the natural world",
+    "body": "Bristol Water to support UK’s largest free festival of the natural world Water Magazine",
+    "why_matters": ""
+  },
+  {
+    "industry": "utilities",
+    "period": "Week of 11 Jun 2026",
+    "source": "megaproject.com",
+    "headline": "Bristol Water - Major £66 Million Upgrade To Bristol’S Water Network Aims To Cut Interruptions And Boost Resilience",
+    "body": "Bristol Water - Major £66 Million Upgrade To Bristol’S Water Network Aims To Cut Interruptions And Boost Resilience megaproject.com",
+    "why_matters": ""
+  },
+  {
+    "industry": "utilities",
+    "period": "Week of 11 Jun 2026",
+    "source": "Senedd Research",
+    "headline": "At a watershed: designing a Welsh water sector for the future",
+    "body": "At a watershed: designing a Welsh water sector for the future Senedd Research",
+    "why_matters": ""
+  },
+  {
+    "industry": "utilities",
+    "period": "Week of 11 Jun 2026",
+    "source": "Abergavenny Chronicle",
+    "headline": "Dwr Cymru Welsh Water to pay £44.7m for failings in maintaining water quality",
+    "body": "Dwr Cymru Welsh Water to pay £44.7m for failings in maintaining water quality Abergavenny Chronicle",
+    "why_matters": ""
+  },
+  {
+    "industry": "utilities",
+    "period": "Week of 11 Jun 2026",
+    "source": "Water Magazine",
+    "headline": "Dŵr Cymru Welsh Water invests £617 million in its network during 2025–26 as part of long-term programme",
+    "body": "Dŵr Cymru Welsh Water invests £617 million in its network during 2025–26 as part of long-term programme Water Magazine",
+    "why_matters": ""
+  },
+  {
+    "industry": "utilities",
+    "period": "Week of 11 Jun 2026",
+    "source": "Geomechanics.io",
+    "headline": "£44.7M Welsh Water enforcement package: design and upgrade notes for engineers",
+    "body": "£44.7M Welsh Water enforcement package: design and upgrade notes for engineers Geomechanics.io",
+    "why_matters": ""
+  },
+  {
+    "industry": "utilities",
+    "period": "Week of 11 Jun 2026",
+    "source": "Safer Highways",
+    "headline": "Ofwat Approves £44.7 Million Environmental Improvement Package for Welsh Water",
+    "body": "Ofwat Approves £44.7 Million Environmental Improvement Package for Welsh Water Safer Highways",
+    "why_matters": ""
+  },
+  {
+    "industry": "utilities",
+    "period": "Week of 11 Jun 2026",
+    "source": "Swansea Bay News",
+    "headline": "WELSH WATER: £44.7m sewage package confirmed — but critics say it is too little, too late",
+    "body": "WELSH WATER: £44.7m sewage package confirmed — but critics say it is too little, too late Swansea Bay News",
+    "why_matters": ""
+  },
+  {
+    "industry": "utilities",
+    "period": "Week of 11 Jun 2026",
+    "source": "Ofwat News",
+    "headline": "Ofwat confirms £44.7 million enforcement package for Dŵr Cymru Welsh Water",
+    "body": "The £44.7m package will reduce spills at specific overflows and improve river water quality in extremely sensitive catchments with the money being funded by the company, rather than added to customer bills. Dŵr Cymru Welsh Water is also required to rectify all identified breaches and ensure its future compliance. Ofwat has […] The post Ofwat confirms £44.7 million enforcement package for Dŵr Cymru Welsh Water appeared first on Ofwat.",
+    "why_matters": "+2 other outlets covered this"
+  },
+  {
+    "industry": "utilities",
+    "period": "Week of 11 Jun 2026",
+    "source": "Tenby Observer",
+    "headline": "Welsh Water staff contribute 685 hours to local volunteering",
+    "body": "Welsh Water staff contribute 685 hours to local volunteering Tenby Observer",
+    "why_matters": ""
+  },
+  {
+    "industry": "utilities",
+    "period": "Week of 11 Jun 2026",
+    "source": "ITVX",
+    "headline": "Welsh Water to pay out millions after 'serious' sewage network breaches",
+    "body": "Welsh Water to pay out millions after 'serious' sewage network breaches ITVX",
+    "why_matters": ""
+  },
+  {
+    "industry": "utilities",
+    "period": "Week of 11 Jun 2026",
+    "source": "Wales Online",
+    "headline": "Welsh Water £44.7 million pay-out confirmed for 'serious and unacceptable breaches'",
+    "body": "Welsh Water £44.7 million pay-out confirmed for 'serious and unacceptable breaches' Wales Online",
+    "why_matters": ""
+  },
+  {
+    "industry": "utilities",
+    "period": "Week of 11 Jun 2026",
+    "source": "South Wales Argus",
+    "headline": "Welsh Water to pay out £44.7 million following 'excessive' sewage spills",
+    "body": "Welsh Water to pay out £44.7 million following 'excessive' sewage spills South Wales Argus",
+    "why_matters": ""
+  },
+  {
+    "industry": "utilities",
+    "period": "Week of 11 Jun 2026",
+    "source": "شبكة تواصل الإخبارية",
+    "headline": "Sewage failures at Welsh Water trigger £44.7 million redress package",
+    "body": "Sewage failures at Welsh Water trigger £44.7 million redress package شبكة تواصل الإخبارية",
+    "why_matters": ""
+  },
+  {
+    "industry": "utilities",
+    "period": "Week of 11 Jun 2026",
+    "source": "Scottish Water",
+    "headline": "Cathedral Street Glasgow",
+    "body": "Cathedral Street Glasgow Scottish Water",
+    "why_matters": ""
+  },
+  {
+    "industry": "utilities",
+    "period": "Week of 11 Jun 2026",
+    "source": "Scottish Water",
+    "headline": "Blog: Can Scotland Support More Data Centres? - Colin Lindsay",
+    "body": "Blog: Can Scotland Support More Data Centres?",
+    "why_matters": ""
+  },
+  {
+    "industry": "utilities",
+    "period": "Week of 11 Jun 2026",
+    "source": "Scottish Water",
+    "headline": "Blog: Let's Support Scotland on and off the World's Biggest Stage - Deirdre Michie",
+    "body": "Blog: Let's Support Scotland on and off the World's Biggest Stage",
+    "why_matters": ""
+  },
+  {
+    "industry": "utilities",
+    "period": "Week of 11 Jun 2026",
+    "source": "Smart Water Magazine",
+    "headline": "How Scottish Water took hydraulic modelling to the cloud",
+    "body": "How Scottish Water took hydraulic modelling to the cloud Smart Water Magazine",
+    "why_matters": ""
+  },
+  {
+    "industry": "utilities",
+    "period": "Week of 11 Jun 2026",
+    "source": "The Herald",
+    "headline": "Essential Scottish Water sewer works to start near Edinburgh's West End",
+    "body": "Essential Scottish Water sewer works to start near Edinburgh's West End The Herald",
+    "why_matters": ""
+  },
+  {
+    "industry": "utilities",
+    "period": "Week of 11 Jun 2026",
+    "source": "Smart Water Magazine",
+    "headline": "Scottish Water's up to £415 million bet on turning Glasgow's sewage sludge into green energy",
+    "body": "Scottish Water's up to £415 million bet on turning Glasgow's sewage sludge into green energy Smart Water Magazine",
+    "why_matters": ""
+  },
+  {
+    "industry": "utilities",
+    "period": "Week of 11 Jun 2026",
+    "source": "The Irish News",
+    "headline": "NI Water to deploy AI-powered satellite system to detect leaks",
+    "body": "NI Water to deploy AI-powered satellite system to detect leaks The Irish News",
+    "why_matters": ""
+  },
+  {
+    "industry": "utilities",
+    "period": "Week of 11 Jun 2026",
+    "source": "Yahoo News UK",
+    "headline": "NI Water urges safe and responsible pesticide use this summer",
+    "body": "NI Water urges safe and responsible pesticide use this summer Yahoo News UK",
+    "why_matters": ""
+  },
+  {
+    "industry": "utilities",
+    "period": "Week of 11 Jun 2026",
+    "source": "Water Magazine",
+    "headline": "NI Water’s Foyle Street Network Upgrades Project achieves Sustainable BREEAM Infrastructure Award",
+    "body": "NI Water’s Foyle Street Network Upgrades Project achieves Sustainable BREEAM Infrastructure Award Water Magazine",
+    "why_matters": ""
   },
   {
     "industry": "energy",
-    "period": "Week of 9 Jun 2026",
+    "period": "Week of 11 Jun 2026",
+    "source": "S&P Global",
+    "headline": "National Grid sees energy security driving UK-EU power trading deal",
+    "body": "National Grid sees energy security driving UK-EU power trading deal S&P Global",
+    "why_matters": ""
+  },
+  {
+    "industry": "energy",
+    "period": "Week of 11 Jun 2026",
+    "source": "Engineering and Technology Magazine",
+    "headline": "National Grid anticipates major power surges during England’s World Cup matches",
+    "body": "National Grid anticipates major power surges during England’s World Cup matches Engineering and Technology Magazine",
+    "why_matters": ""
+  },
+  {
+    "industry": "energy",
+    "period": "Week of 11 Jun 2026",
+    "source": "aberdareonline.co.uk",
+    "headline": "National grid delays must be resolved",
+    "body": "National grid delays must be resolved aberdareonline.co.uk",
+    "why_matters": ""
+  },
+  {
+    "industry": "energy",
+    "period": "Week of 11 Jun 2026",
+    "source": "Yahoo Finance UK",
+    "headline": "National Grid shares: is this FTSE 100 dividend stock turning into a growth story?",
+    "body": "National Grid shares: is this FTSE 100 dividend stock turning into a growth story? Yahoo Finance UK",
+    "why_matters": ""
+  },
+  {
+    "industry": "energy",
+    "period": "Week of 11 Jun 2026",
     "source": "Energy Live News",
-    "headline": "National Grid told to approve £4.5bn transmission spend",
-    "body": "National Grid says the money is needed to invest in the network over five years.",
+    "headline": "NESO speeding up grid delays",
+    "body": "NESO speeding up grid delays Energy Live News",
+    "why_matters": ""
+  },
+  {
+    "industry": "energy",
+    "period": "Week of 11 Jun 2026",
+    "source": "Global Banking & Finance Review",
+    "headline": "NESO Makes Grid Connection Offers to 700+ UK Clean Energy Projects",
+    "body": "NESO Makes Grid Connection Offers to 700+ UK Clean Energy Projects Global Banking & Finance Review",
+    "why_matters": ""
+  },
+  {
+    "industry": "energy",
+    "period": "Week of 11 Jun 2026",
+    "source": "DGWGO",
+    "headline": "Top Marks As SP Energy Networks Engineers Go Back To School To Deliver Substation For New Dumfries High",
+    "body": "Top Marks As SP Energy Networks Engineers Go Back To School To Deliver Substation For New Dumfries High DGWGO",
+    "why_matters": ""
+  },
+  {
+    "industry": "energy",
+    "period": "Week of 11 Jun 2026",
+    "source": "Industrial Cyber",
+    "headline": "SSEN Transmission joins ENCS to strengthen cybersecurity collaboration across critical energy infrastructure",
+    "body": "SSEN Transmission joins ENCS to strengthen cybersecurity collaboration across critical energy infrastructure Industrial Cyber",
+    "why_matters": ""
+  },
+  {
+    "industry": "energy",
+    "period": "Week of 11 Jun 2026",
+    "source": "Energy Live News",
+    "headline": "SSEN Distribution develops new tool to maximise flexibility",
+    "body": "SSEN Distribution develops new tool to maximise flexibility Energy Live News",
+    "why_matters": ""
+  },
+  {
+    "industry": "energy",
+    "period": "Week of 11 Jun 2026",
+    "source": "Shetland News",
+    "headline": "SSEN investigating after three major power outages in three months",
+    "body": "SSEN investigating after three major power outages in three months Shetland News",
+    "why_matters": ""
+  },
+  {
+    "industry": "energy",
+    "period": "Week of 11 Jun 2026",
+    "source": "Power Technology",
+    "headline": "SSEN selects Jacobs for $1bn energy digitalisation frameworks",
+    "body": "SSEN selects Jacobs for $1bn energy digitalisation frameworks Power Technology",
+    "why_matters": ""
+  },
+  {
+    "industry": "energy",
+    "period": "Week of 11 Jun 2026",
+    "source": "Northern Gas Networks",
+    "headline": "A Life Transformed: How a Northern Gas Networks Apprenticeship Changed Everything for Abi",
+    "body": "A Life Transformed: How a Northern Gas Networks Apprenticeship Changed Everything for Abi Northern Gas Networks",
+    "why_matters": ""
+  },
+  {
+    "industry": "energy",
+    "period": "Week of 11 Jun 2026",
+    "source": "Telegraph and Argus",
+    "headline": "Northern Gas Networks became 'concerned' for Bradford resident amid routine check",
+    "body": "Northern Gas Networks became 'concerned' for Bradford resident amid routine check Telegraph and Argus",
+    "why_matters": ""
+  },
+  {
+    "industry": "energy",
+    "period": "Week of 11 Jun 2026",
+    "source": "Northern Gas Networks",
+    "headline": "Carers Urged Not to Miss Out on Support",
+    "body": "Carers Urged Not to Miss Out on Support Northern Gas Networks",
+    "why_matters": ""
+  },
+  {
+    "industry": "utilities",
+    "period": "Week of 11 Jun 2026",
+    "source": "Wildfish",
+    "headline": "Ofwat finds its teeth as regulator issues £44.7 million fine to help hold water companies to account",
+    "body": "Ofwat finds its teeth as regulator issues £44.7 million fine to help hold water companies to account Wildfish",
+    "why_matters": ""
+  },
+  {
+    "industry": "utilities",
+    "period": "Week of 11 Jun 2026",
+    "source": "North Edinburgh News",
+    "headline": "Ofwat – The NEN",
+    "body": "Ofwat",
+    "why_matters": ""
+  },
+  {
+    "industry": "utilities",
+    "period": "Week of 11 Jun 2026",
+    "source": "Utility Week",
+    "headline": "Ofgem and Ofwat failing to ensure firms support customers in debt",
+    "body": "Ofgem and Ofwat failing to ensure firms support customers in debt Utility Week",
+    "why_matters": ""
+  },
+  {
+    "industry": "utilities",
+    "period": "Week of 11 Jun 2026",
+    "source": "MSN",
+    "headline": "Water supply issues in heat added to Ofwat probe",
+    "body": "Water supply issues in heat added to Ofwat probe MSN",
+    "why_matters": ""
+  },
+  {
+    "industry": "energy",
+    "period": "Week of 11 Jun 2026",
+    "source": "Energy Live News",
+    "headline": "From robots to seagrass Ofgem offers £22m for energy innovation",
+    "body": "From robots to seagrass Ofgem offers £22m for energy innovation Energy Live News",
+    "why_matters": ""
+  },
+  {
+    "industry": "energy",
+    "period": "Week of 11 Jun 2026",
+    "source": "renewableenergymagazine.com",
+    "headline": "Ofgem SIF awards £22.9 million to support UK energy projects",
+    "body": "Ofgem SIF awards £22.9 million to support UK energy projects renewableenergymagazine.com",
+    "why_matters": ""
+  },
+  {
+    "industry": "energy",
+    "period": "Week of 11 Jun 2026",
+    "source": "Safer Highways",
+    "headline": "Ofgem sets framework for next phase of electricity network investment",
+    "body": "Ofgem sets framework for next phase of electricity network investment Safer Highways",
+    "why_matters": ""
+  },
+  {
+    "industry": "energy",
+    "period": "Week of 11 Jun 2026",
+    "source": "Utility Week",
+    "headline": "Energy brokers warn Ofgem not to kill market competition with overregulation",
+    "body": "Energy brokers warn Ofgem not to kill market competition with overregulation Utility Week",
+    "why_matters": ""
+  },
+  {
+    "industry": "energy",
+    "period": "Week of 11 Jun 2026",
+    "source": "theenergyst.com",
+    "headline": "Ofgem’s ED3 rulebook underlines urgency for on-site flexibility",
+    "body": "Ofgem’s ED3 rulebook underlines urgency for on-site flexibility theenergyst.com",
+    "why_matters": ""
+  },
+  {
+    "industry": "energy",
+    "period": "Week of 11 Jun 2026",
+    "source": "Energy Live News",
+    "headline": "Ofgem told to approve £4.5bn of extra spend on transmission",
+    "body": "Ofgem told to approve £4.5bn of extra spend on transmission Energy Live News",
     "why_matters": ""
   },
   {
     "industry": "comms",
-    "period": "Week of 9 Jun 2026",
-    "source": "Fortune",
-    "headline": "BT CEO on why telecoms needs more strikers",
-    "body": "BT's chief executive sets out a growth strategy in a wide-ranging interview.",
+    "period": "Week of 11 Jun 2026",
+    "source": "Telecompaper",
+    "headline": "BT becomes first UK member of Anthropic's Project Glasswing",
+    "body": "BT becomes first UK member of Anthropic's Project Glasswing Telecompaper",
+    "why_matters": "+1 other outlet covered this"
+  },
+  {
+    "industry": "comms",
+    "period": "Week of 11 Jun 2026",
+    "source": "Telecompaper",
+    "headline": "BT offers priority network access for mission-critical communications",
+    "body": "BT offers priority network access for mission-critical communications Telecompaper",
+    "why_matters": ""
+  },
+  {
+    "industry": "comms",
+    "period": "Week of 11 Jun 2026",
+    "source": "Proactive financial news",
+    "headline": "Is the BT Group's investment case flattered by high hopes?",
+    "body": "Is the BT Group's investment case flattered by high hopes? Proactive financial news",
+    "why_matters": ""
+  },
+  {
+    "industry": "comms",
+    "period": "Week of 11 Jun 2026",
+    "source": "TelcoTitans.com",
+    "headline": "FY25–26: BT boss ‘having fun’ amid transformation challenge, industry noise, global turbulence",
+    "body": "FY25–26: BT boss ‘having fun’ amid transformation challenge, industry noise, global turbulence TelcoTitans.com",
+    "why_matters": ""
+  },
+  {
+    "industry": "comms",
+    "period": "Week of 11 Jun 2026",
+    "source": "ISPreview UK",
+    "headline": "BT to Harness Claude Mythos AI Preview to Boost UK Telecoms Security",
+    "body": "BT to Harness Claude Mythos AI Preview to Boost UK Telecoms Security ISPreview UK",
+    "why_matters": ""
+  },
+  {
+    "industry": "comms",
+    "period": "Week of 11 Jun 2026",
+    "source": "twelfthmagpie.com",
+    "headline": "Down 16% to around £2.03! Here’s where BT’s bargain-basement shares ‘should’ be trading right now",
+    "body": "Down 16% to around £2.03! Here’s where BT’s bargain-basement shares ‘should’ be trading right now twelfthmagpie.com",
+    "why_matters": ""
+  },
+  {
+    "industry": "comms",
+    "period": "Week of 11 Jun 2026",
+    "source": "Guardian Business",
+    "headline": "BT boss takes home £5.6m as pay and bonus package more than doubles",
+    "body": "Allison Kirkby pocketed the payment after BT’s share price surged nearly 80% The chief executive of BT saw her pay and bonus package more than double last year to £5.6m, the biggest pay award to a boss of the telecoms company in more than a decade. Allison Kirkby, who stepped up from the board to take the helm in February 2024 , received a pay, bonus and share award package of £5.58m for the year to the end of March. Continue reading...",
+    "why_matters": ""
+  },
+  {
+    "industry": "comms",
+    "period": "Week of 11 Jun 2026",
+    "source": "Guardian Business",
+    "headline": "BT Digital Voice switched off our vital phone line",
+    "body": "The line is vital for our elderly relative’s care, but after 20 calls BT seems unable to resolve the problem My elderly aunt, who lives alone, has been unable to receive incoming calls for more than two months after BT switched her analogue service to Digital Voice. Her care is overseen by a rota of relatives who check on her and arrange medical appointments and in-home help. Continue reading...",
     "why_matters": ""
   },
   {
     "industry": "media",
-    "period": "Week of 9 Jun 2026",
-    "source": "FT",
-    "headline": "Informa lifts full-year guidance on events strength",
-    "body": "Informa raised guidance citing strong live-events demand.",
+    "period": "Week of 11 Jun 2026",
+    "source": "Trade Show News Network",
+    "headline": "Leading Through Growth: Inside Informa Connect with CEO Andy Mullins",
+    "body": "Leading Through Growth: Inside Informa Connect with CEO Andy Mullins Trade Show News Network",
+    "why_matters": ""
+  },
+  {
+    "industry": "media",
+    "period": "Week of 11 Jun 2026",
+    "source": "GuruFocus",
+    "headline": "FMI International Fund II - Currency Unhedged's Informa PLC(LSE:INF) Holding History",
+    "body": "FMI International Fund II - Currency Unhedged's Informa PLC(LSE:INF) Holding History GuruFocus",
+    "why_matters": ""
+  },
+  {
+    "industry": "media",
+    "period": "Week of 11 Jun 2026",
+    "source": "Wilson Sonsini",
+    "headline": "2026 Informa Connect: Antitrust Midwest",
+    "body": "2026 Informa Connect: Antitrust Midwest Wilson Sonsini",
+    "why_matters": ""
+  },
+  {
+    "industry": "comms",
+    "period": "Week of 11 Jun 2026",
+    "source": "ISPreview UK",
+    "headline": "VodafoneThree Allegedly Places Bid for UK Consumer Broadband ISP TalkTalk",
+    "body": "VodafoneThree Allegedly Places Bid for UK Consumer Broadband ISP TalkTalk ISPreview UK",
+    "why_matters": ""
+  },
+  {
+    "industry": "comms",
+    "period": "Week of 11 Jun 2026",
+    "source": "Mobile Europe",
+    "headline": "Vodafone looks to expand fibre footprint in Greece and the UK",
+    "body": "Vodafone looks to expand fibre footprint in Greece and the UK Mobile Europe",
+    "why_matters": ""
+  },
+  {
+    "industry": "comms",
+    "period": "Week of 11 Jun 2026",
+    "source": "Tenby Observer",
+    "headline": "Vodafone's ambitious broadband plan for Pembrokeshire",
+    "body": "Vodafone's ambitious broadband plan for Pembrokeshire Tenby Observer",
+    "why_matters": ""
+  },
+  {
+    "industry": "comms",
+    "period": "Week of 11 Jun 2026",
+    "source": "Mobile World Live",
+    "headline": "Vodafone explores Greek FTTH JV",
+    "body": "Vodafone explores Greek FTTH JV Mobile World Live",
+    "why_matters": "+1 other outlet covered this"
+  },
+  {
+    "industry": "comms",
+    "period": "Week of 11 Jun 2026",
+    "source": "marketscreener.com",
+    "headline": "Barclays Downgrades Vodafone Group to Equal Weight, Lowers PT",
+    "body": "Barclays Downgrades Vodafone Group to Equal Weight, Lowers PT marketscreener.com",
+    "why_matters": ""
+  },
+  {
+    "industry": "comms",
+    "period": "Week of 11 Jun 2026",
+    "source": "Telecompaper",
+    "headline": "Vodafone, PPC Group plan fibre joint venture in Greece",
+    "body": "Vodafone, PPC Group plan fibre joint venture in Greece Telecompaper",
+    "why_matters": ""
+  },
+  {
+    "industry": "comms",
+    "period": "Week of 11 Jun 2026",
+    "source": "Vodafone",
+    "headline": "How Vodafone Group is accelerating its climate transition",
+    "body": "How Vodafone Group is accelerating its climate transition Vodafone",
+    "why_matters": ""
+  },
+  {
+    "industry": "comms",
+    "period": "Week of 11 Jun 2026",
+    "source": "Virgin Media O2",
+    "headline": "Virgin Media O2 predicts major overnight broadband and mobile surge as fans prepare for a summer of late-night football",
+    "body": "Virgin Media O2 predicts major overnight broadband and mobile surge as fans prepare for a summer of late-night football Virgin Media O2",
+    "why_matters": ""
+  },
+  {
+    "industry": "comms",
+    "period": "Week of 11 Jun 2026",
+    "source": "Data Center Dynamics",
+    "headline": "Virgin Media O2 takes aim at \"outdated\" planning rules in London, warns mobile coverage will suffer",
+    "body": "Virgin Media O2 takes aim at \"outdated\" planning rules in London, warns mobile coverage will suffer Data Center Dynamics",
+    "why_matters": ""
+  },
+  {
+    "industry": "comms",
+    "period": "Week of 11 Jun 2026",
+    "source": "Virgin Media O2",
+    "headline": "O2 and Mavenir successfully trial technology to improve call clarity for people with hearing loss",
+    "body": "O2 and Mavenir successfully trial technology to improve call clarity for people with hearing loss Virgin Media O2",
+    "why_matters": "+1 other outlet covered this"
+  },
+  {
+    "industry": "comms",
+    "period": "Week of 11 Jun 2026",
+    "source": "BusinessGreen",
+    "headline": "How Virgin Media O2 is plugging climate resilience and circularity into its Responsible Business Plan",
+    "body": "How Virgin Media O2 is plugging climate resilience and circularity into its Responsible Business Plan BusinessGreen",
+    "why_matters": ""
+  },
+  {
+    "industry": "comms",
+    "period": "Week of 11 Jun 2026",
+    "source": "Telecompaper",
+    "headline": "VMO2 expects World Cup to increase broadband, mobile network traffic",
+    "body": "VMO2 expects World Cup to increase broadband, mobile network traffic Telecompaper",
+    "why_matters": ""
+  },
+  {
+    "industry": "comms",
+    "period": "Week of 11 Jun 2026",
+    "source": "Virgin Media O2",
+    "headline": "Planning delays putting London’s growth at risk warns Virgin Media O2, after being forced to switch off dozens of mobile sites in the capital",
+    "body": "Planning delays putting London’s growth at risk warns Virgin Media O2, after being forced to switch off dozens of mobile sites in the capital Virgin Media O2",
+    "why_matters": ""
+  },
+  {
+    "industry": "comms",
+    "period": "Week of 11 Jun 2026",
+    "source": "Virgin Media",
+    "headline": "2026 FIFA World Cup | Fixtures, TV times, England, Scotland, players to watch",
+    "body": "2026 FIFA World Cup | Fixtures, TV times, England, Scotland, players to watch Virgin Media",
+    "why_matters": ""
+  },
+  {
+    "industry": "comms",
+    "period": "Week of 11 Jun 2026",
+    "source": "Telecompaper",
+    "headline": "O2, Mavenir trial helps improve call clarity for hearing-impaired customers",
+    "body": "O2, Mavenir trial helps improve call clarity for hearing-impaired customers Telecompaper",
+    "why_matters": ""
+  },
+  {
+    "industry": "energy",
+    "period": "Week of 11 Jun 2026",
+    "source": "reNEWS.BIZ",
+    "headline": "RWE installs first Nordseecluster A turbine",
+    "body": "RWE installs first Nordseecluster A turbine reNEWS.BIZ",
+    "why_matters": "+2 other outlets covered this"
+  },
+  {
+    "industry": "energy",
+    "period": "Week of 11 Jun 2026",
+    "source": "POWER Magazine",
+    "headline": "Meta Announces PPA With RWE for 298-MW Texas Solar Power Project",
+    "body": "Meta Announces PPA With RWE for 298-MW Texas Solar Power Project POWER Magazine",
+    "why_matters": ""
+  },
+  {
+    "industry": "energy",
+    "period": "Week of 11 Jun 2026",
+    "source": "ESS News",
+    "headline": "RWE opens 50 MW/400 MWh long-duration battery in Australia",
+    "body": "RWE opens 50 MW/400 MWh long-duration battery in Australia ESS News",
+    "why_matters": ""
+  },
+  {
+    "industry": "energy",
+    "period": "Week of 11 Jun 2026",
+    "source": "Renewables Now",
+    "headline": "RWE, Meta add 298-MW PPA to US solar partnership",
+    "body": "RWE, Meta add 298-MW PPA to US solar partnership Renewables Now",
+    "why_matters": ""
+  },
+  {
+    "industry": "energy",
+    "period": "Week of 11 Jun 2026",
+    "source": "offshoreWIND.biz",
+    "headline": "RWE, TotalEnergies Charter Purus CSOV for Dutch Offshore Wind Farm",
+    "body": "RWE, TotalEnergies Charter Purus CSOV for Dutch Offshore Wind Farm offshoreWIND.biz",
+    "why_matters": ""
+  },
+  {
+    "industry": "energy",
+    "period": "Week of 11 Jun 2026",
+    "source": "Renewables Now",
+    "headline": "RWE gets closer to turbine installation at 660-MW offshore project",
+    "body": "RWE gets closer to turbine installation at 660-MW offshore project Renewables Now",
+    "why_matters": ""
+  },
+  {
+    "industry": "energy",
+    "period": "Week of 11 Jun 2026",
+    "source": "Ocean Energy Resources",
+    "headline": "Prysmian completes project at RWE’s Sofia OWF",
+    "body": "Prysmian completes project at RWE’s Sofia OWF Ocean Energy Resources",
+    "why_matters": ""
+  },
+  {
+    "industry": "energy",
+    "period": "Week of 11 Jun 2026",
+    "source": "Reuters",
+    "headline": "Ireland's DCC signals support for sweetened $7.6 billion buyout bid",
+    "body": "Ireland's DCC signals support for sweetened $7.6 billion buyout bid Reuters",
+    "why_matters": "+2 other outlets covered this"
+  },
+  {
+    "industry": "energy",
+    "period": "Week of 11 Jun 2026",
+    "source": "Irish Independent",
+    "headline": "DCC plc’s shareprice shoots past £5bn with hours to ‘put-up or shut-up’ deadline",
+    "body": "DCC plc’s shareprice shoots past £5bn with hours to ‘put-up or shut-up’ deadline Irish Independent",
     "why_matters": ""
   }
 ]
